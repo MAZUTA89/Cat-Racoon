@@ -39,7 +39,7 @@ namespace Clientt
             }
 
             client.TryStop();
-
+            Console.ReadLine();
         }
     }
 }

@@ -51,18 +51,27 @@ namespace ClientServer.Server
             }
         }
 
-        public async Task<bool> TryAcceptAsync()
+        public async Task TryAcceptAsync()
         {
             try
             {
                 _clientSocket = await _serverSocket.AcceptAsync();
                 _clientEndPoint = _clientSocket.RemoteEndPoint;
-                return true;
+                //return true;
             }catch(Exception ex)
             {
                 _error = ex;
-                return false;
+                //return false;
             }
+        }
+
+        public async Task SendAsync(string message)
+        {
+            var messageBytes = Encoding.UTF8.GetBytes(message);
+
+            ArraySegment<byte> bytes = new ArraySegment<byte>(messageBytes);
+
+            int bytesSent = await _clientSocket.SendAsync(bytes, SocketFlags.None);
         }
 
         public bool TryStop()
