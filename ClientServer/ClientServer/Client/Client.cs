@@ -25,19 +25,61 @@ namespace ClientServer.Client
                 SocketType.Stream, ProtocolType.Tcp);
         }
 
-        public async Task<bool> TryConnectAsync()
+        public async Task TryConnectAsync()
         {
             try
             {
                 await _clientSocket.ConnectAsync(EndPoint);
-                return true;
+                //return true;
             }
             catch (SocketException ex)
             {
                 _error = ex;
-                return false;
+                //return false;
             }
         }
+
+        public async Task SendAsync(string message)
+        {
+            try
+            {
+                var messageBytes = Encoding.UTF8.GetBytes(message);
+                ArraySegment<byte> bytes = new ArraySegment<byte>(messageBytes);
+
+                int bytesSent = await _clientSocket.SendAsync(bytes, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                _error = ex;
+            }
+        }
+
+        public async Task<string> RecvAsync()
+        {
+            try
+            {
+                byte[] buffer = new byte[1024];
+                //ArraySegment<byte> bytes = new ArraySegment<byte>(buffer);
+                SocketAsyncEventArgs e = new SocketAsyncEventArgs();
+                e.SetBuffer(buffer, 0, buffer.Length);
+                _clientSocket.ReceiveAsync(e);
+
+                if(e.BytesTransferred > 0)
+                {
+                    byte[] recv_bytes = new byte[e.BytesTransferred];
+
+                    Array.Copy(e.Buffer, recv_bytes, e.BytesTransferred);
+                    return Encoding.UTF8.GetString(e.Buffer, 0, e.Count);
+                }
+                else return String.Empty;
+            }
+            catch (Exception ex)
+            {
+                _error = ex;
+                return String.Empty;
+            }
+        }
+
         public bool TryDicsonnect()
         {
             bool res = false;

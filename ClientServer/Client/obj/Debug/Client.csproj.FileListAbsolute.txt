@@ -4,7 +4,6 @@ D:\Ivan\GitHub\PSP_kurs\ClientServer\Client\bin\Debug\Client.pdb
 D:\Ivan\GitHub\PSP_kurs\ClientServer\Client\bin\Debug\ClientServer.dll
 D:\Ivan\GitHub\PSP_kurs\ClientServer\Client\bin\Debug\ClientServer.pdb
 D:\Ivan\GitHub\PSP_kurs\ClientServer\Client\obj\Debug\Client.csproj.AssemblyReference.cache
-D:\Ivan\GitHub\PSP_kurs\ClientServer\Client\obj\Debug\Client.csproj.SuggestedBindingRedirects.cache
 D:\Ivan\GitHub\PSP_kurs\ClientServer\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 D:\Ivan\GitHub\PSP_kurs\ClientServer\Client\obj\Debug\Client.csproj.CopyComplete
 D:\Ivan\GitHub\PSP_kurs\ClientServer\Client\obj\Debug\Client.exe

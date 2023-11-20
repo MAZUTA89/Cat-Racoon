@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ClientServer.Client;
 using ClientServer.Server;
 
 namespace Serverr
@@ -25,41 +26,34 @@ namespace Serverr
                 Console.WriteLine("Ошибка listen");
                 return;
             }
-            //await Print();
             Console.WriteLine($"Ожидание подключения на {server.EndPoint}");
 
             Task t = server.TryAcceptAsync();
-            //Print();
             
-            while(true)
-            {
-                Console.WriteLine("Hi");
-                await Task.Delay(1000);
-                if (t.IsCompleted)
-                {
-                    return;
-                }
-                   
-            }
-            //while(!t.IsCompleted)
-            //{
-            //    Console.WriteLine("Hi");
-            //}
-            //if (!await server.TryAcceptAsync())
-            //{
-            //    Console.WriteLine("Accept failed");
-            //    server.TryStop();
-            //}
-            //else Console.WriteLine("Подключено!");
-        }
+            await t;
+            Console.WriteLine("Подключено!");
+            Task sendTask = Send(server);
+            Task recvTask = Recv(server);
 
-        static async Task Print()
+            Task.WaitAny(sendTask, recvTask);
+
+            server.TryStop();
+        }
+        static async Task Send(Server server)
         {
-            for (int i = 0; i < 100; i++)
+            int i = 0;
+            while (true)
             {
-                Console.WriteLine("Print");
-                await Task.Delay(500);
-                
+                server.SendAsync(i.ToString());
+                Task.Delay(1000);
+                i++;
+            }
+        }
+        static async Task Recv(Server server)
+        {
+            while (true)
+            {
+                Console.WriteLine($"Take: {server.RecvAsync()}");
             }
         }
     }

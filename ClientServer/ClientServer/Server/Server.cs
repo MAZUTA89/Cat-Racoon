@@ -17,9 +17,9 @@ namespace ClientServer.Server
         Socket _serverSocket;
         Socket _clientSocket;
         Exception _error;
-        public Server() 
+        public Server()
         {
-            EndPoint = new IPEndPoint(IPAddress.Any, 0);
+            EndPoint = new IPEndPoint(IPAddress.Any, 9000);
             _serverSocket = new Socket(AddressFamily.InterNetwork,
                 SocketType.Stream, ProtocolType.Tcp);
         }
@@ -29,9 +29,10 @@ namespace ClientServer.Server
             try
             {
                 _serverSocket.Bind(EndPoint);
-                EndPoint = _serverSocket.LocalEndPoint;
+                //EndPoint = _serverSocket.LocalEndPoint;
                 return true;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 _error = ex;
                 return false;
@@ -43,8 +44,9 @@ namespace ClientServer.Server
             {
                 _serverSocket.Listen(c_backlog);
                 return true;
-               
-            }catch(Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 _error = ex;
                 return false;
@@ -58,7 +60,8 @@ namespace ClientServer.Server
                 _clientSocket = await _serverSocket.AcceptAsync();
                 _clientEndPoint = _clientSocket.RemoteEndPoint;
                 //return true;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 _error = ex;
                 //return false;
@@ -67,13 +70,38 @@ namespace ClientServer.Server
 
         public async Task SendAsync(string message)
         {
-            var messageBytes = Encoding.UTF8.GetBytes(message);
+            try
+            {
+                var messageBytes = Encoding.UTF8.GetBytes(message);
+                ArraySegment<byte> bytes = new ArraySegment<byte>(messageBytes);
 
-            ArraySegment<byte> bytes = new ArraySegment<byte>(messageBytes);
-
-            int bytesSent = await _clientSocket.SendAsync(bytes, SocketFlags.None);
+                int bytesSent = await _clientSocket.SendAsync(bytes, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                _error = ex;
+            }
         }
 
+        public async Task<string> RecvAsync()
+        {
+            try
+            {
+                ArraySegment<byte> bytes = new ArraySegment<byte>();
+                int bytesRecv = await _clientSocket.ReceiveAsync(bytes, SocketFlags.None);
+                string response = Encoding.UTF8.GetString(bytes.Array, 0, bytes.Count);
+                return response;
+            }
+            catch(Exception ex)
+            {
+                _error = ex;
+                return String.Empty;
+            }
+        }
+        public string GetLastError()
+        {
+            return _error.Message;
+        }
         public bool TryStop()
         {
             try
@@ -81,7 +109,8 @@ namespace ClientServer.Server
                 _serverSocket.Shutdown(SocketShutdown.Both);
                 _clientSocket.Shutdown(SocketShutdown.Both);
                 return true;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 _error = ex;
                 return false;
