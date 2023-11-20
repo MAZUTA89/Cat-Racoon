@@ -42,10 +42,10 @@ namespace Clientt
             //}
             await con;
             Console.WriteLine("Подключено!");
-            //Task sendTask = Send(client);
+            Task sendTask = Send(client);
             Task recvTask = Recv(client);
 
-            Task.WaitAny(recvTask);
+            Task.WaitAny(recvTask, sendTask);
 
             client.TryStop();
             Console.ReadLine();
@@ -54,10 +54,10 @@ namespace Clientt
         static async Task Send(Client client)
         {
             int i = 0;
-            while (i < 10000)
+            while (true)
             {
-                await client.SendAsync(i.ToString());
-                Task.Delay(1000);
+                client.SendAsync(i.ToString());
+                await Task.Delay(1000);
                 i++;
             }
         }

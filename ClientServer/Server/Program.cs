@@ -45,7 +45,7 @@ namespace Serverr
             while (true)
             {
                 server.SendAsync(i.ToString());
-                Task.Delay(1000);
+                await Task.Delay(1000);
                 i++;
             }
         }
@@ -53,7 +53,7 @@ namespace Serverr
         {
             while (true)
             {
-                Console.WriteLine($"Take: {server.RecvAsync()}");
+                Console.WriteLine($"Take: {await server.RecvAsync()}");
             }
         }
     }

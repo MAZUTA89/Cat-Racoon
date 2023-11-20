@@ -58,25 +58,28 @@ namespace ClientServer.Client
         {
             try
             {
-                byte[] buffer = new byte[1024];
-                //ArraySegment<byte> bytes = new ArraySegment<byte>(buffer);
-                SocketAsyncEventArgs e = new SocketAsyncEventArgs();
-                e.SetBuffer(buffer, 0, buffer.Length);
-                _clientSocket.ReceiveAsync(e);
+                byte[] buffer = new byte[1];
+                ArraySegment<byte> bytes = new ArraySegment<byte>(buffer);
+                
+                // Асинхронно ожидаем прием данных
+                int bytes_recv = await _clientSocket.ReceiveAsync(bytes, SocketFlags.None);
 
-                if(e.BytesTransferred > 0)
+                if(bytes_recv > 0)
                 {
-                    byte[] recv_bytes = new byte[e.BytesTransferred];
-
-                    Array.Copy(e.Buffer, recv_bytes, e.BytesTransferred);
-                    return Encoding.UTF8.GetString(e.Buffer, 0, e.Count);
+                    byte[] receivedData = new byte[bytes_recv];
+                    Array.Copy(bytes.Array, receivedData, bytes_recv);
+                    return Encoding.UTF8.GetString(receivedData);
                 }
-                else return String.Empty;
+                else
+                {
+                    // Если не было данных, возвращаем пустую строку
+                    return string.Empty;
+                }
             }
             catch (Exception ex)
             {
                 _error = ex;
-                return String.Empty;
+                return string.Empty;
             }
         }
 
