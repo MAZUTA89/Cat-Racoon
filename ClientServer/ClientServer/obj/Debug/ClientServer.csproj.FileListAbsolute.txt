@@ -4,3 +4,6 @@ D:\Ivan\GitHub\PSP_kurs\ClientServer\ClientServer\obj\Debug\ClientServer.csproj.
 D:\Ivan\GitHub\PSP_kurs\ClientServer\ClientServer\obj\Debug\ClientServer.csproj.CoreCompileInputs.cache
 D:\Ivan\GitHub\PSP_kurs\ClientServer\ClientServer\obj\Debug\ClientServer.dll
 D:\Ivan\GitHub\PSP_kurs\ClientServer\ClientServer\obj\Debug\ClientServer.pdb
+D:\Ivan\GitHub\PSP_kurs\ClientServer\ClientServer\bin\Debug\Newtonsoft.Json.dll
+D:\Ivan\GitHub\PSP_kurs\ClientServer\ClientServer\bin\Debug\Newtonsoft.Json.xml
+D:\Ivan\GitHub\PSP_kurs\ClientServer\ClientServer\obj\Debug\ClientServer.csproj.CopyComplete

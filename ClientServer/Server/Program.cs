@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ClientServer;
 using ClientServer.Client;
 using ClientServer.Server;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Serverr
 {
@@ -32,29 +34,30 @@ namespace Serverr
             
             await t;
             Console.WriteLine("Подключено!");
-            Task sendTask = Send(server);
-            Task recvTask = Recv(server);
 
-            Task.WaitAny(sendTask, recvTask);
+            Person person = new Person()
+            {
+                Name = "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest",
+                Age = 200,
+                SecondName = "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest",
+            };
+            Player player = new Player();
+            player.people.Add(person);
+            player.people.Add(person);
+            player.people.Add(person);
+            player.pos = new Position()
+            {
+                x = 3,
+                y = 4,
+            };
 
-            server.TryStop();
-        }
-        static async Task Send(Server server)
-        {
-            int i = 0;
-            while (true)
-            {
-                server.SendAsync(i.ToString());
-                await Task.Delay(1000);
-                i++;
-            }
-        }
-        static async Task Recv(Server server)
-        {
-            while (true)
-            {
-                Console.WriteLine($"Take: {await server.RecvAsync()}");
-            }
+            await server.SendAcync(player);
+            //Task sendTask = Send(server);
+            //Task recvTask = Recv(server);
+
+            //Task.WaitAny(sendTask, recvTask);
+
+            server.Stop();
         }
     }
 }

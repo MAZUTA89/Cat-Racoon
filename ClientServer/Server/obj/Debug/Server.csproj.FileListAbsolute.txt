@@ -8,3 +8,5 @@ D:\Ivan\GitHub\PSP_kurs\ClientServer\Server\obj\Debug\Server.csproj.CoreCompileI
 D:\Ivan\GitHub\PSP_kurs\ClientServer\Server\obj\Debug\Server.csproj.CopyComplete
 D:\Ivan\GitHub\PSP_kurs\ClientServer\Server\obj\Debug\Server.exe
 D:\Ivan\GitHub\PSP_kurs\ClientServer\Server\obj\Debug\Server.pdb
+D:\Ivan\GitHub\PSP_kurs\ClientServer\Server\bin\Debug\Newtonsoft.Json.dll
+D:\Ivan\GitHub\PSP_kurs\ClientServer\Server\bin\Debug\Newtonsoft.Json.xml

@@ -13,12 +13,14 @@ namespace Clientt
 {
     internal class Program
     {
+        static Player Person { get; set; }
         static async Task Main(string[] args)
         {
             //Console.WriteLine("Адресс:");
             ////string ip = Console.ReadLine();
             //Console.WriteLine("Порт:");
             //int port = int.Parse(Console.ReadLine());
+            
             
             IPEndPoint iPEndPoint;
             Client client;
@@ -29,45 +31,19 @@ namespace Clientt
             }
             else return;
 
-            Task con = client.TryConnectAsync();
+            Task con =  client.TryConnectAsync();
 
-            //if(await client.TryConnectAsync()))
-            //{
-            //    Console.WriteLine("подключено!");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Connection failed!");
-            //    Console.WriteLine("Error:" + client.GetLastError());
-            //}
             await con;
             Console.WriteLine("Подключено!");
-            Task sendTask = Send(client);
-            Task recvTask = Recv(client);
 
-            Task.WaitAny(recvTask, sendTask);
+            Person = await client.RecvAcync<Player>();
+            //Task sendTask = Send(client);
+            //Task recvTask = Recv(client);
 
-            client.TryStop();
+            //Task.WaitAny(recvTask, sendTask);
+
+            client.Stop();
             Console.ReadLine();
-        }
-
-        static async Task Send(Client client)
-        {
-            int i = 0;
-            while (true)
-            {
-                client.SendAsync(i.ToString());
-                await Task.Delay(1000);
-                i++;
-            }
-        }
-        static async Task Recv(Client client)
-        {
-            while (true)
-            {
-                string str = await client.RecvAsync();
-                Console.WriteLine($"Take: {str}");
-            }
         }
     }
 }
