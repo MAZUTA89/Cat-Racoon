@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ClientServer.Server
 {
-    public class Server : TCPMessenger
+    public class Server : TCPBase
     {
         const int c_backlog = 1;
         EndPoint _clientEndPoint;

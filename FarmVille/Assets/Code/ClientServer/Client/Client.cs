@@ -9,7 +9,7 @@ using System.IO;
 
 namespace ClientServer.Client
 {
-    public class Client : TCPMessenger
+    public class Client : TCPBase
     {
         IPAddress _ipAddress;
         public bool IsConnected => ClientSocket.Connected;

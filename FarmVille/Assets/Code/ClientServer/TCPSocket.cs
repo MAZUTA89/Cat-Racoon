@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ClientServer
 {
-    public abstract class TCPMessenger
+    public abstract class TCPBase
     {
         public EndPoint EndPoint { get; protected set; }
         public EndPoint LocalEndPoint { get; protected set; }
