@@ -678,6 +678,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1239120952}
+        m_TargetAssemblyTypeName: Assets.Code.Scripts.Lobby.LobbyConnection, Assembly-CSharp
+        m_MethodName: OnCreate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &825647935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,6 +1006,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1239120952}
+        m_TargetAssemblyTypeName: Assets.Code.Scripts.Lobby.LobbyConnection, Assembly-CSharp
+        m_MethodName: OnConnect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1203235826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,6 +1066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1239120950}
   - component: {fileID: 1239120951}
+  - component: {fileID: 1239120952}
   m_Layer: 0
   m_Name: LobbyService
   m_TagString: Untagged
@@ -1074,6 +1099,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f3d21ca415e7c14faa3e951e5feb580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1239120952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239120949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36db3566454f7c9439c7d7b1a84b900f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1265407664
