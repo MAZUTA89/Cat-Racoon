@@ -18,5 +18,13 @@ namespace ClientServer
             iPEndPoint = new IPEndPoint(ipAddress, (int)port);
             return result;
         }
+        public static void PrintArray(int[] array)
+        {
+            foreach (var item in array)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
+        }
     }
 }

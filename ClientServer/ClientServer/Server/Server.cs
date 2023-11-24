@@ -14,10 +14,12 @@ namespace ClientServer.Server
         const int c_backlog = 1;
         EndPoint _clientEndPoint;
         Socket _serverSocket;
+        QuickSort _quickSort;
         public Server()
         {
             EndPoint = new IPEndPoint(IPAddress.Any, 9000);
             _serverSocket = base.InitializeTCPSocket();
+            _quickSort = new QuickSort();
         }
 
         public bool TryBindPoint()
@@ -53,9 +55,16 @@ namespace ClientServer.Server
         {
             try
             {
-                ClientSocket = await _serverSocket.AcceptAsync();
-                RemoteEndPoint = ClientSocket.RemoteEndPoint;
-                LocalEndPoint = ClientSocket.LocalEndPoint;
+                int id = 0;
+                while (true)
+                {
+                    ClientSocket = await _serverSocket.AcceptAsync();
+                    id++;
+                    Console.WriteLine("Connect!!!");
+                    RemoteEndPoint = ClientSocket.RemoteEndPoint;
+                    LocalEndPoint = ClientSocket.LocalEndPoint;
+                    HandleClient(ClientSocket, id);
+                }
                 //return true;
             }
             catch (Exception ex)
@@ -69,5 +78,23 @@ namespace ClientServer.Server
         {
             return StopSocket(ClientSocket) && StopSocket(_serverSocket);
         }
+
+        public async Task HandleClient(Socket clientSocket, int id)
+        {
+            int[] array = await RecvAcync<int[]>();
+            Console.WriteLine($"{id} Получен:");
+            Assistant.PrintArray(array);
+
+            _quickSort.SortArray(array, 0, array.Length - 1);
+
+            int bytes = await SendAsync<int[]>(clientSocket, array);
+
+            if (bytes > 0)
+            {
+                Console.WriteLine($"{id} Отправлен:");
+                Assistant.PrintArray(array);
+            }
+        }
+
     }
 }

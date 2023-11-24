@@ -26,9 +26,12 @@ namespace Assets.Code.Scripts.Lobby
                 Debug.Log(server.GetLastError());
                 return false;
             }
-           
-            
+
+            Debug.Log($"Слушаю на {server.EndPoint}");
+
             await server.TryAcceptAsync();
+
+            Debug.Log($"Подключение от {server.GetRemotePoint()}");
 
             return true;
         }
@@ -37,8 +40,7 @@ namespace Assets.Code.Scripts.Lobby
             IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9000);
             Client client = new Client(iPEndPoint);
 
-             client.TryConnectAsync();
-
+            client.TryConnectAsync();
 
             Debug.Log($"Подключаюсь к {client.EndPoint}");
             return true;
@@ -47,7 +49,7 @@ namespace Assets.Code.Scripts.Lobby
         public void OnCreate()
         {
             CreateServerConnection();
-            Debug.Log($"Слушаю");
+            
         }
         public void OnConnect()
         {
