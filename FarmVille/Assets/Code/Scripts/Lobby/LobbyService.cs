@@ -8,6 +8,7 @@ using Zenject;
 using ClientServer;
 using ClientServer.Client;
 using ClientServer.Server;
+using Assets.Code.Scripts.Boot;
 
 namespace Assets.Code.Scripts.Lobby
 {
@@ -27,6 +28,7 @@ namespace Assets.Code.Scripts.Lobby
             _createPanel = createPanel;
             _connectPanel = connectPanel;
         }
+
         public void OnConnect()
         {
             _startPanel.SetActive(false);

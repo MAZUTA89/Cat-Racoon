@@ -8,14 +8,25 @@ using ClientServer.Client;
 using ClientServer.Server;
 using UnityEngine;
 using System.Threading;
+using Assets.Code.Scripts.Boot;
+using ClientServer;
 
 namespace Assets.Code.Scripts.Lobby
 {//Работа с подключением
     public class LobbyConnection : MonoBehaviour
     {
+        const string c_MenuSceneName = "MenuScene";
+        public event Action<Server> onServerConnectionCreatedEvent;
+        public event Action<Client> onClientConnectionCreatedEvent;
         Server _server;
         Client _client;
         CancellationTokenSource _cancellToken;
+        LevelLoader _levelLoader;
+
+        private void Awake()
+        {
+            _levelLoader = new LevelLoader();
+        }
 
         public async Task<bool> CreateServerConnection(CancellationToken cancellationToken)
         {
@@ -74,29 +85,135 @@ namespace Assets.Code.Scripts.Lobby
             return true;
         }
 
-        public void OnCreate()
+        public async void OnCreate()
         {
-            Task.Run(async () =>
+            _cancellToken = new CancellationTokenSource();
+            if (await CreateServerConnection(_cancellToken.Token))
             {
-                _cancellToken = new CancellationTokenSource();
-                if (await CreateServerConnection(_cancellToken.Token))
-                {
-                    Debug.Log("Клиент подключился!");
-                }
-                else
-                {
-                    Debug.Log("Ошибка ожидания!");
-                }
-            });
+                onServerConnectionCreatedEvent?.Invoke(_server);
+                Debug.Log("Клиент подключился!");
+            }
+            else
+            {
+                _server.Stop();
+                Debug.Log("Ошибка ожидания!");
+                return;
+            }
+            //Task.Run(async () =>
+            //{
+                
+
+
+            //});
+
+            //Task.Run(async () =>
+            //{
+            //    if (await LoadServerLevel(_server))
+            //    {
+            //        User.Instance.InitializeUserBase(_server);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        _server.Stop();
+            //        await _levelLoader.LoadLevelAsync(c_MenuSceneName);
+            //    }
+            //});
         }
-        public void OnConnect()
+        public async void OnConnect()
         {
-            Task.Run(async () =>
+            _cancellToken = new CancellationTokenSource();
+            if (await CreateClientConnection(_cancellToken.Token))
             {
-                _cancellToken = new CancellationTokenSource();
-                await CreateClientConnection(_cancellToken.Token);
+                onClientConnectionCreatedEvent?.Invoke(_client);
                 Debug.Log("Подключение к серверу успешно!");
-            });
+            }
+            else
+            {
+                Debug.Log("Ошибка подкючения!");
+                _client.Stop();
+                return;
+            }
+            //Task.Run(async () =>
+            //{
+                
+            //});
+
+            //Task.Run(async () =>
+            //{
+            //    if (await LoadClientLevel(_client))
+            //    {
+            //        User.Instance.InitializeUserBase(_client);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        _client.Stop();
+            //        await _levelLoader.LoadLevelAsync(c_MenuSceneName);
+            //    }
+            //});
+        }
+
+        public async Task<bool> LoadClientLevel(Client client)
+        {
+            //await _levelLoader.LoadLevelAsync
+            //    (GameData.Instance.GameSceneName.ToString());
+
+            LoadLevelSignal loadLevelSignal =
+                new LoadLevelSignal(ConnectionType.Client);
+
+            int send_bytes = await client.SendAcync(loadLevelSignal);
+            if (send_bytes > 0)
+            {
+                try
+                {
+                    LoadLevelSignal serverSignal = await client.RecvAcync<LoadLevelSignal>();
+                    if (serverSignal.ConnectionType == ConnectionType.Server)
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log(ex.Message);
+                    return false;
+                }
+            }
+            else
+                return false;
+        }
+
+        public async Task<bool> LoadServerLevel(Server server)
+        {
+            //await _levelLoader.LoadLevelAsync
+            //    (GameData.Instance.GameSceneName.ToString());
+            LoadLevelSignal loadLevelSignal =
+                new LoadLevelSignal(ConnectionType.Server);
+
+            int send_bytes = await server.SendAcync(loadLevelSignal);
+
+            if (send_bytes > 0)
+            {
+                try
+                {
+                    LoadLevelSignal clientSignal = await server.RecvAcync<LoadLevelSignal>();
+                    if (clientSignal.ConnectionType == ConnectionType.Client)
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log(ex.Message);
+                    return false;
+                }
+            }
+            return false;
         }
 
         public void OnServerBack()

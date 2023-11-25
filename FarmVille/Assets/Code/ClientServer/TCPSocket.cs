@@ -26,9 +26,9 @@ namespace ClientServer
              return new Socket(AddressFamily.InterNetwork,
                 SocketType.Stream, ProtocolType.Tcp);
         }
-        public virtual async Task SendAcync<T>(T obj)
+        public virtual async Task<int> SendAcync<T>(T obj)
         {
-            await SendAsync(ClientSocket, obj);
+            return await SendAsync(ClientSocket, obj);
         }
         public virtual async Task<T> RecvAcync<T>()
         {

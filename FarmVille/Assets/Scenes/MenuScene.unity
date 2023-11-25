@@ -1067,6 +1067,7 @@ GameObject:
   - component: {fileID: 1239120950}
   - component: {fileID: 1239120951}
   - component: {fileID: 1239120952}
+  - component: {fileID: 1239120953}
   m_Layer: 0
   m_Name: LobbyService
   m_TagString: Untagged
@@ -1111,6 +1112,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36db3566454f7c9439c7d7b1a84b900f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1239120953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239120949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311fe8da73416224d9d711ba6412c843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1265407664
