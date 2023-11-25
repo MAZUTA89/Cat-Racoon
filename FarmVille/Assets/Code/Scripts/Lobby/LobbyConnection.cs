@@ -7,53 +7,105 @@ using System.Threading.Tasks;
 using ClientServer.Client;
 using ClientServer.Server;
 using UnityEngine;
+using System.Threading;
 
 namespace Assets.Code.Scripts.Lobby
 {//Работа с подключением
     public class LobbyConnection : MonoBehaviour
     {
-        public async Task<bool> CreateServerConnection()
+        Server _server;
+        Client _client;
+        CancellationTokenSource _cancellToken;
+
+        public async Task<bool> CreateServerConnection(CancellationToken cancellationToken)
         {
-            Server server = new Server();
-            if (!server.TryBindPoint())
+            _server = new Server();
+            if (!_server.TryBindPoint())
             {
-                Debug.Log(server.GetLastError());
+                Debug.Log(_server.GetLastError());
+
+                return _server.Stop();
+            }
+
+            if (!_server.Listen())
+            {
+                Debug.Log(_server.GetLastError());
                 return false;
             }
 
-            if (!server.Listen())
+            Debug.Log($"Слушаю на {_server.EndPoint}");
+
+            cancellationToken.Register(() =>
             {
-                Debug.Log(server.GetLastError());
-                return false;
-            }
+                _server.Stop();
+                Debug.Log("Canceled in register!");
+            });
+            await _server.TryAcceptAsync();
 
-            Debug.Log($"Слушаю на {server.EndPoint}");
-
-            await server.TryAcceptAsync();
-
-            Debug.Log($"Подключение от {server.GetRemotePoint()}");
+            Debug.Log($"Подключение от {_server.GetRemotePoint()}");
 
             return true;
         }
-        public async Task<bool> CreateClientConnection()
+        public async Task<bool> CreateClientConnection(CancellationToken cancellationToken)
         {
             IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9000);
-            Client client = new Client(iPEndPoint);
+            _client = new Client(iPEndPoint);
 
-            client.TryConnectAsync();
+            cancellationToken.Register(() =>
+            {
+                _client.Stop();
+                Debug.Log("Client stop connection!");
+            });
 
-            Debug.Log($"Подключаюсь к {client.EndPoint}");
+            Debug.Log($"Connect to : {_client.EndPoint}");
+
+            await Task.Run(async () =>
+            {
+                while (true)
+                {
+                    if (await _client.TryConnectAsync())
+                    {
+                        return;
+                    }
+                }
+            });
+
+            Debug.Log($"Подключаюсь к {_client.EndPoint}");
             return true;
         }
 
         public void OnCreate()
         {
-            CreateServerConnection();
-            
+            Task.Run(async () =>
+            {
+                _cancellToken = new CancellationTokenSource();
+                if (await CreateServerConnection(_cancellToken.Token))
+                {
+                    Debug.Log("Клиент подключился!");
+                }
+                else
+                {
+                    Debug.Log("Ошибка ожидания!");
+                }
+            });
         }
         public void OnConnect()
         {
-            CreateClientConnection();
+            Task.Run(async () =>
+            {
+                _cancellToken = new CancellationTokenSource();
+                await CreateClientConnection(_cancellToken.Token);
+                Debug.Log("Подключение к серверу успешно!");
+            });
+        }
+
+        public void OnServerBack()
+        {
+            _cancellToken?.Cancel();
+        }
+        public void OnClientBack()
+        {
+            _cancellToken?.Cancel();
         }
     }
 }

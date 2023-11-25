@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace ClientServer.Server
 {
@@ -66,7 +67,12 @@ namespace ClientServer.Server
 
         public override bool Stop()
         {
-            return StopSocket(ClientSocket) && StopSocket(_serverSocket);
+            if(ClientSocket == null)
+            {
+                return StopSocket(_serverSocket);
+            }
+            else
+                return StopSocket(ClientSocket) && StopSocket(_serverSocket);
         }
     }
 }

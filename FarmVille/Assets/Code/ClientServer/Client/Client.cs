@@ -21,19 +21,19 @@ namespace ClientServer.Client
             ClientSocket = InitializeTCPSocket();
         }
 
-        public async Task TryConnectAsync()
+        public async Task<bool> TryConnectAsync()
         {
             try
             {
                 await ClientSocket.ConnectAsync(EndPoint);
                 LocalEndPoint = ClientSocket.LocalEndPoint;
                 RemoteEndPoint = ClientSocket.RemoteEndPoint;
-                //return true;
+                return true;
             }
             catch (SocketException ex)
             {
                 _error = ex;
-                //return false;
+                return false;
             }
         }
 
