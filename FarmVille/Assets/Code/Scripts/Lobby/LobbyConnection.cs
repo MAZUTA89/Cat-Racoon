@@ -62,7 +62,7 @@ namespace Assets.Code.Scripts.Lobby
         }
         public async Task<bool> CreateClientConnection(CancellationToken cancellationToken)
         {
-            IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9000);
+            IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse("192.168.0.104"), 9001);
             _client = new Client(iPEndPoint);
 
             cancellationToken.Register(() =>
@@ -84,7 +84,7 @@ namespace Assets.Code.Scripts.Lobby
                 }
             });
 
-            Debug.Log($"Подключаюсь к {_client.EndPoint}");
+            Debug.Log($"Подключился к {_client.EndPoint}");
             return true;
         }
 
