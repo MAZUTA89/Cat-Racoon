@@ -53,7 +53,7 @@ namespace Assets.Code.Scripts.Lobby
                 _server.Stop();
                 Debug.Log("Canceled in register!");
             });
-            
+
             result = await _server.TryAcceptAsync();
 
             //Debug.Log($"Подключение от {_server.GetRemotePoint()}");
@@ -118,7 +118,7 @@ namespace Assets.Code.Scripts.Lobby
 
             result = await _server.TryAcceptAsync();
 
-            if(result)
+            if (result)
             {
                 Debug.Log("Клиент подключился!");
             }
@@ -154,18 +154,26 @@ namespace Assets.Code.Scripts.Lobby
 
             Debug.Log($"Connect to : {_client.EndPoint}");
 
-            await Task.Run(async () =>
+            if (await _client.TryConnectAsync())
             {
-                while (true)
-                {
-                    if (await _client.TryConnectAsync())
-                    {
-                        return;
-                    }
-                }
-            });
+                Debug.Log($"Подключился к {_client.EndPoint}");
+            }
+            else
+            {
+                Debug.Log("Ошибка подкючения!");
+            }
 
-            Debug.Log($"Подключился к {_client.EndPoint}");
+            //await Task.Run(async () =>
+            //{
+            //    while (true)
+            //    {
+            //        if (await _client.TryConnectAsync())
+            //        {
+            //            return;
+            //        }
+            //    }
+            //});
+
 
             //if (await CreateClientConnection(_cancellToken.Token))
             //{
