@@ -91,32 +91,93 @@ namespace Assets.Code.Scripts.Lobby
         public async void OnCreate()
         {
             _cancellToken = new CancellationTokenSource();
-            if (await CreateServerConnection(_cancellToken.Token))
+            CancellationToken cancellationToken = _cancellToken.Token;
+            bool result;
+            _server = new Server();
+            if (!_server.TryBindPoint())
             {
-                onServerConnectionCreatedEvent?.Invoke(_server);
+                Debug.Log(_server.GetLastError());
+
+                result = _server.Stop();
+            }
+
+            if (!_server.Listen())
+            {
+                Debug.Log(_server.GetLastError());
+                result = false;
+            }
+
+            Debug.Log($"Слушаю на {_server.EndPoint}");
+
+            cancellationToken.Register(() =>
+            {
+                result = false;
+                _server.Stop();
+                Debug.Log("Canceled in register!");
+            });
+
+            result = await _server.TryAcceptAsync();
+
+            if(result)
+            {
                 Debug.Log("Клиент подключился!");
             }
             else
             {
                 _server.Stop();
                 Debug.Log("Ошибка ожидания!");
-                return;
             }
+            //if (await CreateServerConnection(_cancellToken.Token))
+            //{
+            //    onServerConnectionCreatedEvent?.Invoke(_server);
+            //    Debug.Log("Клиент подключился!");
+            //}
+            //else
+            //{
+            //    _server.Stop();
+            //    Debug.Log("Ошибка ожидания!");
+            //    return;
+            //}
         }
         public async void OnConnect()
         {
             _cancellToken = new CancellationTokenSource();
-            if (await CreateClientConnection(_cancellToken.Token))
+            CancellationToken cancellationToken = _cancellToken.Token;
+            IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse("192.168.0.104"), 9001);
+            _client = new Client(iPEndPoint);
+
+            cancellationToken.Register(() =>
             {
-                onClientConnectionCreatedEvent?.Invoke(_client);
-                Debug.Log("Подключение к серверу успешно!");
-            }
-            else
-            {
-                Debug.Log("Ошибка подкючения!");
                 _client.Stop();
-                return;
-            }
+                Debug.Log("Client stop connection!");
+            });
+
+            Debug.Log($"Connect to : {_client.EndPoint}");
+
+            await Task.Run(async () =>
+            {
+                while (true)
+                {
+                    if (await _client.TryConnectAsync())
+                    {
+                        return;
+                    }
+                }
+            });
+
+            Debug.Log($"Подключился к {_client.EndPoint}");
+
+            //if (await CreateClientConnection(_cancellToken.Token))
+            //{
+            //    onClientConnectionCreatedEvent?.Invoke(_client);
+            //    Debug.Log("Подключение к серверу успешно!");
+            //}
+            //else
+            //{
+            //    Debug.Log("Ошибка подкючения!");
+            //    _client.Stop();
+            //    return;
+            //}
         }
 
         public async Task<bool> LoadClientLevel(Client client)
