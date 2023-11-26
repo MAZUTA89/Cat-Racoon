@@ -102,26 +102,6 @@ namespace Assets.Code.Scripts.Lobby
                 Debug.Log("Ошибка ожидания!");
                 return;
             }
-            //Task.Run(async () =>
-            //{
-                
-
-
-            //});
-
-            //Task.Run(async () =>
-            //{
-            //    if (await LoadServerLevel(_server))
-            //    {
-            //        User.Instance.InitializeUserBase(_server);
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        _server.Stop();
-            //        await _levelLoader.LoadLevelAsync(c_MenuSceneName);
-            //    }
-            //});
         }
         public async void OnConnect()
         {
@@ -137,24 +117,6 @@ namespace Assets.Code.Scripts.Lobby
                 _client.Stop();
                 return;
             }
-            //Task.Run(async () =>
-            //{
-                
-            //});
-
-            //Task.Run(async () =>
-            //{
-            //    if (await LoadClientLevel(_client))
-            //    {
-            //        User.Instance.InitializeUserBase(_client);
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        _client.Stop();
-            //        await _levelLoader.LoadLevelAsync(c_MenuSceneName);
-            //    }
-            //});
         }
 
         public async Task<bool> LoadClientLevel(Client client)
