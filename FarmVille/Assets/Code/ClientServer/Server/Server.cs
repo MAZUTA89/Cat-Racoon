@@ -17,7 +17,7 @@ namespace ClientServer.Server
         Socket _serverSocket;
         public Server()
         {
-            EndPoint = new IPEndPoint(IPAddress.Any, 9000);
+            EndPoint = new IPEndPoint(IPAddress.Any, 9001);
             _serverSocket = base.InitializeTCPSocket();
         }
 
@@ -49,19 +49,19 @@ namespace ClientServer.Server
             }
         }
 
-        public async Task TryAcceptAsync()
+        public async Task<bool> TryAcceptAsync()
         {
             try
             {
                 ClientSocket = await _serverSocket.AcceptAsync();
                 RemoteEndPoint = ClientSocket.RemoteEndPoint;
                 LocalEndPoint = ClientSocket.LocalEndPoint;
-                //return true;
+                return true;
             }
             catch (Exception ex)
             {
                 _error = ex;
-                //return false;
+                return false;
             }
         }
 

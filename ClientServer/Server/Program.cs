@@ -41,17 +41,9 @@ namespace Serverr
                 Age = 200,
                 SecondName = "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest",
             };
-            Player player = new Player();
-            player.people.Add(person);
-            player.people.Add(person);
-            player.people.Add(person);
-            player.pos = new Position()
-            {
-                x = 3,
-                y = 4,
-            };
+            
 
-            await server.SendAcync(player);
+            await server.SendAcync(person);
             //Task sendTask = Send(server);
             //Task recvTask = Recv(server);
 

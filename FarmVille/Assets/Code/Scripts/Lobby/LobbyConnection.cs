@@ -30,6 +30,7 @@ namespace Assets.Code.Scripts.Lobby
 
         public async Task<bool> CreateServerConnection(CancellationToken cancellationToken)
         {
+            bool result = false;
             _server = new Server();
             if (!_server.TryBindPoint())
             {
@@ -48,14 +49,16 @@ namespace Assets.Code.Scripts.Lobby
 
             cancellationToken.Register(() =>
             {
+                result = false;
                 _server.Stop();
                 Debug.Log("Canceled in register!");
             });
-            await _server.TryAcceptAsync();
+            
+            result = await _server.TryAcceptAsync();
 
-            Debug.Log($"Подключение от {_server.GetRemotePoint()}");
+            //Debug.Log($"Подключение от {_server.GetRemotePoint()}");
 
-            return true;
+            return result;
         }
         public async Task<bool> CreateClientConnection(CancellationToken cancellationToken)
         {

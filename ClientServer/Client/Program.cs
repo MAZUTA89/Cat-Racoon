@@ -13,7 +13,7 @@ namespace Clientt
 {
     internal class Program
     {
-        static Player Person { get; set; }
+        static Person Person { get; set; }
         static async Task Main(string[] args)
         {
             //Console.WriteLine("Адресс:");
@@ -36,7 +36,7 @@ namespace Clientt
             await con;
             Console.WriteLine("Подключено!");
 
-            Person = await client.RecvAcync<Player>();
+            Person = await client.RecvAcync<Person>();
             //Task sendTask = Send(client);
             //Task recvTask = Recv(client);
 
