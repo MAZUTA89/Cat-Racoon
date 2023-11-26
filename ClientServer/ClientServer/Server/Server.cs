@@ -56,15 +56,15 @@ namespace ClientServer.Server
             try
             {
                 int id = 0;
-                while (true)
-                {
+                //while (true)
+                //{
                     ClientSocket = await _serverSocket.AcceptAsync();
                     id++;
                     Console.WriteLine("Connect!!!");
                     RemoteEndPoint = ClientSocket.RemoteEndPoint;
                     LocalEndPoint = ClientSocket.LocalEndPoint;
-                    HandleClient(ClientSocket, id);
-                }
+                    //HandleClient(ClientSocket, id);
+                //}
                 //return true;
             }
             catch (Exception ex)

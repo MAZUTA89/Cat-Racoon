@@ -25,7 +25,7 @@ namespace Clientt
             IPEndPoint iPEndPoint;
             Client client;
 
-            if (Assistant.TryParseEndPoint("127.0.0.1", 9000, out iPEndPoint))
+            if (Assistant.TryParseEndPoint("192.168.0.104", 9000, out iPEndPoint))
             {
                 client = new Client(iPEndPoint);
             }
@@ -43,6 +43,7 @@ namespace Clientt
             //Task.WaitAny(recvTask, sendTask);
 
             client.Stop();
+            Console.WriteLine($"Person {Person.Name}");
             Console.ReadLine();
         }
     }
