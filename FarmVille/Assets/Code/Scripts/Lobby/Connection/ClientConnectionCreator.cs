@@ -25,9 +25,9 @@ namespace Assets.Code.Scripts.Lobby.Connection
             CancellationToken ct = (CancellationToken)cancellationToken;
 
             ct.ThrowIfCancellationRequested();
-            
+
             _client = new Client(_endPoint);
-            
+
             Debug.Log($"Connect to : {_client.EndPoint}");
 
             Task<bool> connectionTask = _client.TryConnectAsync();
@@ -41,24 +41,28 @@ namespace Assets.Code.Scripts.Lobby.Connection
 
             Task waitConnectionTask = Task.Run(async () =>
             {
-                while(!ct.IsCancellationRequested)
+                while (true)
                 {
-                    if(await connectionTask)
+                    if (ct.IsCancellationRequested == true)
+                    {
+                        result = false;
+                        break;
+                    }
+                    if (await connectionTask)
                     {
                         result = true;
                         Debug.Log($"Подключился к {_client.EndPoint}");
                         break;
                     }
 
-                    await Task.Delay(1000, ct);
+                    await Task.Delay(1000);
                 }
             }, ct);
 
             await waitConnectionTask;
-
             return result;
         }
-        
+
         public Client GetClient()
         {
             return _client;

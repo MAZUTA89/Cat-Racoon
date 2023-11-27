@@ -226,10 +226,6 @@ namespace Assets.Code.Scripts.Lobby
             {
                 ProcessText.text = c_CanceledText;
             }
-            finally
-            {
-                _cancellationTokenSource.Dispose();
-            }
         }
 
     }
