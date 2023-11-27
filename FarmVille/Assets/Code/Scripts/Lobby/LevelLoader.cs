@@ -8,12 +8,15 @@ using ClientServer.Client;
 using ClientServer.Server;
 using UnityEngine.SceneManagement;
 using Assets.Code.Scripts.Boot;
+using TMPro;
 
 namespace Assets.Code.Scripts.Lobby
 {
     public class LevelLoader : MonoBehaviour
     {
+        public TextMeshProUGUI ProcessText;
         public static Action onLevelLoadedEvent;
+        const string c_LoadLevelText = "Loading level ...";
         LobbyConnection _lobbyConnection;
         SceneName _sceneName;
         private void Start()

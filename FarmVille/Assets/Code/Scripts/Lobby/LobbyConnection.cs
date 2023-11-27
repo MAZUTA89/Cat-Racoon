@@ -10,22 +10,34 @@ using UnityEngine;
 using System.Threading;
 using Assets.Code.Scripts.Boot;
 using ClientServer;
+using System.Collections;
+using TMPro;
+using Assets.Code.Scripts.Lobby.Connection;
 
 namespace Assets.Code.Scripts.Lobby
 {//Работа с подключением
     public class LobbyConnection : MonoBehaviour
     {
         const string c_MenuSceneName = "MenuScene";
+        const string c_ConnectionText = "Waiting for connection...";
+        const string c_ConnectText = "Connect...";
+        const string c_SuccsessConnectionText = "Connection is established";
+        const string c_ConnectionFailedText = "Connection failed";
+
+
+        public TextMeshProUGUI ProcessText;
         public event Action<Server> onServerConnectionCreatedEvent;
         public event Action<Client> onClientConnectionCreatedEvent;
         Server _server;
         Client _client;
         CancellationTokenSource _cancellToken;
         LevelLoader _levelLoader;
+        ClientConnectionCreator _clientConnectionCreator;
 
         private void Awake()
         {
             _levelLoader = new LevelLoader();
+            _clientConnectionCreator = new ClientConnectionCreator();
         }
 
         public async Task<bool> CreateServerConnection(CancellationToken cancellationToken)
@@ -73,16 +85,15 @@ namespace Assets.Code.Scripts.Lobby
 
             Debug.Log($"Connect to : {_client.EndPoint}");
 
-            await Task.Run(async () =>
+            Task<bool> connectionTask = _client.TryConnectAsync();
+
+            while (true)
             {
-                while (true)
+                if (await connectionTask)
                 {
-                    if (await _client.TryConnectAsync())
-                    {
-                        return;
-                    }
+                    break;
                 }
-            });
+            }
 
             Debug.Log($"Подключился к {_client.EndPoint}");
             return true;
@@ -90,43 +101,30 @@ namespace Assets.Code.Scripts.Lobby
 
         public async void OnCreate()
         {
-            _cancellToken = new CancellationTokenSource();
-            CancellationToken cancellationToken = _cancellToken.Token;
-            bool result;
-            _server = new Server();
-            if (!_server.TryBindPoint())
-            {
-                Debug.Log(_server.GetLastError());
+            ProcessText.gameObject.SetActive(true);
 
-                result = _server.Stop();
-            }
+            CancellationTokenSource cancellationTokenSource
+                = new CancellationTokenSource();
 
-            if (!_server.Listen())
-            {
-                Debug.Log(_server.GetLastError());
-                result = false;
-            }
+            ProcessText.text = c_ConnectionText;
 
-            Debug.Log($"Слушаю на {_server.EndPoint}");
-
-            cancellationToken.Register(() =>
-            {
-                result = false;
-                _server.Stop();
-                Debug.Log("Canceled in register!");
-            });
-
-            result = await _server.TryAcceptAsync();
+            Task<bool> serverConnectionTask
+                = CreateServerConnection(cancellationTokenSource.Token);
+            bool result = await serverConnectionTask;
 
             if (result)
             {
-                Debug.Log("Клиент подключился!");
+                ProcessText.text = c_SuccsessConnectionText;
+                await Task.Delay(1000);
             }
             else
             {
-                _server.Stop();
-                Debug.Log("Ошибка ожидания!");
+                ProcessText.text = c_ConnectionFailedText;
+                await Task.Delay(1000);
+                ProcessText.gameObject.SetActive(false);
+                return;
             }
+
             //if (await CreateServerConnection(_cancellToken.Token))
             //{
             //    onServerConnectionCreatedEvent?.Invoke(_server);
@@ -139,29 +137,58 @@ namespace Assets.Code.Scripts.Lobby
             //    return;
             //}
         }
+
         public async void OnConnect()
         {
-            _cancellToken = new CancellationTokenSource();
-            CancellationToken cancellationToken = _cancellToken.Token;
-            IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse("192.168.0.104"), 9001);
-            _client = new Client(iPEndPoint);
+            ProcessText.gameObject.SetActive(true);
 
-            cancellationToken.Register(() =>
+            CancellationTokenSource cancellationTokenSource
+                = new CancellationTokenSource();
+
+            _clientConnectionCreator.InitializeEndPoint("Str");
+
+            Task<Client> connectTask =
+                _clientConnectionCreator.CreateClientConnection(cancellationTokenSource.Token);
+
+            ProcessText.text = c_ConnectText;
+
+            Client client = await connectTask;
+            if(client == null)
             {
-                _client.Stop();
-                Debug.Log("Client stop connection!");
-            });
-
-            Debug.Log($"Connect to : {_client.EndPoint}");
-
-            if (await _client.TryConnectAsync())
-            {
-                Debug.Log($"Подключился к {_client.EndPoint}");
+                ProcessText.text = c_ConnectionFailedText;
+                await Task.Delay(1000);
+                Debug.Log("Подключение не удалось!");
             }
             else
             {
-                Debug.Log("Ошибка подкючения!");
+                ProcessText.text = c_SuccsessConnectionText;
+                await Task.Delay(1000);
+                Debug.Log($"Подключился к {client.GetRemotePoint()}");
             }
+
+            ProcessText.gameObject.SetActive(false);
+            
+
+
+
+
+            //Task<bool> clientConnectionTask 
+            //    = CreateClientConnection(cancellationTokenSource.Token);
+
+            //bool result = await clientConnectionTask;
+
+            //if(result)
+            //{
+            //    ProcessText.text = c_SuccsessConnectionText;
+            //    await Task.Delay(1000);
+            //}
+            //else
+            //{
+            //    ProcessText.text = c_ConnectionFailedText;
+            //    await Task.Delay(1000);
+            //    return;
+            //}
+
 
             //await Task.Run(async () =>
             //{
@@ -253,10 +280,12 @@ namespace Assets.Code.Scripts.Lobby
         public void OnServerBack()
         {
             _cancellToken?.Cancel();
+            ProcessText.gameObject.SetActive(false);
         }
         public void OnClientBack()
         {
             _cancellToken?.Cancel();
+            ProcessText.gameObject.SetActive(false);
         }
     }
 }

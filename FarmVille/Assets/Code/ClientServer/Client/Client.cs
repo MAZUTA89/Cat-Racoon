@@ -13,10 +13,9 @@ namespace ClientServer.Client
     {
         IPAddress _ipAddress;
         public bool IsConnected => ClientSocket.Connected;
-        public Client(IPEndPoint endPoint)
+        public Client(EndPoint endPoint)
         {
             EndPoint = endPoint;
-            _ipAddress = endPoint.Address;
 
             ClientSocket = InitializeTCPSocket();
         }
