@@ -34,6 +34,11 @@ namespace ClientServer.Client
                 _error = ex;
                 return false;
             }
+            catch(ObjectDisposedException ex)
+            {
+                _error = ex;
+                return false;
+            }
         }
 
         public bool TryDicsonnect()

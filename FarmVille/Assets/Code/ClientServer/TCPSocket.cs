@@ -19,6 +19,8 @@ namespace ClientServer
         protected Socket ClientSocket;
         protected Exception _error { get; set; }
 
+        protected bool _isDisposed = false;
+
         PrefixWriterReader _prefix = new PrefixWriterReader(15);
         
         protected Socket InitializeTCPSocket()
@@ -142,6 +144,7 @@ namespace ClientServer
             }
             finally
             {
+                _isDisposed = true;
                 socket.Close();
             }
         }

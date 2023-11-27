@@ -1348,9 +1348,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1239120951}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Code.Scripts.Lobby.LobbyService, Assembly-CSharp
-        m_MethodName: CreateBack
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1898,9 +1898,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1239120951}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Code.Scripts.Lobby.LobbyService, Assembly-CSharp
-        m_MethodName: ConnectBack
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

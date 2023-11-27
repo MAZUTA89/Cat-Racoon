@@ -17,6 +17,7 @@ namespace Assets.Code.Scripts.Lobby
         GameObject _startPanel;
         GameObject _createPanel;
         GameObject _connectPanel;
+        LobbyConnection _connection;
         [Inject]
         public void Constructor(
             [Inject(Id = "StartPanel")] GameObject startPanel,
@@ -29,6 +30,17 @@ namespace Assets.Code.Scripts.Lobby
             _connectPanel = connectPanel;
         }
 
+        private void Start()
+        {
+            _connection = GetComponent<LobbyConnection>();
+            _connection.OnCancelClientConnectionEvent += ConnectBack;
+            _connection.OnCancelServerConnectionEvent += CreateBack;
+        }
+        private void OnDisable()
+        {
+            _connection.OnCancelClientConnectionEvent -= ConnectBack;
+            _connection.OnCancelServerConnectionEvent -= CreateBack;
+        }
         public void OnConnect()
         {
             _startPanel.SetActive(false);
