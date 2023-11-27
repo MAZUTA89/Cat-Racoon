@@ -13,24 +13,32 @@ namespace Assets.Code.Scripts.Lobby.Connection
     public class ClientConnectionCreator
     {
         EndPoint _endPoint;
+        Client _client;
         public bool InitializeEndPoint(string endPoint)
         {
             IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse("192.168.0.104"), 9001);
             _endPoint = iPEndPoint;
             return true;
         }
-        public async Task<Client> CreateClientConnection(object cancellationToken)
+        public async Task<bool> CreateClientConnection(object cancellationToken)
         {
             CancellationToken ct = (CancellationToken)cancellationToken;
 
             ct.ThrowIfCancellationRequested();
             
-            Client client = new Client(_endPoint);
+            _client = new Client(_endPoint);
             
-            Debug.Log($"Connect to : {client.EndPoint}");
+            Debug.Log($"Connect to : {_client.EndPoint}");
 
-            Task<bool> connectionTask = client.TryConnectAsync();
+            Task<bool> connectionTask = _client.TryConnectAsync();
+
             bool result = false;
+
+            ct.Register(() =>
+            {
+                _client.Stop();
+            });
+
             Task waitConnectionTask = Task.Run(async () =>
             {
                 while(!ct.IsCancellationRequested)
@@ -38,19 +46,22 @@ namespace Assets.Code.Scripts.Lobby.Connection
                     if(await connectionTask)
                     {
                         result = true;
-                        Debug.Log($"Подключился к {client.EndPoint}");
+                        Debug.Log($"Подключился к {_client.EndPoint}");
                         break;
                     }
 
                     await Task.Delay(1000, ct);
                 }
-            });
+            }, ct);
 
             await waitConnectionTask;
 
-            if (result)
-                return client;
-            else return null;
+            return result;
+        }
+        
+        public Client GetClient()
+        {
+            return _client;
         }
     }
 }

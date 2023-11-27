@@ -23,16 +23,21 @@ namespace Assets.Code.Scripts.Lobby
         const string c_ConnectText = "Connect...";
         const string c_SuccsessConnectionText = "Connection is established";
         const string c_ConnectionFailedText = "Connection failed";
+        const string c_CanceledText = "Canceled...";
 
+        public event Action OnCancelServerConnectionEvent;
+        public event Action OnCancelClientConnectionEvent;
 
         public TextMeshProUGUI ProcessText;
         public event Action<Server> onServerConnectionCreatedEvent;
         public event Action<Client> onClientConnectionCreatedEvent;
         Server _server;
         Client _client;
-        CancellationTokenSource _cancellToken;
+        CancellationTokenSource _cancellationTokenSource;
         LevelLoader _levelLoader;
         ClientConnectionCreator _clientConnectionCreator;
+
+        Task<bool> _сonnectionTask;
 
         private void Awake()
         {
@@ -64,6 +69,7 @@ namespace Assets.Code.Scripts.Lobby
                 result = false;
                 _server.Stop();
                 Debug.Log("Canceled in register!");
+                cancellationToken.ThrowIfCancellationRequested();
             });
 
             result = await _server.TryAcceptAsync();
@@ -72,45 +78,20 @@ namespace Assets.Code.Scripts.Lobby
 
             return result;
         }
-        public async Task<bool> CreateClientConnection(CancellationToken cancellationToken)
-        {
-            IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse("192.168.0.104"), 9001);
-            _client = new Client(iPEndPoint);
 
-            cancellationToken.Register(() =>
-            {
-                _client.Stop();
-                Debug.Log("Client stop connection!");
-            });
-
-            Debug.Log($"Connect to : {_client.EndPoint}");
-
-            Task<bool> connectionTask = _client.TryConnectAsync();
-
-            while (true)
-            {
-                if (await connectionTask)
-                {
-                    break;
-                }
-            }
-
-            Debug.Log($"Подключился к {_client.EndPoint}");
-            return true;
-        }
 
         public async void OnCreate()
         {
             ProcessText.gameObject.SetActive(true);
 
-            CancellationTokenSource cancellationTokenSource
-                = new CancellationTokenSource();
-
             ProcessText.text = c_ConnectionText;
 
-            Task<bool> serverConnectionTask
-                = CreateServerConnection(cancellationTokenSource.Token);
-            bool result = await serverConnectionTask;
+            _cancellationTokenSource
+                = new CancellationTokenSource();
+
+            _сonnectionTask = CreateServerConnection(_cancellationTokenSource.Token);
+
+            bool result = await _сonnectionTask;
 
             if (result)
             {
@@ -124,95 +105,38 @@ namespace Assets.Code.Scripts.Lobby
                 ProcessText.gameObject.SetActive(false);
                 return;
             }
-
-            //if (await CreateServerConnection(_cancellToken.Token))
-            //{
-            //    onServerConnectionCreatedEvent?.Invoke(_server);
-            //    Debug.Log("Клиент подключился!");
-            //}
-            //else
-            //{
-            //    _server.Stop();
-            //    Debug.Log("Ошибка ожидания!");
-            //    return;
-            //}
         }
 
         public async void OnConnect()
         {
             ProcessText.gameObject.SetActive(true);
 
-            CancellationTokenSource cancellationTokenSource
+            _cancellationTokenSource
                 = new CancellationTokenSource();
 
             _clientConnectionCreator.InitializeEndPoint("Str");
 
-            Task<Client> connectTask =
-                _clientConnectionCreator.CreateClientConnection(cancellationTokenSource.Token);
+            _сonnectionTask =
+                _clientConnectionCreator.CreateClientConnection(_cancellationTokenSource.Token);
 
             ProcessText.text = c_ConnectText;
 
-            Client client = await connectTask;
-            if(client == null)
+            bool result = await _сonnectionTask;
+            if (result)
+            {
+                _client = _clientConnectionCreator.GetClient();
+                ProcessText.text = c_SuccsessConnectionText;
+                await Task.Delay(1000);
+                Debug.Log($"Подключился к {_client.GetRemotePoint()}");
+            }
+            else
             {
                 ProcessText.text = c_ConnectionFailedText;
                 await Task.Delay(1000);
                 Debug.Log("Подключение не удалось!");
             }
-            else
-            {
-                ProcessText.text = c_SuccsessConnectionText;
-                await Task.Delay(1000);
-                Debug.Log($"Подключился к {client.GetRemotePoint()}");
-            }
 
             ProcessText.gameObject.SetActive(false);
-            
-
-
-
-
-            //Task<bool> clientConnectionTask 
-            //    = CreateClientConnection(cancellationTokenSource.Token);
-
-            //bool result = await clientConnectionTask;
-
-            //if(result)
-            //{
-            //    ProcessText.text = c_SuccsessConnectionText;
-            //    await Task.Delay(1000);
-            //}
-            //else
-            //{
-            //    ProcessText.text = c_ConnectionFailedText;
-            //    await Task.Delay(1000);
-            //    return;
-            //}
-
-
-            //await Task.Run(async () =>
-            //{
-            //    while (true)
-            //    {
-            //        if (await _client.TryConnectAsync())
-            //        {
-            //            return;
-            //        }
-            //    }
-            //});
-
-
-            //if (await CreateClientConnection(_cancellToken.Token))
-            //{
-            //    onClientConnectionCreatedEvent?.Invoke(_client);
-            //    Debug.Log("Подключение к серверу успешно!");
-            //}
-            //else
-            //{
-            //    Debug.Log("Ошибка подкючения!");
-            //    _client.Stop();
-            //    return;
-            //}
         }
 
         public async Task<bool> LoadClientLevel(Client client)
@@ -277,15 +201,36 @@ namespace Assets.Code.Scripts.Lobby
             return false;
         }
 
-        public void OnServerBack()
+        public async void OnServerBack()
         {
-            _cancellToken?.Cancel();
+            CancelConnection();
+            await Task.Delay(1000);
+            OnCancelServerConnectionEvent?.Invoke();
             ProcessText.gameObject.SetActive(false);
         }
-        public void OnClientBack()
+        public async void OnClientBack()
         {
-            _cancellToken?.Cancel();
+            CancelConnection();
+            await Task.Delay(1000);
+            OnCancelClientConnectionEvent?.Invoke();
             ProcessText.gameObject.SetActive(false);
         }
+
+        void CancelConnection()
+        {
+            try
+            {
+                _cancellationTokenSource?.Cancel();
+            }
+            catch (AggregateException)
+            {
+                ProcessText.text = c_CanceledText;
+            }
+            finally
+            {
+                _cancellationTokenSource.Dispose();
+            }
+        }
+
     }
 }
