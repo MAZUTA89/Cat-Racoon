@@ -13,6 +13,7 @@ using ClientServer;
 using System.Collections;
 using TMPro;
 using Assets.Code.Scripts.Lobby.Connection;
+using Zenject;
 
 namespace Assets.Code.Scripts.Lobby
 {//Работа с подключением
@@ -28,88 +29,67 @@ namespace Assets.Code.Scripts.Lobby
         public event Action OnCancelServerConnectionEvent;
         public event Action OnCancelClientConnectionEvent;
 
-        public TextMeshProUGUI ProcessText;
         public event Action<Server> onServerConnectionCreatedEvent;
         public event Action<Client> onClientConnectionCreatedEvent;
+
+        TextMeshProUGUI _processText;
+        GameObject _loadImage;
         Server _server;
         Client _client;
         CancellationTokenSource _cancellationTokenSource;
-        LevelLoader _levelLoader;
         ClientConnectionCreator _clientConnectionCreator;
+        ServerConnectionCreator _serverConnectionCreator;
 
         Task<bool> _сonnectionTask;
 
+        [Inject]
+        public void Constructor(
+            [Inject(Id = "ConnectionProgressText")] TextMeshProUGUI progressText,
+            [Inject(Id = "ConnectionLoadImage")] GameObject loadImage)
+        {
+            _processText = progressText;
+            _loadImage = loadImage;
+        }
+
         private void Awake()
         {
-            _levelLoader = new LevelLoader();
             _clientConnectionCreator = new ClientConnectionCreator();
+            _serverConnectionCreator = new ServerConnectionCreator();
         }
-
-        public async Task<bool> CreateServerConnection(CancellationToken cancellationToken)
-        {
-            bool result = false;
-            _server = new Server();
-            if (!_server.TryBindPoint())
-            {
-                Debug.Log(_server.GetLastError());
-
-                return _server.Stop();
-            }
-
-            if (!_server.Listen())
-            {
-                Debug.Log(_server.GetLastError());
-                return false;
-            }
-
-            Debug.Log($"Слушаю на {_server.EndPoint}");
-
-            cancellationToken.Register(() =>
-            {
-                result = false;
-                _server.Stop();
-                Debug.Log("Canceled in register!");
-                cancellationToken.ThrowIfCancellationRequested();
-            });
-
-            result = await _server.TryAcceptAsync();
-
-            //Debug.Log($"Подключение от {_server.GetRemotePoint()}");
-
-            return result;
-        }
-
 
         public async void OnCreate()
         {
-            ProcessText.gameObject.SetActive(true);
+            ActivateProgressUI();
 
-            ProcessText.text = c_ConnectionText;
+            _processText.text = c_ConnectionText;
 
             _cancellationTokenSource
                 = new CancellationTokenSource();
 
-            _сonnectionTask = CreateServerConnection(_cancellationTokenSource.Token);
+            _сonnectionTask = 
+                _serverConnectionCreator
+                .CreateServerConnection(_cancellationTokenSource.Token);
 
             bool result = await _сonnectionTask;
 
             if (result)
             {
-                ProcessText.text = c_SuccsessConnectionText;
+                _server = _serverConnectionCreator.GetServer();
+                _processText.text = c_SuccsessConnectionText;
                 await Task.Delay(1000);
+                onServerConnectionCreatedEvent?.Invoke(_server);
             }
             else
             {
-                ProcessText.text = c_ConnectionFailedText;
+                _processText.text = c_ConnectionFailedText;
                 await Task.Delay(1000);
-                ProcessText.gameObject.SetActive(false);
                 return;
             }
         }
 
         public async void OnConnect()
         {
-            ProcessText.gameObject.SetActive(true);
+            ActivateProgressUI();
 
             _cancellationTokenSource
                 = new CancellationTokenSource();
@@ -117,26 +97,26 @@ namespace Assets.Code.Scripts.Lobby
             _clientConnectionCreator.InitializeEndPoint("Str");
 
             _сonnectionTask =
-                _clientConnectionCreator.CreateClientConnection(_cancellationTokenSource.Token);
+                _clientConnectionCreator
+                .CreateClientConnection(_cancellationTokenSource.Token);
 
-            ProcessText.text = c_ConnectText;
+            _processText.text = c_ConnectText;
 
             bool result = await _сonnectionTask;
             if (result)
             {
                 _client = _clientConnectionCreator.GetClient();
-                ProcessText.text = c_SuccsessConnectionText;
+                _processText.text = c_SuccsessConnectionText;
                 await Task.Delay(1000);
+                onClientConnectionCreatedEvent?.Invoke(_client);
                 Debug.Log($"Подключился к {_client.GetRemotePoint()}");
             }
             else
             {
-                ProcessText.text = c_ConnectionFailedText;
+                _processText.text = c_ConnectionFailedText;
                 await Task.Delay(1000);
                 Debug.Log("Подключение не удалось!");
             }
-
-            ProcessText.gameObject.SetActive(false);
         }
 
         public async Task<bool> LoadClientLevel(Client client)
@@ -201,22 +181,16 @@ namespace Assets.Code.Scripts.Lobby
             return false;
         }
 
-        public async void OnServerBack()
+        public void OnServerBack()
         {
-            CancelConnection();
-            await Task.Delay(1000);
-            OnCancelServerConnectionEvent?.Invoke();
-            ProcessText.gameObject.SetActive(false);
+            CancelConnection(OnCancelServerConnectionEvent);
         }
-        public async void OnClientBack()
+        public void OnClientBack()
         {
-            CancelConnection();
-            await Task.Delay(1000);
-            OnCancelClientConnectionEvent?.Invoke();
-            ProcessText.gameObject.SetActive(false);
+            CancelConnection(OnCancelClientConnectionEvent);
         }
 
-        void CancelConnection()
+        async void CancelConnection(Action cancelConnectionEvent)
         {
             try
             {
@@ -224,9 +198,22 @@ namespace Assets.Code.Scripts.Lobby
             }
             catch (AggregateException)
             {
-                ProcessText.text = c_CanceledText;
+                _processText.text = c_CanceledText;
             }
+            await Task.Delay(1000);
+            cancelConnectionEvent?.Invoke();
+            DeactivateProgressUI();
         }
 
+        void ActivateProgressUI()
+        {
+            _processText.gameObject.SetActive(true);
+            _loadImage.SetActive(true);
+        }
+        void DeactivateProgressUI()
+        {
+            _processText.gameObject.SetActive(false);
+            _loadImage.SetActive(false);
+        }
     }
 }

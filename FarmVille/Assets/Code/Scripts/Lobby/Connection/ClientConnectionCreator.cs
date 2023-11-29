@@ -16,21 +16,21 @@ namespace Assets.Code.Scripts.Lobby.Connection
         Client _client;
         public bool InitializeEndPoint(string endPoint)
         {
-            IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse("192.168.0.104"), 9001);
+            IPEndPoint iPEndPoint = 
+                new IPEndPoint(IPAddress.Parse("192.168.0.104"), 9001);
             _endPoint = iPEndPoint;
             return true;
         }
-        public async Task<bool> CreateClientConnection(object cancellationToken)
+        public async Task<bool> CreateClientConnection
+            (CancellationToken cancellationToken)
         {
-            CancellationToken ct = (CancellationToken)cancellationToken;
+            CancellationToken ct = cancellationToken;
 
             ct.ThrowIfCancellationRequested();
 
             _client = new Client(_endPoint);
 
             Debug.Log($"Connect to : {_client.EndPoint}");
-
-            Task<bool> connectionTask = _client.TryConnectAsync();
 
             bool result = false;
 
@@ -48,7 +48,7 @@ namespace Assets.Code.Scripts.Lobby.Connection
                         result = false;
                         break;
                     }
-                    if (await connectionTask)
+                    if (await _client.TryConnectAsync())
                     {
                         result = true;
                         Debug.Log($"Подключился к {_client.EndPoint}");
@@ -60,6 +60,7 @@ namespace Assets.Code.Scripts.Lobby.Connection
             }, ct);
 
             await waitConnectionTask;
+
             return result;
         }
 

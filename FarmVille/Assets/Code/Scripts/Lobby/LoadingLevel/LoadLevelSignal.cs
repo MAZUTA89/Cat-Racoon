@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Code.Scripts.Boot
+namespace Assets.Code.Scripts.Lobby
 {
     public class LoadLevelSignal
     {
