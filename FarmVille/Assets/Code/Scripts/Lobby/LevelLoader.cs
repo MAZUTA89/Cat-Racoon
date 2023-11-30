@@ -161,7 +161,7 @@ namespace Assets.Code.Scripts.Lobby
         {
             try
             {
-                _cancellationTokenSource.Cancel();
+                _cancellationTokenSource?.Cancel();
             }
             catch (AggregateException ex)
             {

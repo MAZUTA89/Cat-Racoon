@@ -40,6 +40,8 @@ namespace Assets.Code.Scripts.Lobby
         ClientConnectionCreator _clientConnectionCreator;
         ServerConnectionCreator _serverConnectionCreator;
 
+        
+
         Task<bool> _сonnectionTask;
 
         [Inject]
