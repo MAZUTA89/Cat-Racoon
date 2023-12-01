@@ -73,11 +73,6 @@ namespace ClientServer.Server
             IPHostEntry ipE = Dns.GetHostByName(sHostName);
             IPAddress[] IpA = ipE.AddressList;
             return IpA[IpA.Length - 1].ToString();
-            //for (int i = 0; i < IpA.Length; i++)
-            //{
-            //    string str = IpA[i].ToString();
-            //    Console.WriteLine("IP Address {0}: {1} ", i, IpA[i].ToString());
-            //}
         }
         public override bool Stop()
         {

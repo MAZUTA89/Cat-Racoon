@@ -7,16 +7,53 @@ using System.Threading;
 using System.Threading.Tasks;
 using ClientServer.Client;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 namespace Assets.Code.Scripts.Lobby.Connection
 {
     public class ClientConnectionCreator
     {
+        const string c_endPointPattern
+            = @"^(?'IP'\d+\.\d+\.\d+\.\d+):(?'Port'\d+)$";
+        Regex _endPointRegex;
         EndPoint _endPoint;
         Client _client;
+        public ClientConnectionCreator()
+        {
+            _endPointRegex = new Regex(c_endPointPattern);
+        }
         public bool InitializeEndPoint(string endPoint)
         {
-            IPEndPoint iPEndPoint = 
+            int port;
+            string ip;
+            if (_endPointRegex.IsMatch(endPoint))
+            {
+                Match match = _endPointRegex.Match(endPoint);
+                ip = match.Groups["IP"].Value;
+                if (!int.TryParse(match.Groups["Port"].Value, out port))
+                {
+                    return false;
+                }
+                else
+                {
+                    IPAddress iPAddress;
+                    if(!IPAddress.TryParse(ip, out iPAddress))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        if (port > IPEndPoint.MinPort && port < IPEndPoint.MaxPort)
+                        {
+                            _endPoint = new IPEndPoint(iPAddress, port);
+                            return true;
+                        }
+                        else
+                            return false;
+                    }
+                }
+            }
+            IPEndPoint iPEndPoint =
                 new IPEndPoint(IPAddress.Parse("192.168.0.104"), 9001);
             _endPoint = iPEndPoint;
             return true;
