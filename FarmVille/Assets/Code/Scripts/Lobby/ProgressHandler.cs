@@ -21,19 +21,29 @@ namespace Assets.Code.Scripts.Lobby
         const string c_LoadLevelText = "Loading level ...";
         const string c_CheckText = "Check signal ...";
         const string c_CheckSignalFailedText = "Check signal failed!";
+        const string c_FailedCreateConnectionStringText = "Error!";
 
         LobbyConnection _lobbyConnection;
         LevelLoader _levelLoader;
         TextMeshProUGUI _processText;
         [SerializeField] TextMeshProUGUI _endPointText;
         GameObject _loadImage;
+        GameObject _connectCancelButton;
+        GameObject _createCancelButton;
+        GameObject _connectionStringPanel;
         [Inject]
         public void Constructor(
             [Inject(Id = "ConnectionProgressText")] TextMeshProUGUI progressText,
-            [Inject(Id = "ConnectionLoadImage")] GameObject loadImage)
+            [Inject(Id = "ConnectionLoadImage")] GameObject loadImage,
+            [Inject(Id = "ConnectCancelButton")] GameObject connectCancelButton,
+            [Inject(Id = "CreateCancelButton")] GameObject createCancelButton,
+            [Inject(Id = "ConnectionStringPanel")] GameObject connectionStringPanel)
         {
             _processText = progressText;
             _loadImage = loadImage;
+            _connectCancelButton = connectCancelButton;
+            _createCancelButton = createCancelButton;
+            _connectionStringPanel = connectionStringPanel;
         }
 
         private void Start()
@@ -48,6 +58,8 @@ namespace Assets.Code.Scripts.Lobby
                 += OnCancelServerConnection;
             _lobbyConnection.OnCreateServerEndPointEvent +=
                 OnCreateServerEndPoint;
+            _lobbyConnection.OnCreateConnectionStringFailedEvent +=
+                OnCreateConnectionStringFailedEvent;
             _levelLoader.OnCanceledOrFailedLoadLevelSignalEvent 
                 += OnCanceledOrFailedLoadLevelSignal;
             _levelLoader.OnStartCheckLoadLevelSignalEvent 
@@ -60,8 +72,6 @@ namespace Assets.Code.Scripts.Lobby
                 += OnCreateConnectionFailed;
         }
 
-        
-
         private void OnDisable()
         {
             _lobbyConnection.OnStartCreateConnectionEvent
@@ -72,21 +82,25 @@ namespace Assets.Code.Scripts.Lobby
                 -= OnCancelServerConnection;
             _lobbyConnection.OnCreateServerEndPointEvent -=
                 OnCreateServerEndPoint;
+            _lobbyConnection.OnCreateConnectionSeccessEvent
+                -= OnCreateConnectionSeccess;
+            _lobbyConnection.OnCreateConnectionFailedEvent
+                -= OnCreateConnectionFailed;
+            _lobbyConnection.OnCreateConnectionStringFailedEvent -=
+                OnCreateConnectionStringFailedEvent;
             _levelLoader.OnCanceledOrFailedLoadLevelSignalEvent
                 -= OnCanceledOrFailedLoadLevelSignal;
             _levelLoader.OnStartCheckLoadLevelSignalEvent
                 -= OnStartCheckLoadLevelSignal;
             _levelLoader.OnStopCheckLoadLevelSignalEvent
                 -= OnStopCheckLoadLevelSignal;
-            _lobbyConnection.OnCreateConnectionSeccessEvent
-                -= OnCreateConnectionSeccess;
-            _lobbyConnection.OnCreateConnectionFailedEvent
-                -= OnCreateConnectionFailed;
         }
         public void OnCanceledOrFailedLoadLevelSignal()
         {
             _processText.gameObject.SetActive(true);
             _processText.text = c_CheckSignalFailedText;
+            Task.Delay(1000);
+            _processText.gameObject.SetActive(false);
         }
         public void OnStartCheckLoadLevelSignal()
         {
@@ -100,16 +114,21 @@ namespace Assets.Code.Scripts.Lobby
             _processText.gameObject.SetActive(false);
             _loadImage.SetActive(false);
         }
-        public void OnCancelServerConnection()
+        public async void OnCancelServerConnection()
         {
             _processText.text = c_CanceledText;
+            await Task.Delay(1000);
+            DeactivateProgressUI();
         }
-        public void OnCancelClientConnection()
+        public async void OnCancelClientConnection()
         {
             _processText.text = c_CanceledText;
+            await Task.Delay(1000);
+            DeactivateProgressUI();
         }
         public void OnStartCreateConnection()
         {
+            ActivateProgressUI();
             _processText.text = c_ConnectionText;
         }
         public void OnCreateConnectionSeccess()
@@ -119,12 +138,33 @@ namespace Assets.Code.Scripts.Lobby
         public void OnCreateConnectionFailed()
         {
             _processText.text = c_ConnectionFailedText;
+            _processText.gameObject.SetActive(false);
+            
         }
         public void OnCreateServerEndPoint(string endPoint)
         {
             _endPointText.gameObject.SetActive(true);
             _endPointText.text = endPoint;
         }
+        public async void OnCreateConnectionStringFailedEvent()
+        {
+            _processText.gameObject.SetActive(true);
+            _processText.text = c_FailedCreateConnectionStringText;
+            await Task.Delay(1000);
+            _processText.gameObject.SetActive(false);
+            _connectionStringPanel.SetActive(true);
+            _connectCancelButton.SetActive(false);
+        }
 
+        void ActivateProgressUI()
+        {
+            _processText.gameObject.SetActive(true);
+            _loadImage.SetActive(true);
+        }
+        void DeactivateProgressUI()
+        {
+            _processText.gameObject.SetActive(false);
+            _loadImage.SetActive(false);
+        }
     }
 }

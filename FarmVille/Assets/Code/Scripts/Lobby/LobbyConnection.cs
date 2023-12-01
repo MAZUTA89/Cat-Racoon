@@ -32,10 +32,13 @@ namespace Assets.Code.Scripts.Lobby
         public event Action OnCreateConnectionSeccessEvent;
         public event Action OnCreateConnectionFailedEvent;
         public event Action<string> OnCreateServerEndPointEvent;
+        public event Action OnCreateConnectionStringFailedEvent;
+        //public event Action OnCreate
 
         public event Action<Server> onServerConnectionCreatedEvent;
         public event Action<Client> onClientConnectionCreatedEvent;
 
+        [SerializeField] TMP_InputField inputField;
         TextMeshProUGUI _processText;
         GameObject _loadImage;
         Server _server;
@@ -44,7 +47,6 @@ namespace Assets.Code.Scripts.Lobby
         ClientConnectionCreator _clientConnectionCreator;
         ServerConnectionCreator _serverConnectionCreator;
         Task<bool> _сonnectionTask;
-        string endPoint;
 
         [Inject]
         public void Constructor(
@@ -63,7 +65,7 @@ namespace Assets.Code.Scripts.Lobby
 
         public async void OnCreate()
         {
-            ActivateProgressUI();
+            //ActivateProgressUI();
             OnStartCreateConnectionEvent?.Invoke();
             //_processText.text = c_ConnectionText;
 
@@ -97,25 +99,32 @@ namespace Assets.Code.Scripts.Lobby
 
         public async void OnConnect()
         {
-            ActivateProgressUI();
+            //ActivateProgressUI();
 
             _cancellationTokenSource
                 = new CancellationTokenSource();
 
-            _clientConnectionCreator.InitializeEndPoint("Str");
+            if(!_clientConnectionCreator.InitializeEndPoint(inputField.text))
+            {
+                OnCreateConnectionStringFailedEvent?.Invoke();
+                return;
+            }
 
             _сonnectionTask =
                 _clientConnectionCreator
                 .CreateClientConnection(_cancellationTokenSource.Token);
 
             OnStartCreateConnectionEvent?.Invoke();
+
+            await Task.Delay(1000);
             //_processText.text = c_ConnectText;
 
             bool result = await _сonnectionTask;
             if (result)
             {
                 _client = _clientConnectionCreator.GetClient();
-                _processText.text = c_SuccsessConnectionText;
+                OnCreateConnectionSeccessEvent?.Invoke();
+                //_processText.text = c_SuccsessConnectionText;
                 onClientConnectionCreatedEvent?.Invoke(_client);
                 await Task.Delay(1000);
                 Debug.Log($"Подключился к {_client.GetRemotePoint()}");
@@ -123,7 +132,8 @@ namespace Assets.Code.Scripts.Lobby
             else
             {
                 _client?.Stop();
-                _processText.text = c_ConnectionFailedText;
+                //_processText.text = c_ConnectionFailedText;
+                OnCreateConnectionFailedEvent?.Invoke();
                 await Task.Delay(1000);
                 Debug.Log("Подключение не удалось!");
             }
@@ -139,7 +149,7 @@ namespace Assets.Code.Scripts.Lobby
             CancelConnection(OnCancelClientConnectionEvent);
         }
 
-        async void CancelConnection(Action cancelConnectionEvent)
+        void CancelConnection(Action cancelConnectionEvent)
         {
             try
             {
@@ -149,21 +159,21 @@ namespace Assets.Code.Scripts.Lobby
             {
                 //_processText.text = c_CanceledText;
             }
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
             
             cancelConnectionEvent?.Invoke();
-            DeactivateProgressUI();
+            //DeactivateProgressUI();
         }
 
-        void ActivateProgressUI()
-        {
-            _processText.gameObject.SetActive(true);
-            _loadImage.SetActive(true);
-        }
-        void DeactivateProgressUI()
-        {
-            _processText.gameObject.SetActive(false);
-            _loadImage.SetActive(false);
-        }
+        //void ActivateProgressUI()
+        //{
+        //    _processText.gameObject.SetActive(true);
+        //    _loadImage.SetActive(true);
+        //}
+        //void DeactivateProgressUI()
+        //{
+        //    _processText.gameObject.SetActive(false);
+        //    _loadImage.SetActive(false);
+        //}
     }
 }

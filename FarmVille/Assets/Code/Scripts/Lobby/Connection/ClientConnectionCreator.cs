@@ -37,7 +37,7 @@ namespace Assets.Code.Scripts.Lobby.Connection
                 else
                 {
                     IPAddress iPAddress;
-                    if(!IPAddress.TryParse(ip, out iPAddress))
+                    if (!IPAddress.TryParse(ip, out iPAddress))
                     {
                         return false;
                     }
@@ -53,10 +53,8 @@ namespace Assets.Code.Scripts.Lobby.Connection
                     }
                 }
             }
-            IPEndPoint iPEndPoint =
-                new IPEndPoint(IPAddress.Parse("192.168.0.104"), 9001);
-            _endPoint = iPEndPoint;
-            return true;
+            else
+                return false;
         }
         public async Task<bool> CreateClientConnection
             (CancellationToken cancellationToken)

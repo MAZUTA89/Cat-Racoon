@@ -17,17 +17,26 @@ namespace Assets.Code.Scripts.Lobby
         GameObject _startPanel;
         GameObject _createPanel;
         GameObject _connectPanel;
+        GameObject _createConnectionStringPanel;
         LobbyConnection _connection;
+        GameObject _connectCancelButton;
+        GameObject _createCancelButton;
         [Inject]
         public void Constructor(
             [Inject(Id = "StartPanel")] GameObject startPanel,
             [Inject(Id = "CreatePanel")] GameObject createPanel,
-            [Inject(Id = "ConnectPanel")] GameObject connectPanel
+            [Inject(Id = "ConnectPanel")] GameObject connectPanel,
+            [Inject(Id = "ConnectionStringPanel")] GameObject connectionStringPanel,
+            [Inject(Id = "ConnectCancelButton")] GameObject connectCancelButton,
+            [Inject(Id = "CreateCancelButton")] GameObject createCancelButton
             )
         {
             _startPanel = startPanel;
             _createPanel = createPanel;
             _connectPanel = connectPanel;
+            _createConnectionStringPanel = connectionStringPanel;
+            _connectCancelButton = connectCancelButton;
+            _createCancelButton = createCancelButton;
         }
 
         private void Start()
@@ -45,6 +54,7 @@ namespace Assets.Code.Scripts.Lobby
         {
             _startPanel.SetActive(false);
             _connectPanel.SetActive(true);
+            _createConnectionStringPanel.SetActive(true);
         }
         public void OnCreate()
         {
@@ -55,15 +65,28 @@ namespace Assets.Code.Scripts.Lobby
         {
             Application.Quit();
         }
-        public void ConnectBack()
+        public async void ConnectBack()
         {
+            await Task.Delay(1000);
             _connectPanel?.SetActive(false);
             _startPanel?.SetActive(true);
         }
-        public void CreateBack()
+        public async void CreateBack()
         {
             _createPanel?.SetActive(false);
+            await Task.Delay(1000);
             _startPanel?.SetActive(true);
+        }
+        public void OnBackAtCreateConnectionStringPanel()
+        {
+            _createConnectionStringPanel.SetActive(false);
+            _connectPanel.SetActive(false);
+            _startPanel.SetActive(true);
+        }
+        public void OnContinue()
+        {
+            _createConnectionStringPanel.SetActive(false);
+            _connectCancelButton.SetActive(true);
         }
     }
 }

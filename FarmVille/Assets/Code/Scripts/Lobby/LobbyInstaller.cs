@@ -14,6 +14,9 @@ namespace Assets.Code.Scripts.Lobby
         [SerializeField] GameObject StartPanel;
         [SerializeField] GameObject CreatePanel;
         [SerializeField] GameObject ConnectPanel;
+        [SerializeField] GameObject ConnectionStringPanel;
+        [SerializeField] GameObject ConnectCancelButton;
+        [SerializeField] GameObject CreateCancelButton;
         public TextMeshProUGUI ProcessText;
         [SerializeField] GameObject LoadImage;
         public override void InstallBindings()
@@ -25,9 +28,15 @@ namespace Assets.Code.Scripts.Lobby
             BindStartPanel();
             BindConnectPanel();
             BindCreatePanel();
+            BindConnectionStringPanel();
             BindProgressUI();
+            BindCancelButtons();
         }
-
+        void BindCancelButtons()
+        {
+            Container.BindInstance(ConnectCancelButton).WithId("ConnectCancelButton");
+            Container.BindInstance(CreateCancelButton).WithId("CreateCancelButton");
+        }
         void BindStartPanel()
         {
             Container.BindInstance(StartPanel).WithId("StartPanel");
@@ -39,6 +48,10 @@ namespace Assets.Code.Scripts.Lobby
         void BindCreatePanel()
         {
             Container.BindInstance(ConnectPanel).WithId("ConnectPanel");
+        }
+        void BindConnectionStringPanel()
+        {
+            Container.BindInstance(ConnectionStringPanel).WithId("ConnectionStringPanel");
         }
         void BindProgressUI()
         {
