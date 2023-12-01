@@ -57,13 +57,13 @@ namespace Assets.Code.Scripts.Lobby
         }
         public void ConnectBack()
         {
-            _connectPanel.SetActive(false);
-            _startPanel.SetActive(true);
+            _connectPanel?.SetActive(false);
+            _startPanel?.SetActive(true);
         }
         public void CreateBack()
         {
-            _createPanel.SetActive(false);
-            _startPanel.SetActive(true);
+            _createPanel?.SetActive(false);
+            _startPanel?.SetActive(true);
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Assets.Code.Scripts.Lobby
             Container.Bind<LobbyService>().AsSingle();
             Container.Bind<LobbyConnection>().AsSingle();
             Container.Bind<LevelLoader>().AsSingle();
+            Container.Bind<ProgressHandler>().AsSingle();
             BindStartPanel();
             BindConnectPanel();
             BindCreatePanel();

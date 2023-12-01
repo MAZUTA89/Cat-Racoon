@@ -28,6 +28,10 @@ namespace Assets.Code.Scripts.Lobby
 
         public event Action OnCancelServerConnectionEvent;
         public event Action OnCancelClientConnectionEvent;
+        public event Action OnStartCreateConnectionEvent;
+        public event Action OnCreateConnectionSeccessEvent;
+        public event Action OnCreateConnectionFailedEvent;
+        public event Action<string> OnCreateServerEndPointEvent;
 
         public event Action<Server> onServerConnectionCreatedEvent;
         public event Action<Client> onClientConnectionCreatedEvent;
@@ -39,10 +43,8 @@ namespace Assets.Code.Scripts.Lobby
         CancellationTokenSource _cancellationTokenSource;
         ClientConnectionCreator _clientConnectionCreator;
         ServerConnectionCreator _serverConnectionCreator;
-
-        
-
         Task<bool> _сonnectionTask;
+        string endPoint;
 
         [Inject]
         public void Constructor(
@@ -62,28 +64,32 @@ namespace Assets.Code.Scripts.Lobby
         public async void OnCreate()
         {
             ActivateProgressUI();
-
-            _processText.text = c_ConnectionText;
+            OnStartCreateConnectionEvent?.Invoke();
+            //_processText.text = c_ConnectionText;
 
             _cancellationTokenSource
                 = new CancellationTokenSource();
 
             _сonnectionTask = 
                 _serverConnectionCreator
-                .CreateServerConnection(_cancellationTokenSource.Token);
+                .CreateServerConnection(_cancellationTokenSource.Token,
+                OnCreateServerEndPointEvent);
 
             bool result = await _сonnectionTask;
 
             if (result)
             {
                 _server = _serverConnectionCreator.GetServer();
-                _processText.text = c_SuccsessConnectionText;
+                OnCreateConnectionSeccessEvent?.Invoke();
+                //_processText.text = c_SuccsessConnectionText;
                 await Task.Delay(1000);
                 onServerConnectionCreatedEvent?.Invoke(_server);
             }
             else
             {
-                _processText.text = c_ConnectionFailedText;
+                _server?.Stop();
+                OnCreateConnectionFailedEvent?.Invoke();
+                //_processText.text = c_ConnectionFailedText;
                 await Task.Delay(1000);
                 return;
             }
@@ -102,93 +108,34 @@ namespace Assets.Code.Scripts.Lobby
                 _clientConnectionCreator
                 .CreateClientConnection(_cancellationTokenSource.Token);
 
-            _processText.text = c_ConnectText;
+            OnStartCreateConnectionEvent?.Invoke();
+            //_processText.text = c_ConnectText;
 
             bool result = await _сonnectionTask;
             if (result)
             {
                 _client = _clientConnectionCreator.GetClient();
                 _processText.text = c_SuccsessConnectionText;
-                await Task.Delay(1000);
                 onClientConnectionCreatedEvent?.Invoke(_client);
+                await Task.Delay(1000);
                 Debug.Log($"Подключился к {_client.GetRemotePoint()}");
             }
             else
             {
+                _client?.Stop();
                 _processText.text = c_ConnectionFailedText;
                 await Task.Delay(1000);
                 Debug.Log("Подключение не удалось!");
             }
         }
-
-        public async Task<bool> LoadClientLevel(Client client)
-        {
-            //await _levelLoader.LoadLevelAsync
-            //    (GameData.Instance.GameSceneName.ToString());
-
-            LoadLevelSignal loadLevelSignal =
-                new LoadLevelSignal(ConnectionType.Client);
-
-            int send_bytes = await client.SendAcync(loadLevelSignal);
-            if (send_bytes > 0)
-            {
-                try
-                {
-                    LoadLevelSignal serverSignal = await client.RecvAcync<LoadLevelSignal>();
-                    if (serverSignal.ConnectionType == ConnectionType.Server)
-                    {
-                        return true;
-                    }
-                    else
-                        return false;
-
-                }
-                catch (Exception ex)
-                {
-                    Debug.Log(ex.Message);
-                    return false;
-                }
-            }
-            else
-                return false;
-        }
-
-        public async Task<bool> LoadServerLevel(Server server)
-        {
-            //await _levelLoader.LoadLevelAsync
-            //    (GameData.Instance.GameSceneName.ToString());
-            LoadLevelSignal loadLevelSignal =
-                new LoadLevelSignal(ConnectionType.Server);
-
-            int send_bytes = await server.SendAcync(loadLevelSignal);
-
-            if (send_bytes > 0)
-            {
-                try
-                {
-                    LoadLevelSignal clientSignal = await server.RecvAcync<LoadLevelSignal>();
-                    if (clientSignal.ConnectionType == ConnectionType.Client)
-                    {
-                        return true;
-                    }
-                    else
-                        return false;
-                }
-                catch (Exception ex)
-                {
-                    Debug.Log(ex.Message);
-                    return false;
-                }
-            }
-            return false;
-        }
-
         public void OnServerBack()
         {
+            _server?.Stop();
             CancelConnection(OnCancelServerConnectionEvent);
         }
         public void OnClientBack()
         {
+            _client?.Stop();
             CancelConnection(OnCancelClientConnectionEvent);
         }
 
@@ -200,9 +147,10 @@ namespace Assets.Code.Scripts.Lobby
             }
             catch (AggregateException)
             {
-                _processText.text = c_CanceledText;
+                //_processText.text = c_CanceledText;
             }
             await Task.Delay(1000);
+            
             cancelConnectionEvent?.Invoke();
             DeactivateProgressUI();
         }

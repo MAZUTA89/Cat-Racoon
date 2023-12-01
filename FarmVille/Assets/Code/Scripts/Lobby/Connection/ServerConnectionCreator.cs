@@ -13,9 +13,11 @@ namespace Assets.Code.Scripts.Lobby
     {
         Server _server;
         public async Task<bool> CreateServerConnection
-            (CancellationToken cancellationToken)
+            (CancellationToken cancellationToken,
+            Action<string> onCreateServerEndpoint)
         {
             bool result = false;
+            _server?.Stop();
             _server = new Server();
             if (!_server.TryBindPoint())
             {
@@ -23,7 +25,7 @@ namespace Assets.Code.Scripts.Lobby
 
                 return _server.Stop();
             }
-
+            onCreateServerEndpoint?.Invoke(_server.GetLocalPoint());
             if (!_server.Listen())
             {
                 Debug.Log(_server.GetLastError());

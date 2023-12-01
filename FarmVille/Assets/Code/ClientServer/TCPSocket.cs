@@ -146,6 +146,7 @@ namespace ClientServer
             {
                 _isDisposed = true;
                 socket.Close();
+                socket.Dispose();
             }
         }
         public string GetLastError()

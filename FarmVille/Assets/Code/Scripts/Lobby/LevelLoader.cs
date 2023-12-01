@@ -13,16 +13,21 @@ using Zenject;
 using Assets.Code.Scripts.Lobby.LoadingLevel;
 using System.Threading;
 using PimDeWitte.UnityMainThreadDispatcher;
+using UnityEngine.Playables;
 
 namespace Assets.Code.Scripts.Lobby
 {
     public class LevelLoader : MonoBehaviour
     {
+        public event Action OnCanceledOrFailedLoadLevelSignalEvent;
+        public event Action OnStartCheckLoadLevelSignalEvent;
+        public event Action OnStopCheckLoadLevelSignalEvent;
         [SerializeField] List<GameObject> BackButtons;
-
         public static Action onLevelLoadedEvent { get; private set; }
         const string c_LoadLevelText = "Loading level ...";
         const string c_CheckText = "Check signal ...";
+        const string c_CheckSignalFailedText = "Check signal failed!";
+        static int i = 0;
         TextMeshProUGUI _processText;
         GameObject _loadImage;
         LobbyConnection _lobbyConnection;
@@ -32,6 +37,8 @@ namespace Assets.Code.Scripts.Lobby
         LevelSignalChecker _signalChecker;
 
         CancellationTokenSource _cancellationTokenSource;
+        Server _server;
+        Client _client;
 
         [Inject]
         public void Constructor(
@@ -67,11 +74,11 @@ namespace Assets.Code.Scripts.Lobby
             _lobbyConnection.OnCancelServerConnectionEvent
                 -= OnServerCanceled;
         }
-
         public async void OnServerConnectionCreated(Server server)
         {
+            i++;
             _cancellationTokenSource = new CancellationTokenSource();
-
+            _server = server;
             User.Instance.InitializeUserBase(server);
             Task checkLevelLoadingTask =
                 Task.Run(async () =>
@@ -81,17 +88,26 @@ namespace Assets.Code.Scripts.Lobby
                 }, _cancellationTokenSource.Token);
 
             await CheckSignal(checkLevelLoadingTask);
+
             if (!_cancellationTokenSource.Token.IsCancellationRequested && _signalResult)
             {
                 await LoadLevel(_sceneName);
                 onLevelLoadedEvent?.Invoke();
+            }
+            else
+            {
+                _server?.Stop();
+                OnCanceledOrFailedLoadLevelSignalEvent?.Invoke();
+                //_processText.gameObject.SetActive(true);
+                //_processText.text = c_CheckSignalFailedText;
+                ActivateBackButtons();
             }
         }
 
         public async void OnClientConnecitonCreated(Client client)
         {
             _cancellationTokenSource = new CancellationTokenSource();
-
+            _client = client;
             User.Instance.InitializeUserBase(client);
             Task checkLevelLoadingTask =
                 Task.Run(async () =>
@@ -106,11 +122,20 @@ namespace Assets.Code.Scripts.Lobby
                 await LoadLevel(_sceneName);
                 onLevelLoadedEvent?.Invoke();
             }
+            else
+            {
+                _client?.Stop();
+                OnCanceledOrFailedLoadLevelSignalEvent?.Invoke();
+                //_processText.gameObject.SetActive(true);
+                //_processText.text = c_CheckSignalFailedText;
+                ActivateBackButtons();
+            }
         }
 
         async Task CheckSignal(Task checkSignalLoadingTask)
         {
-            _processText.text = c_CheckText;
+            OnStartCheckLoadLevelSignalEvent?.Invoke();
+            /*_processText.text = c_CheckText*/;
             await Task.Delay(1000);
             await checkSignalLoadingTask.ContinueWith((compliteTask) =>
             {
@@ -119,11 +144,11 @@ namespace Assets.Code.Scripts.Lobby
                     DeactivateBackButtons();
                 });
             });
-
-            _processText.text = c_LoadLevelText;
-            await Task.Delay(1000);
-            _processText.gameObject.SetActive(false);
-            _loadImage.SetActive(false);
+            OnStopCheckLoadLevelSignalEvent?.Invoke();
+            //_processText.text = c_LoadLevelText;
+            //await Task.Delay(1000);
+            //_processText.gameObject.SetActive(false);
+            //_loadImage.SetActive(false);
 
         }
         async Task LoadLevel(SceneName sceneName)
@@ -167,12 +192,24 @@ namespace Assets.Code.Scripts.Lobby
             {
                 Debug.Log(ex.Message);
             }
+            finally
+            {
+                _server?.Stop();
+                _client?.Stop();
+            }
         }
         void DeactivateBackButtons()
         {
             foreach (var button in BackButtons)
             {
                 button.SetActive(false);
+            }
+        }
+        void ActivateBackButtons()
+        {
+            foreach (var button in BackButtons)
+            {
+                button.SetActive(true);
             }
         }
 

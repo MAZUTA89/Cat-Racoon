@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ClientServer.Server
@@ -17,7 +18,8 @@ namespace ClientServer.Server
         Socket _serverSocket;
         public Server()
         {
-            EndPoint = new IPEndPoint(IPAddress.Any, 9001);
+            IPAddress ip = IPAddress.Parse(GetLocalIpAddress());
+            EndPoint = new IPEndPoint(ip, 0);
             _serverSocket = base.InitializeTCPSocket();
         }
 
@@ -26,6 +28,7 @@ namespace ClientServer.Server
             try
             {
                 _serverSocket.Bind(EndPoint);
+                LocalEndPoint = _serverSocket.LocalEndPoint;
                 return true;
             }
             catch (Exception ex)
@@ -64,7 +67,18 @@ namespace ClientServer.Server
                 return false;
             }
         }
-
+        public string GetLocalIpAddress()
+        {
+            string sHostName = Dns.GetHostName();
+            IPHostEntry ipE = Dns.GetHostByName(sHostName);
+            IPAddress[] IpA = ipE.AddressList;
+            return IpA[IpA.Length - 1].ToString();
+            //for (int i = 0; i < IpA.Length; i++)
+            //{
+            //    string str = IpA[i].ToString();
+            //    Console.WriteLine("IP Address {0}: {1} ", i, IpA[i].ToString());
+            //}
+        }
         public override bool Stop()
         {
             if(ClientSocket == null)
