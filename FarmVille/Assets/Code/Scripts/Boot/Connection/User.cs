@@ -95,12 +95,12 @@ namespace Assets.Code.Scripts.Boot
                 if (signal.DateTime > recvSignal.DateTime)
                 {
                     diff = signal.DateTime - recvSignal.DateTime;
+                    await Task.Delay(diff.Milliseconds);
                 }
                 else
                 {
                     diff = recvSignal.DateTime - signal.DateTime;
                 }
-                await Task.Delay(diff.Milliseconds);
                 LoadTime = DateTime.Now;
                 // Получаем текущее время
                 //TextMeshProUGUI.text = DateTime.Now.ToString();
