@@ -10,14 +10,13 @@ namespace Assets.Code.Scripts.Gameplay.Installers
 {
     public class PlayerInstaller : MonoInstaller
     {
-        [SerializeField] GameObject PlayerPrefab;
         public override void InstallBindings()
         {
             BindMovement();
         }
         void BindMovement()
         {
-            Container.Bind<Movement>().AsTransient();
+            Container.Bind<TopDownMovement>().AsSingle();
         }
     }
 }

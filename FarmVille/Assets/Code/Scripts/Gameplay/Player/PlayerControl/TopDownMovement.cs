@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Code.Scripts.Boot;
+using Assets.Code.Scripts.Boot.Data;
 using UnityEngine;
 using Zenject;
 
-
-public class Movement : MonoBehaviour
+public class TopDownMovement : MonoBehaviour
 {
     public float MovementSpeed = 5f;
     Rigidbody2D _rb;
@@ -31,7 +30,10 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + _input * 
-            MovementSpeed * Time.fixedDeltaTime);
+        _rb.MovePosition(_rb.position + MovementSpeed
+            * Time.fixedDeltaTime * _input);
+        User.Instance.SendPlayerData.UpdatePosition(_rb.position);
     }
 }
+
+

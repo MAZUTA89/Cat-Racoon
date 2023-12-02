@@ -20,6 +20,11 @@ namespace Assets.Code.Scripts.Boot
             }
             Instance = (T)Convert.ChangeType(this, typeof(T));
             DontDestroyOnLoad(gameObject);
+            OnAwake();
+        }
+        protected virtual void OnAwake()
+        {
+
         }
     }
 }

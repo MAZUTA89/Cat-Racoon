@@ -63,7 +63,7 @@ namespace Assets.Code.Scripts.Lobby
         {
             _cancellationTokenSource = new CancellationTokenSource();
             _server = server;
-            User.Instance.InitializeUserBase(server);
+            User.Instance.InitializeUserBase(server, ConnectionType.Server);
             Task checkLevelLoadingTask =
                 Task.Run(async () =>
                 {
@@ -91,7 +91,7 @@ namespace Assets.Code.Scripts.Lobby
         {
             _cancellationTokenSource = new CancellationTokenSource();
             _client = client;
-            User.Instance.InitializeUserBase(client);
+            User.Instance.InitializeUserBase(client, ConnectionType.Client);
             Task checkLevelLoadingTask =
                 Task.Run(async () =>
                 {

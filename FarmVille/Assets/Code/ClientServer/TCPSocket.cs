@@ -60,8 +60,9 @@ namespace ClientServer
                 return send_bytes;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _error = ex;
                 return 0;
             }
         }
