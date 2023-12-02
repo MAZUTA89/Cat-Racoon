@@ -10,6 +10,7 @@ using Unity.VisualScripting;
 using Assets.Code.Scripts.Boot.Data;
 using Assets.Code.Scripts.Communication;
 using Assets.Code.Scripts.Boot.Communication;
+using TMPro;
 
 namespace Assets.Code.Scripts.Boot
 {
@@ -21,6 +22,7 @@ namespace Assets.Code.Scripts.Boot
         public PlayerData RecvPlayerData;
         public ConnectionType ConnectionType { get; private set; }
         Communicator _communicator;
+        public TextMeshProUGUI TextMeshProUGUI;
 
         protected override void OnAwake()
         {
@@ -54,12 +56,13 @@ namespace Assets.Code.Scripts.Boot
         public async void OnLevelLoaded()
         {
             bool checkSignalResult = false;
+            StartCommunicationSignal signal
+            = new StartCommunicationSignal();
+            StartCommunicationSignal recvSignal = new StartCommunicationSignal();
             Task checkCommunicationSignalTask =
                 Task.Run(async () =>
                 {
-                    StartCommunicationSignal signal
-                    = new StartCommunicationSignal();
-
+                    signal.DateTime = DateTime.Now;
                     int send_bytes = await _userBase.SendAcync(signal);
 
                     if (send_bytes < 1)
@@ -68,7 +71,7 @@ namespace Assets.Code.Scripts.Boot
                         return;
                     }
 
-                    var recvSignal =
+                    recvSignal =
                     await _userBase.RecvAcync<StartCommunicationSignal>();
 
                     if (recvSignal != null)
@@ -88,8 +91,19 @@ namespace Assets.Code.Scripts.Boot
 
             if (checkSignalResult)
             {
-                // Получаем текущее время
+                TimeSpan diff;
+                if (signal.DateTime > recvSignal.DateTime)
+                {
+                    diff = signal.DateTime - recvSignal.DateTime;
+                }
+                else
+                {
+                    diff = recvSignal.DateTime - signal.DateTime;
+                }
+                await Task.Delay(diff.Milliseconds);
                 LoadTime = DateTime.Now;
+                // Получаем текущее время
+                //TextMeshProUGUI.text = DateTime.Now.ToString();
             }
             else
             {
