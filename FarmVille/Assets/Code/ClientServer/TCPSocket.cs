@@ -19,7 +19,6 @@ namespace ClientServer
         protected Socket ClientSocket;
         protected Exception _error { get; set; }
 
-        protected bool _isDisposed = false;
 
         PrefixWriterReader _prefix = new PrefixWriterReader(15);
         
@@ -144,7 +143,6 @@ namespace ClientServer
             }
             finally
             {
-                _isDisposed = true;
                 socket.Close();
                 socket.Dispose();
             }

@@ -22,14 +22,7 @@ namespace Assets.Code.Scripts.Lobby
         public event Action OnCanceledOrFailedLoadLevelSignalEvent;
         public event Action OnStartCheckLoadLevelSignalEvent;
         public event Action OnStopCheckLoadLevelSignalEvent;
-        [SerializeField] List<GameObject> BackButtons;
-        public static Action onLevelLoadedEvent { get; private set; }
-        const string c_LoadLevelText = "Loading level ...";
-        const string c_CheckText = "Check signal ...";
-        const string c_CheckSignalFailedText = "Check signal failed!";
-        static int i = 0;
-        TextMeshProUGUI _processText;
-        GameObject _loadImage;
+        public static Action onLevelLoadedEvent { get; set; }
         LobbyConnection _lobbyConnection;
         SceneName _sceneName;
         bool _signalResult;
@@ -40,14 +33,6 @@ namespace Assets.Code.Scripts.Lobby
         Server _server;
         Client _client;
 
-        [Inject]
-        public void Constructor(
-           [Inject(Id = "ConnectionProgressText")] TextMeshProUGUI progressText,
-           [Inject(Id = "ConnectionLoadImage")] GameObject loadImage)
-        {
-            _processText = progressText;
-            _loadImage = loadImage;
-        }
         private void Start()
         {
             _signalResult = false;
@@ -76,7 +61,6 @@ namespace Assets.Code.Scripts.Lobby
         }
         public async void OnServerConnectionCreated(Server server)
         {
-            i++;
             _cancellationTokenSource = new CancellationTokenSource();
             _server = server;
             User.Instance.InitializeUserBase(server);
@@ -98,9 +82,8 @@ namespace Assets.Code.Scripts.Lobby
             {
                 _server?.Stop();
                 OnCanceledOrFailedLoadLevelSignalEvent?.Invoke();
-                //_processText.gameObject.SetActive(true);
-                //_processText.text = c_CheckSignalFailedText;
-                ActivateBackButtons();
+
+                //ActivateBackButtons();
             }
         }
 
@@ -126,29 +109,21 @@ namespace Assets.Code.Scripts.Lobby
             {
                 _client?.Stop();
                 OnCanceledOrFailedLoadLevelSignalEvent?.Invoke();
-                //_processText.gameObject.SetActive(true);
-                //_processText.text = c_CheckSignalFailedText;
-                ActivateBackButtons();
+                //ActivateBackButtons();
             }
         }
 
         async Task CheckSignal(Task checkSignalLoadingTask)
         {
             OnStartCheckLoadLevelSignalEvent?.Invoke();
-            /*_processText.text = c_CheckText*/;
             await Task.Delay(1000);
             await checkSignalLoadingTask.ContinueWith((compliteTask) =>
             {
                 UnityMainThreadDispatcher.Instance().Enqueue(() =>
                 {
-                    DeactivateBackButtons();
+                    OnStopCheckLoadLevelSignalEvent?.Invoke();
                 });
             });
-            OnStopCheckLoadLevelSignalEvent?.Invoke();
-            //_processText.text = c_LoadLevelText;
-            //await Task.Delay(1000);
-            //_processText.gameObject.SetActive(false);
-            //_loadImage.SetActive(false);
 
         }
         async Task LoadLevel(SceneName sceneName)
@@ -198,20 +173,5 @@ namespace Assets.Code.Scripts.Lobby
                 _client?.Stop();
             }
         }
-        void DeactivateBackButtons()
-        {
-            foreach (var button in BackButtons)
-            {
-                button.SetActive(false);
-            }
-        }
-        void ActivateBackButtons()
-        {
-            foreach (var button in BackButtons)
-            {
-                button.SetActive(true);
-            }
-        }
-
     }
 }

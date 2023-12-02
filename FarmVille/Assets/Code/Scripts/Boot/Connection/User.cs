@@ -14,12 +14,12 @@ namespace Assets.Code.Scripts.Boot
         TCPBase _userBase;
         private void Start()
         {
-            //LevelLoader.onLevelLoadedEvent += OnLevelLoaded;
+            LevelLoader.onLevelLoadedEvent += OnLevelLoaded;
         }
 
         private void OnDisable()
         {
-            //LevelLoader.onLevelLoadedEvent -= OnLevelLoaded;
+            LevelLoader.onLevelLoadedEvent -= OnLevelLoaded;
         }
 
         private void Update()

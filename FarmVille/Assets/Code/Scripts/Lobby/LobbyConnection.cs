@@ -19,13 +19,6 @@ namespace Assets.Code.Scripts.Lobby
 {//Работа с подключением
     public class LobbyConnection : MonoBehaviour
     {
-        const string c_MenuSceneName = "MenuScene";
-        const string c_ConnectionText = "Waiting for connection...";
-        const string c_ConnectText = "Connect...";
-        const string c_SuccsessConnectionText = "Connection is established";
-        const string c_ConnectionFailedText = "Connection failed";
-        const string c_CanceledText = "Canceled...";
-
         public event Action OnCancelServerConnectionEvent;
         public event Action OnCancelClientConnectionEvent;
         public event Action OnStartCreateConnectionEvent;
@@ -33,29 +26,18 @@ namespace Assets.Code.Scripts.Lobby
         public event Action OnCreateConnectionFailedEvent;
         public event Action<string> OnCreateServerEndPointEvent;
         public event Action OnCreateConnectionStringFailedEvent;
-        //public event Action OnCreate
 
         public event Action<Server> onServerConnectionCreatedEvent;
         public event Action<Client> onClientConnectionCreatedEvent;
 
         [SerializeField] TMP_InputField inputField;
-        TextMeshProUGUI _processText;
-        GameObject _loadImage;
+        
         Server _server;
         Client _client;
         CancellationTokenSource _cancellationTokenSource;
         ClientConnectionCreator _clientConnectionCreator;
         ServerConnectionCreator _serverConnectionCreator;
         Task<bool> _сonnectionTask;
-
-        [Inject]
-        public void Constructor(
-            [Inject(Id = "ConnectionProgressText")] TextMeshProUGUI progressText,
-            [Inject(Id = "ConnectionLoadImage")] GameObject loadImage)
-        {
-            _processText = progressText;
-            _loadImage = loadImage;
-        }
 
         private void Awake()
         {
@@ -65,9 +47,7 @@ namespace Assets.Code.Scripts.Lobby
 
         public async void OnCreate()
         {
-            //ActivateProgressUI();
             OnStartCreateConnectionEvent?.Invoke();
-            //_processText.text = c_ConnectionText;
 
             _cancellationTokenSource
                 = new CancellationTokenSource();
@@ -83,7 +63,6 @@ namespace Assets.Code.Scripts.Lobby
             {
                 _server = _serverConnectionCreator.GetServer();
                 OnCreateConnectionSeccessEvent?.Invoke();
-                //_processText.text = c_SuccsessConnectionText;
                 await Task.Delay(1000);
                 onServerConnectionCreatedEvent?.Invoke(_server);
             }
@@ -91,7 +70,6 @@ namespace Assets.Code.Scripts.Lobby
             {
                 _server?.Stop();
                 OnCreateConnectionFailedEvent?.Invoke();
-                //_processText.text = c_ConnectionFailedText;
                 await Task.Delay(1000);
                 return;
             }
@@ -99,8 +77,6 @@ namespace Assets.Code.Scripts.Lobby
 
         public async void OnConnect()
         {
-            //ActivateProgressUI();
-
             _cancellationTokenSource
                 = new CancellationTokenSource();
 
@@ -117,14 +93,12 @@ namespace Assets.Code.Scripts.Lobby
             OnStartCreateConnectionEvent?.Invoke();
 
             await Task.Delay(1000);
-            //_processText.text = c_ConnectText;
 
             bool result = await _сonnectionTask;
             if (result)
             {
                 _client = _clientConnectionCreator.GetClient();
                 OnCreateConnectionSeccessEvent?.Invoke();
-                //_processText.text = c_SuccsessConnectionText;
                 onClientConnectionCreatedEvent?.Invoke(_client);
                 await Task.Delay(1000);
                 Debug.Log($"Подключился к {_client.GetRemotePoint()}");
@@ -132,7 +106,6 @@ namespace Assets.Code.Scripts.Lobby
             else
             {
                 _client?.Stop();
-                //_processText.text = c_ConnectionFailedText;
                 OnCreateConnectionFailedEvent?.Invoke();
                 await Task.Delay(1000);
                 Debug.Log("Подключение не удалось!");
@@ -157,23 +130,8 @@ namespace Assets.Code.Scripts.Lobby
             }
             catch (AggregateException)
             {
-                //_processText.text = c_CanceledText;
             }
-            //await Task.Delay(1000);
-            
             cancelConnectionEvent?.Invoke();
-            //DeactivateProgressUI();
         }
-
-        //void ActivateProgressUI()
-        //{
-        //    _processText.gameObject.SetActive(true);
-        //    _loadImage.SetActive(true);
-        //}
-        //void DeactivateProgressUI()
-        //{
-        //    _processText.gameObject.SetActive(false);
-        //    _loadImage.SetActive(false);
-        //}
     }
 }

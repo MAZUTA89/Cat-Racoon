@@ -97,6 +97,8 @@ namespace Assets.Code.Scripts.Lobby
         }
         public void OnCanceledOrFailedLoadLevelSignal()
         {
+            _connectCancelButton.SetActive(true);
+            _createCancelButton.SetActive(true);
             _processText.gameObject.SetActive(true);
             _processText.text = c_CheckSignalFailedText;
             Task.Delay(1000);
@@ -109,6 +111,8 @@ namespace Assets.Code.Scripts.Lobby
         }
         public void OnStopCheckLoadLevelSignal()
         {
+            _connectCancelButton.SetActive(false);
+            _createCancelButton.SetActive(false);
             _processText.text = c_LoadLevelText;
             //await Task.Delay(1000);
             _processText.gameObject.SetActive(false);
