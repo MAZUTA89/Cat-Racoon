@@ -12,6 +12,7 @@ namespace Assets.Code.Scripts.Boot
     public class User : BootSingleton<User>
     {
         TCPBase _userBase;
+        public static DateTime LoadTime;
         private void Start()
         {
             LevelLoader.onLevelLoadedEvent += OnLevelLoaded;
@@ -35,10 +36,10 @@ namespace Assets.Code.Scripts.Boot
         public void OnLevelLoaded()
         {
             // Получаем текущее время
-            DateTime currentTime = DateTime.Now;
+            LoadTime = DateTime.Now;
 
             // Преобразуем время в строку и выводим в консоль
-            Debug.Log("Current Time: " + currentTime.ToString());
+            Debug.Log("Current Time: " + LoadTime.ToString());
         }
     }
 }
