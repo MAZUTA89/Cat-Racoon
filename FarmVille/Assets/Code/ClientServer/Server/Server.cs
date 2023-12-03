@@ -22,7 +22,10 @@ namespace ClientServer.Server
             EndPoint = new IPEndPoint(ip, 0);
             _serverSocket = base.InitializeTCPSocket();
         }
-
+        public void SetEndPoint(EndPoint endPoint)
+        {
+            EndPoint = endPoint;
+        }
         public bool TryBindPoint()
         {
             try

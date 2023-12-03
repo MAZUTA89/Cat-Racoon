@@ -32,8 +32,7 @@ namespace Assets.Code.Scripts.Boot
             SendPlayerData = new PlayerData();
             RecvPlayerData = new PlayerData();
             ConnectionType = ConnectionType.Server;
-            _communicator = new Communicator
-                (_userBase, SendPlayerData, RecvPlayerData, 1000);
+            
         }
         private void Start()
         {
@@ -43,6 +42,7 @@ namespace Assets.Code.Scripts.Boot
         private void OnDisable()
         {
             LevelLoader.onLevelLoadedEvent -= OnLevelLoaded;
+            _communicator?.Stop();
         }
 
         private void Update()
@@ -58,6 +58,9 @@ namespace Assets.Code.Scripts.Boot
 
         public async void OnLevelLoaded()
         {
+            _communicator = new Communicator
+                (_userBase, SendPlayerData, RecvPlayerData, 20000);
+
             bool checkSignalResult = false;
             StartCommunicationSignal signal
             = new StartCommunicationSignal();

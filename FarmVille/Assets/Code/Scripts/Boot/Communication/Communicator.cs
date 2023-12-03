@@ -1,5 +1,7 @@
-﻿using Assets.Code.Scripts.Boot.Data;
+﻿using Assets.Code.Scripts.Boot.Communication;
+using Assets.Code.Scripts.Boot.Data;
 using ClientServer;
+using PimDeWitte.UnityMainThreadDispatcher;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,8 +15,10 @@ namespace Assets.Code.Scripts.Communication
         PlayerData _recvData;
         Timer _timer;
         TCPBase _tcpBase;
-        float _tick;
-        public Communicator(TCPBase user, PlayerData sendData, PlayerData recvData, float tick)
+        int _tick;
+        CancellationTokenSource tokenSource = new CancellationTokenSource();
+        
+        public Communicator(TCPBase user, PlayerData sendData, PlayerData recvData, int tick)
         {
             _recvData = recvData;
             _sendData = sendData;
@@ -24,45 +28,53 @@ namespace Assets.Code.Scripts.Communication
 
         public void Start()
         {
-            _timer = new Timer(TimerCallBack, null,
-                TimeSpan.Zero, TimeSpan.FromMilliseconds(_tick));
+            
+            CommunicatorArgs args = new CommunicatorArgs();
+            args.Token = tokenSource.Token;
+            args.TCPBase = _tcpBase;
+            Task.Factory.StartNew(Communicate, args);
         }
 
-        void TimerCallBack(object sender)
+        
+        public async void Communicate(object state)
         {
-            Debug.Log("Tick");
-            Task.Run(async () =>
+            CommunicatorArgs args = (CommunicatorArgs)state;
+            CancellationToken ct = args.Token;
+            TCPBase tcpBase = args.TCPBase;
+            while (!ct.IsCancellationRequested)
             {
-                int send_bytes = await _tcpBase.SendAcync(_sendData);
-                if(send_bytes < 1)
+
+                Debug.Log("Tick");
+
+
+                //Debug.Log($"Error {tcpBase.GetLastError()}");
+                int send_bytes = await tcpBase.SendAcync(_sendData);
+                if (send_bytes < 1)
                 {
-                    Debug.Log(_tcpBase.GetLastError());
+                    Debug.Log(tcpBase.GetLastError());
                     return;
                 }
 
                 Debug.Log($"Send: {send_bytes}");
-                return;
-            });
-
-            Task.Run(async () =>
-            {
-                PlayerData recvData = await _tcpBase.RecvAcync<PlayerData>();
-                if(recvData != null)
+                PlayerData recvData = await tcpBase.RecvAcync<PlayerData>();
+                if (recvData != null)
                 {
                     _recvData = recvData;
                     Debug.Log($"Recv pos: {_recvData.GetPosition()}");
-                    return;
                 }
                 else
                 {
-                    Debug.Log(_tcpBase.GetLastError());
+                    Debug.Log(tcpBase.GetLastError());
                     Debug.Log("Ошибка получения данных!");
                     return;
                 }
-                
-            });
+                await Task.Delay(_tick);
+            }
         }
 
-        
+        public void Stop()
+        {
+            tokenSource?.Cancel();
+        }
     }
 }
