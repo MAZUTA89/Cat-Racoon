@@ -5,6 +5,7 @@ using PimDeWitte.UnityMainThreadDispatcher;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Code.Scripts.Communication
@@ -13,7 +14,6 @@ namespace Assets.Code.Scripts.Communication
     {
         PlayerData _sendData;
         PlayerData _recvData;
-        Timer _timer;
         TCPBase _tcpBase;
         int _tick;
         CancellationTokenSource tokenSource = new CancellationTokenSource();
@@ -25,7 +25,7 @@ namespace Assets.Code.Scripts.Communication
             _tick = tick;
             _tcpBase = user;
         }
-
+        
         public void Start()
         {
             

@@ -1,5 +1,7 @@
+using ClientServer;
 using ClientServer.Client;
 using ClientServer.Server;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -8,6 +10,8 @@ using UnityEngine;
 
 public class Connector : MonoBehaviour
 {
+    public static Action<TCPBase> OnConnectionCreated;
+    
     public async void Create()
     {
         Server server = new Server();
@@ -28,6 +32,7 @@ public class Connector : MonoBehaviour
             Debug.Log(server.GetLastError());
             return;
         }
+        OnConnectionCreated?.Invoke(server);
     }
     public async void Connect()
     {
@@ -40,5 +45,6 @@ public class Connector : MonoBehaviour
             return;
         }
 
+        OnConnectionCreated?.Invoke(client);
     }
 }

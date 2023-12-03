@@ -8,24 +8,29 @@ namespace Assets.Code.Scripts.Boot.Data
     {
         public PlayerData() 
         {
-            _position = new Vector2(1, 1);
+            positionX = 1;
+            positionY = 1;
         }
         public bool HasChanges { get; private set; }
 
-        private Vector2 _position;
+        public float positionX;
+        public float positionY;
         public void UpdatePosition(Vector2 position)
         {
-            if (_position != position)
+            Vector2 curr = new Vector2(positionX, positionY);
+            if (curr != position)
             {
                 HasChanges = true;
             }
             else HasChanges = false;
 
-            _position = position;
+            positionX = position.x;
+            positionY = position.y;
         }
         public Vector2 GetPosition()
         {
-            return _position;
+            Vector2 pos = new Vector2(positionX, positionY);
+            return pos;
         }
 
     }
