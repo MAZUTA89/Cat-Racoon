@@ -22,7 +22,8 @@ namespace Assets.Code.Scripts.Boot
         public PlayerData RecvPlayerData;
         public ConnectionType ConnectionType { get; private set; }
         Communicator _communicator;
-        public TextMeshProUGUI TextMeshProUGUI;
+        public TextMeshProUGUI RecvTimeText;
+        public TextMeshProUGUI SendTimeText;
 
         protected override void OnAwake()
         {
@@ -89,27 +90,29 @@ namespace Assets.Code.Scripts.Boot
 
             await checkCommunicationSignalTask;
 
-            if (checkSignalResult)
-            {
-                TimeSpan diff;
-                if (signal.DateTime > recvSignal.DateTime)
-                {
-                    diff = signal.DateTime - recvSignal.DateTime;
-                    await Task.Delay(diff.Milliseconds);
-                }
-                else
-                {
-                    diff = recvSignal.DateTime - signal.DateTime;
-                }
-                LoadTime = DateTime.Now;
-                // Получаем текущее время
-                //TextMeshProUGUI.text = DateTime.Now.ToString();
-            }
-            else
-            {
-                Debug.Log("Не удалось проверить сигнал!");
-                return;
-            }
+            SendTimeText.text += signal.DateTime.ToString();
+            RecvTimeText.text += recvSignal.DateTime.ToString();
+            //if (checkSignalResult)
+            //{
+            //    TimeSpan diff;
+            //    if (signal.DateTime > recvSignal.DateTime)
+            //    {
+            //        diff = signal.DateTime - recvSignal.DateTime;
+            //        await Task.Delay(diff.Milliseconds);
+            //    }
+            //    else
+            //    {
+            //        diff = recvSignal.DateTime - signal.DateTime;
+            //    }
+            //    LoadTime = DateTime.Now;
+            //    // Получаем текущее время
+            //    //TextMeshProUGUI.text = DateTime.Now.ToString();
+            //}
+            //else
+            //{
+            //    Debug.Log("Не удалось проверить сигнал!");
+            //    return;
+            //}
 
             // Преобразуем время в строку и выводим в консоль
             Debug.Log("Current Time: " + LoadTime.ToString());
