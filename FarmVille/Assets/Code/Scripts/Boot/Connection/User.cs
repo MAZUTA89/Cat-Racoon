@@ -24,6 +24,7 @@ namespace Assets.Code.Scripts.Boot
         Communicator _communicator;
         public TextMeshProUGUI RecvTimeText;
         public TextMeshProUGUI SendTimeText;
+        public TextMeshProUGUI StartTimeText;
 
         protected override void OnAwake()
         {
@@ -92,6 +93,15 @@ namespace Assets.Code.Scripts.Boot
 
             SendTimeText.text += signal.DateTime.ToString();
             RecvTimeText.text += recvSignal.DateTime.ToString();
+            if(checkSignalResult)
+            {
+                if(signal.DateTime < recvSignal.DateTime)
+                {
+                    TimeSpan diff = recvSignal.DateTime - signal.DateTime;
+                    await Task.Delay(diff.Milliseconds);
+                }
+            }
+            StartTimeText.text += DateTime.Now.ToString();
             //if (checkSignalResult)
             //{
             //    TimeSpan diff;
