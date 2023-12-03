@@ -102,9 +102,10 @@ namespace Assets.Code.Scripts.Boot
                     DiffTimeText.text += diff.ToString();
                     await Task.Delay(diff);
                 }
+                DateTime loadTime = DateTime.Now;
+                StartTimeText.text += loadTime.ToString() + " " + loadTime.Millisecond;
+                _communicator.Start();
             }
-            DateTime loadTime = DateTime.Now;
-            StartTimeText.text += loadTime.ToString() + " " + loadTime.Millisecond;
             //if (checkSignalResult)
             //{
             //    TimeSpan diff;

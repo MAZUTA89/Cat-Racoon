@@ -18,8 +18,8 @@ namespace Assets.Code.Scripts.Gameplay.Installers
 
         public override void InstallBindings()
         {
-            ConnectionType connectionType = ConnectionType.Server;
-            switch (connectionType)
+            
+            switch (User.Instance.ConnectionType)
             {
                 case ConnectionType.Server:
                     {

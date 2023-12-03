@@ -30,6 +30,7 @@ namespace Assets.Code.Scripts.Communication
 
         void TimerCallBack(object sender)
         {
+            Debug.Log("Tick");
             Task.Run(async () =>
             {
                 int send_bytes = await _tcpBase.SendAcync(_sendData);
@@ -38,6 +39,9 @@ namespace Assets.Code.Scripts.Communication
                     Debug.Log(_tcpBase.GetLastError());
                     return;
                 }
+
+                Debug.Log($"Send: {send_bytes}");
+                return;
             });
 
             Task.Run(async () =>
@@ -45,7 +49,8 @@ namespace Assets.Code.Scripts.Communication
                 PlayerData recvData = await _tcpBase.RecvAcync<PlayerData>();
                 if(recvData != null)
                 {
-                    _sendData = recvData;
+                    _recvData = recvData;
+                    Debug.Log($"Recv pos: {_recvData.GetPosition()}");
                     return;
                 }
                 else
@@ -54,6 +59,7 @@ namespace Assets.Code.Scripts.Communication
                     Debug.Log("Ошибка получения данных!");
                     return;
                 }
+                
             });
         }
 
