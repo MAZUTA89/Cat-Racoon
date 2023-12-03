@@ -91,13 +91,13 @@ namespace Assets.Code.Scripts.Boot
 
             await checkCommunicationSignalTask;
 
-            SendTimeText.text += signal.DateTime.ToString();
-            RecvTimeText.text += recvSignal.DateTime.ToString();
+            SendTimeText.text += signal.DateTime.ToString() + " " + signal.DateTime.Millisecond;
+            RecvTimeText.text += recvSignal.DateTime.ToString() + " " + recvSignal.DateTime.Millisecond;
             if(checkSignalResult)
             {
                 if(signal.DateTime > recvSignal.DateTime)
                 {
-                    TimeSpan diff = recvSignal.DateTime - signal.DateTime;
+                    TimeSpan diff = signal.DateTime - recvSignal.DateTime;
                     await Task.Delay(diff.Milliseconds);
                 }
             }
