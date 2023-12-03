@@ -100,7 +100,7 @@ namespace Assets.Code.Scripts.Boot
                 {
                     TimeSpan diff = recvSignal.DateTime - signal.DateTime;
                     DiffTimeText.text += diff.ToString();
-                    await Task.Delay(diff.Milliseconds);
+                    await Task.Delay(diff);
                 }
             }
             DateTime loadTime = DateTime.Now;
