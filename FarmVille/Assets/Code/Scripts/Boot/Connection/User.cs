@@ -95,13 +95,14 @@ namespace Assets.Code.Scripts.Boot
             RecvTimeText.text += recvSignal.DateTime.ToString();
             if(checkSignalResult)
             {
-                if(signal.DateTime < recvSignal.DateTime)
+                if(signal.DateTime > recvSignal.DateTime)
                 {
                     TimeSpan diff = recvSignal.DateTime - signal.DateTime;
                     await Task.Delay(diff.Milliseconds);
                 }
             }
-            StartTimeText.text += DateTime.Now.ToString();
+            DateTime loadTime = DateTime.Now;
+            StartTimeText.text += loadTime.ToString() + " " + loadTime.Millisecond;
             //if (checkSignalResult)
             //{
             //    TimeSpan diff;
