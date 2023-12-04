@@ -52,18 +52,21 @@ namespace Assets.Code.Scripts.Communication
             CommunicatorArgs args = (CommunicatorArgs)state;
             TCPBase tcpBase = args.TCPBase;
             Debug.Log("Tick");
-            int send_bytes = await tcpBase.SendAcync(args.SendData);
-            if (send_bytes < 1)
+            if (_sendData.HasChanges)
             {
-                Debug.Log(tcpBase.GetLastError());
-                return default;
+                int send_bytes = await tcpBase.SendAcync(args.SendData);
+                if (send_bytes < 1)
+                {
+                    Debug.Log(tcpBase.GetLastError());
+                    return default;
+                }
             }
-            Debug.Log($"Send: {send_bytes}");
+            //Debug.Log($"Send: {send_bytes}");
             PlayerData recvData = await tcpBase.RecvAcync<PlayerData>();
             if (recvData != null)
             {
                 User.Instance.RecvPlayerData = recvData;
-                Debug.Log($"Recv pos: {recvData.GetPosition()}");
+                //Debug.Log($"Recv pos: {recvData.GetPosition()}");
                 return recvData;
             }
             else

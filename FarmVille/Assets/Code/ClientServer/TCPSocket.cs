@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace ClientServer
 {
@@ -50,7 +51,7 @@ namespace ClientServer
                 _prefix.InitializePrefix(jsonBytes.Length);
 
                 jsonString = _prefix.WriteInfoPrefix(jsonString);
-
+                Debug.Log($"Send: {jsonString}");
                 jsonBytes = Encoding.UTF8.GetBytes(jsonString);
 
                 ArraySegment<byte> buffer = new ArraySegment<byte>(jsonBytes);
@@ -102,6 +103,7 @@ namespace ClientServer
                         Array.Copy(jsonBuffer, 0, buffer, remainderDataLenght,
                             buffer.Length - remainderDataLenght);
                         string jsonString = Encoding.UTF8.GetString(buffer);
+                        Debug.Log($"Recv: {jsonString}");
                         T deserializeObject = JsonConvert.DeserializeObject<T>(jsonString);
                         return deserializeObject;
                     }
