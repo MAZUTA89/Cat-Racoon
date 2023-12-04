@@ -17,6 +17,7 @@ public class Communicate : MonoBehaviour
     PlayerData _sendData;
     PlayerData _recvData;
     Vector2 pos;
+    public Vector2 Recv;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,9 +39,9 @@ public class Communicate : MonoBehaviour
     {
         pos = new Vector2 (Random.value * 2, Random.value * 2);
         _sendData.UpdatePosition(pos);
-
+        Recv = _recvData.GetPosition();
         PlayerObject.transform.position = _sendData.GetPosition();
-        ConnectedObject.transform.position = _recvData.GetPosition();
+        ConnectedObject.transform.position = _communicator.GetData().GetPosition();
     }
 
     public void OnConnectionCreated(TCPBase user)
@@ -49,7 +50,7 @@ public class Communicate : MonoBehaviour
         Create.SetActive(false);
         Debug.Log($"{DateTime.Now}");
 
-        _communicator = new Communicator(user, _sendData, _recvData, 10000);
+        _communicator = new Communicator(user, _sendData, _recvData, 1000);
 
         _communicator.Start();
     }

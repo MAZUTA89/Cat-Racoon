@@ -59,7 +59,7 @@ namespace Assets.Code.Scripts.Boot
         public async void OnLevelLoaded()
         {
             _communicator = new Communicator
-                (_userBase, SendPlayerData, RecvPlayerData, 20000);
+                (_userBase, SendPlayerData, RecvPlayerData, 1000);
 
             bool checkSignalResult = false;
             StartCommunicationSignal signal
@@ -109,27 +109,6 @@ namespace Assets.Code.Scripts.Boot
                 StartTimeText.text += loadTime.ToString() + " " + loadTime.Millisecond;
                 _communicator.Start();
             }
-            //if (checkSignalResult)
-            //{
-            //    TimeSpan diff;
-            //    if (signal.DateTime > recvSignal.DateTime)
-            //    {
-            //        diff = signal.DateTime - recvSignal.DateTime;
-            //        await Task.Delay(diff.Milliseconds);
-            //    }
-            //    else
-            //    {
-            //        diff = recvSignal.DateTime - signal.DateTime;
-            //    }
-            //    LoadTime = DateTime.Now;
-            //    // Получаем текущее время
-            //    //TextMeshProUGUI.text = DateTime.Now.ToString();
-            //}
-            //else
-            //{
-            //    Debug.Log("Не удалось проверить сигнал!");
-            //    return;
-            //}
 
             // Преобразуем время в строку и выводим в консоль
             Debug.Log("Current Time: " + LoadTime.ToString());

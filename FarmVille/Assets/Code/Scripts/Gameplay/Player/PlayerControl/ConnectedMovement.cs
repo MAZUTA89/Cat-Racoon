@@ -18,12 +18,12 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
-            _recvPlayerData = User.Instance.RecvPlayerData;
+            
         }
 
         public void FixedUpdate()
         {
-            _rb.MovePosition(_recvPlayerData.GetPosition());
+            _rb.MovePosition(User.Instance.RecvPlayerData.GetPosition());
         }
     }
 }

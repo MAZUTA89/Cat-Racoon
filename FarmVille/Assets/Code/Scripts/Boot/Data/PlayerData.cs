@@ -29,7 +29,7 @@ namespace Assets.Code.Scripts.Boot.Data
         }
         public Vector2 GetPosition()
         {
-            Vector2 pos = new Vector2(positionX, positionY);
+            Vector2 pos = new Vector2(positionX + 1, positionY + 1);
             return pos;
         }
 

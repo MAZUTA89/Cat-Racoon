@@ -1,4 +1,5 @@
-﻿using ClientServer;
+﻿using Assets.Code.Scripts.Boot.Data;
+using ClientServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace Assets.Code.Scripts.Boot.Communication
     {
         public CancellationToken Token { get; set; }
         public TCPBase TCPBase { get; set; }
+
+        public PlayerData SendData { get; set; }
     }
 }
