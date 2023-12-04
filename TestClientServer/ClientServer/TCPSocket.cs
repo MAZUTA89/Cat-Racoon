@@ -8,7 +8,6 @@ using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace ClientServer
 {
@@ -46,13 +45,13 @@ namespace ClientServer
             try
             {
                 string jsonString = JsonConvert.SerializeObject(serializeObject);
-                Debug.Log($"Serialize: {jsonString}");
+                Console.WriteLine($"Serialize: {jsonString}");
                 byte[] jsonBytes = Encoding.UTF8.GetBytes(jsonString);
 
                 _prefix.InitializePrefix(jsonBytes.Length);
 
                 jsonString = _prefix.WriteInfoPrefix(jsonString);
-                Debug.Log($"Send: {jsonString}");
+                Console.WriteLine($"Send: {jsonString}");
                 jsonBytes = Encoding.UTF8.GetBytes(jsonString);
 
                 ArraySegment<byte> buffer = new ArraySegment<byte>(jsonBytes);
@@ -82,7 +81,7 @@ namespace ClientServer
                 if(recv_bytes > 0)
                 {
                     string prefixStr = Encoding.UTF8.GetString(prefixBuffer);
-                    Debug.Log($"Recv prefix: {prefixStr}");
+                    Console.WriteLine($"Recv prefix: {prefixStr}");
 
                     jsonSize = _prefix.ReadInfoPrefix(prefixStr);
 
@@ -106,7 +105,7 @@ namespace ClientServer
                         Array.Copy(jsonBuffer, 0, buffer, remainderDataLenght,
                             buffer.Length - remainderDataLenght);
                         string jsonString = Encoding.UTF8.GetString(buffer);
-                        Debug.Log($"Recv: {jsonString}");
+                        Console.WriteLine($"Recv: {jsonString}");
                         T deserializeObject = JsonConvert.DeserializeObject<T>(jsonString);
                         return deserializeObject;
                     }

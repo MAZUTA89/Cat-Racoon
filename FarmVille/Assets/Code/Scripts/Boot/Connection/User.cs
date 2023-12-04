@@ -32,7 +32,7 @@ namespace Assets.Code.Scripts.Boot
             SendPlayerData = new PlayerData();
             RecvPlayerData = new PlayerData();
             ConnectionType = ConnectionType.Server;
-            
+
         }
         private void Start()
         {
@@ -65,41 +65,34 @@ namespace Assets.Code.Scripts.Boot
             StartCommunicationSignal signal
             = new StartCommunicationSignal();
             StartCommunicationSignal recvSignal = new StartCommunicationSignal();
-            Task checkCommunicationSignalTask =
-                Task.Run(async () =>
-                {
-                    signal.DateTime = DateTime.Now;
-                    int send_bytes = await _userBase.SendAcync(signal);
 
-                    if (send_bytes < 1)
-                    {
-                        checkSignalResult = false;
-                        return;
-                    }
+            signal.DateTime = DateTime.Now;
+            int send_bytes = await _userBase.SendAcync(signal);
 
-                    recvSignal =
-                    await _userBase.RecvAcync<StartCommunicationSignal>();
+            if (send_bytes < 1)
+            {
+                Debug.Log(_userBase.GetLastError());
+                return;
+            }
 
-                    if (recvSignal != null)
-                    {
-                        checkSignalResult = true;
-                        return;
-                    }
-                    else
-                    {
-                        checkSignalResult = false;
-                        return;
-                    }
+            recvSignal =
+            await _userBase.RecvAcync<StartCommunicationSignal>();
 
-                });
-
-            await checkCommunicationSignalTask;
+            if (recvSignal != null)
+            {
+                checkSignalResult = true;
+            }
+            else
+            {
+                Debug.Log(_userBase.GetLastError());
+                return;
+            }
 
             SendTimeText.text += signal.DateTime.ToString() + " " + signal.DateTime.Millisecond;
             RecvTimeText.text += recvSignal.DateTime.ToString() + " " + recvSignal.DateTime.Millisecond;
-            if(checkSignalResult)
+            if (checkSignalResult)
             {
-                if(signal.DateTime < recvSignal.DateTime)
+                if (signal.DateTime < recvSignal.DateTime)
                 {
                     TimeSpan diff = recvSignal.DateTime - signal.DateTime;
                     DiffTimeText.text += diff.ToString();

@@ -1,0 +1,12 @@
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\bin\Debug\Server.exe.config
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\bin\Debug\Server.exe
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\bin\Debug\Server.pdb
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\bin\Debug\ClientServer.dll
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\bin\Debug\Newtonsoft.Json.dll
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\bin\Debug\ClientServer.pdb
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\bin\Debug\Newtonsoft.Json.xml
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\obj\Debug\Server.csproj.AssemblyReference.cache
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\obj\Debug\Server.csproj.CopyComplete
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\obj\Debug\Server.exe
+D:\Ivan\GitHub\PSP\Lab5\TestClientServer\Server\obj\Debug\Server.pdb

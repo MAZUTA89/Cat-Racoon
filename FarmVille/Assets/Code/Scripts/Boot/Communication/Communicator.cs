@@ -27,10 +27,15 @@ namespace Assets.Code.Scripts.Communication
             _tcpBase = user;
         }
 
-        public void Start()
+        public async void Start()
         {
             _time = new Timer(TimerCallBack, null, 0, _tick);
-            SendRecvData();
+            //SendRecvData();
+            //CommunicatorArgs args = new CommunicatorArgs();
+            //args.Token = tokenSource.Token;
+            //args.TCPBase = _tcpBase;
+            //args.SendData = _sendData;
+            //User.Instance.RecvPlayerData = await Communicate(args);
         }
 
         void TimerCallBack(object state)
@@ -43,24 +48,31 @@ namespace Assets.Code.Scripts.Communication
             args.Token = tokenSource.Token;
             args.TCPBase = _tcpBase;
             args.SendData = _sendData;
-            Task<PlayerData> task = await Task.Factory.StartNew(Communicate, args);
+            try
+            {
+                Task<PlayerData> task = await Task.Factory.StartNew(Communicate, args);
 
-            _recvData = task.Result;
+                _recvData = task.Result;
+            }catch (Exception ex)
+            {
+                Debug.Log(ex);
+            }
+
         }
         public async Task<PlayerData> Communicate(object state)
         {
             CommunicatorArgs args = (CommunicatorArgs)state;
             TCPBase tcpBase = args.TCPBase;
             Debug.Log("Tick");
-            if (_sendData.HasChanges)
-            {
+            //if (_sendData.HasChanges)
+            //{
                 int send_bytes = await tcpBase.SendAcync(args.SendData);
                 if (send_bytes < 1)
                 {
                     Debug.Log(tcpBase.GetLastError());
                     return default;
                 }
-            }
+            //}
             //Debug.Log($"Send: {send_bytes}");
             PlayerData recvData = await tcpBase.RecvAcync<PlayerData>();
             if (recvData != null)
