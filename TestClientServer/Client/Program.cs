@@ -32,7 +32,7 @@ namespace Clientt
                     Update();
                 }
             });
-
+            await Task.Delay(30);
             _communicator.Start();
 
             updateTaks.Wait();

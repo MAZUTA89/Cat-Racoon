@@ -7,3 +7,12 @@ D:\Ivan\GitHub\PSP\Lab5\TestClientServer\ClientServer\obj\Debug\ClientServer.csp
 D:\Ivan\GitHub\PSP\Lab5\TestClientServer\ClientServer\obj\Debug\ClientServer.csproj.CopyComplete
 D:\Ivan\GitHub\PSP\Lab5\TestClientServer\ClientServer\obj\Debug\ClientServer.dll
 D:\Ivan\GitHub\PSP\Lab5\TestClientServer\ClientServer\obj\Debug\ClientServer.pdb
+D:\Ivan\GitHub\PSP_kurs\TestClientServer\ClientServer\bin\Debug\ClientServer.dll
+D:\Ivan\GitHub\PSP_kurs\TestClientServer\ClientServer\bin\Debug\ClientServer.pdb
+D:\Ivan\GitHub\PSP_kurs\TestClientServer\ClientServer\bin\Debug\Newtonsoft.Json.dll
+D:\Ivan\GitHub\PSP_kurs\TestClientServer\ClientServer\bin\Debug\Newtonsoft.Json.xml
+D:\Ivan\GitHub\PSP_kurs\TestClientServer\ClientServer\obj\Debug\ClientServer.csproj.AssemblyReference.cache
+D:\Ivan\GitHub\PSP_kurs\TestClientServer\ClientServer\obj\Debug\ClientServer.csproj.CoreCompileInputs.cache
+D:\Ivan\GitHub\PSP_kurs\TestClientServer\ClientServer\obj\Debug\ClientServer.csproj.CopyComplete
+D:\Ivan\GitHub\PSP_kurs\TestClientServer\ClientServer\obj\Debug\ClientServer.dll
+D:\Ivan\GitHub\PSP_kurs\TestClientServer\ClientServer\obj\Debug\ClientServer.pdb

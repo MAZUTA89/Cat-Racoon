@@ -23,16 +23,18 @@ namespace ClientServer
 
         public void Start()
         {
-            _timer = new Timer(TimerCallBack, 0, 0, 20);
+            _timer = new Timer(TimerCallBack, 0, 0, 100);
         }
 
         async void TimerCallBack(object state)
         {
             try
             {
-                RecvData = await Communicate();
+                //RecvData = await Communicate();
+                RecvData = await CommunicateFix();
 
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -58,10 +60,36 @@ namespace ClientServer
                 return default;
             }
         }
+        public async Task<PlayerData> CommunicateFix()
+        {
+            int sendBytes = await _user.SendFixAcync(SendData);
+            if (sendBytes < 1)
+            {
+                Console.WriteLine(_user.GetLastError());
+            }
+
+            PlayerData recv = await _user.RecvFixAcync<PlayerData>();
+
+            if (recv != null)
+            {
+                PrintPlayerData(recv);
+                return recv;
+            }
+            else
+            {
+                Console.WriteLine("Recv is Null");
+                return default;
+            }
+        }
 
         public void Stop()
         {
             _timer.Dispose();
+        }
+
+        void PrintPlayerData(PlayerData playerData)
+        {
+            Console.WriteLine($"recv x: {playerData.PositionX} y: {playerData.PositionY}");
         }
     }
 }

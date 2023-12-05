@@ -13,6 +13,7 @@ namespace ClientServer
 {
     public abstract class TCPBase
     {
+        int _fixedPackageSize = 1024 * 1024;
         public EndPoint EndPoint { get; protected set; }
         public EndPoint LocalEndPoint { get; protected set; }
         public EndPoint RemoteEndPoint { get; protected set; }
@@ -21,11 +22,12 @@ namespace ClientServer
 
 
         PrefixWriterReader _prefix = new PrefixWriterReader(15);
-        
+        JSONStringSpliter _jsonSpliter = new JSONStringSpliter();
+
         protected Socket InitializeTCPSocket()
         {
-             return new Socket(AddressFamily.InterNetwork,
-                SocketType.Stream, ProtocolType.Tcp);
+            return new Socket(AddressFamily.InterNetwork,
+               SocketType.Stream, ProtocolType.Tcp);
         }
         public virtual async Task<int> SendAcync<T>(T obj)
         {
@@ -35,10 +37,18 @@ namespace ClientServer
         {
             return await RecvAcync<T>(ClientSocket);
         }
+        public virtual async Task<int> SendFixAcync<T>(T obj)
+        {
+            return await SendFixAsync(ClientSocket, obj);
+        }
+        public virtual async Task<T> RecvFixAcync<T>()
+        {
+            return await RecvFixAsync<T>(ClientSocket);
+        }
         public virtual bool Stop()
         {
             return StopSocket(ClientSocket);
-            
+
         }
         protected async Task<int> SendAsync<T>(Socket socket, T serializeObject)
         {
@@ -78,7 +88,7 @@ namespace ClientServer
                 ArraySegment<byte> bytes = new ArraySegment<byte>(prefixBuffer);
                 int recv_bytes = await socket.ReceiveAsync(bytes, SocketFlags.None);
 
-                if(recv_bytes > 0)
+                if (recv_bytes > 0)
                 {
                     string prefixStr = Encoding.UTF8.GetString(prefixBuffer);
                     Console.WriteLine($"Recv prefix: {prefixStr}");
@@ -93,7 +103,7 @@ namespace ClientServer
                         buffer, 0, remainderDataLenght);
 
                     string Str = Encoding.UTF8.GetString(buffer);
-                    
+
 
                     byte[] jsonBuffer = new byte[jsonSize];
                     ArraySegment<byte> jsonBytes = new ArraySegment<byte>(jsonBuffer);
@@ -122,11 +132,60 @@ namespace ClientServer
                 _error = ex;
                 return default;
             }
-            catch(JsonSerializationException ex)
+            catch (JsonSerializationException ex)
             {
                 _error = ex;
                 return default;
             }
+        }
+
+        protected async Task<T> RecvFixAsync<T>(Socket socket)
+        {
+            byte[] buffer = new byte[_fixedPackageSize];
+
+            ArraySegment<byte> segmentBuffer = new ArraySegment<byte>(buffer);
+
+            int recvBytes = await socket.ReceiveAsync(segmentBuffer, SocketFlags.None);
+            string recvStr;
+            if (recvBytes > 0)
+            {
+                byte[] recv = new byte[recvBytes];
+                Array.Copy(buffer, recv, recvBytes);
+                recvStr = Encoding.UTF8.GetString(recv);
+
+                List<string> json_data = _jsonSpliter.SplitJSONStrings(recvStr);
+
+                //Console.WriteLine($"Recv str: {json_data[json_data.Count - 1]}");
+                T deserializeObject = JsonConvert.DeserializeObject<T>(json_data[json_data.Count - 1]);
+                return deserializeObject;
+            }
+            else
+            {
+                return default;
+            }
+        }
+
+        protected async Task<int> SendFixAsync<T>(Socket socket, T obj)
+        {
+            try
+            {
+                string jsonString = JsonConvert.SerializeObject(obj);
+                jsonString += "\n";
+                Console.WriteLine($"Serialize: {jsonString}");
+                byte[] jsonBytes = Encoding.UTF8.GetBytes(jsonString);
+
+                ArraySegment<byte> segmentBytes = new ArraySegment<byte>(jsonBytes);
+
+                int sendBytes = await socket.SendAsync(segmentBytes, SocketFlags.None);
+
+                return sendBytes;
+            }
+            catch (Exception ex)
+            {
+                _error = ex;
+                return default;
+            }
+
         }
 
         protected bool StopSocket(Socket socket)
@@ -141,7 +200,7 @@ namespace ClientServer
                 _error = ex;
                 return false;
             }
-            catch(ObjectDisposedException ex)
+            catch (ObjectDisposedException ex)
             {
                 _error = ex;
                 return false;
