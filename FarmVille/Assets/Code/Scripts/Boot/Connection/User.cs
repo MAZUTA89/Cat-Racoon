@@ -55,7 +55,7 @@ namespace Assets.Code.Scripts.Boot
         public async void OnLevelLoaded()
         {
             _communicator = new Communicator
-                (_userBase, 100);
+                (_userBase, 20);
 
             bool checkSignalResult = false;
             StartCommunicationSignal signal

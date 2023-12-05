@@ -13,8 +13,8 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
 {
     public class ConnectedMovement : MonoBehaviour
     {
-        public float MovementSpeed = 5f;
-        public float _smoothTime = 1f;
+        public float MovementSpeed = 50f;
+        public float _smoothTime = 0.1f;
         Rigidbody2D _rb;
         Vector2 _currPos;
         Transform _connectedSpawnPoint;
