@@ -1,102 +1,75 @@
-﻿using Assets.Code.Scripts.Boot;
-using Assets.Code.Scripts.Boot.Communication;
-using Assets.Code.Scripts.Boot.Data;
-using ClientServer;
-using PimDeWitte.UnityMainThreadDispatcher;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
+using Assets.Code.Scripts.Boot.Data;
+using ClientServer;
 
-namespace Assets.Code.Scripts.Communication
+namespace Assets.Code.Scripts.Boot.Communication
 {
     public class Communicator
     {
-        PlayerData _sendData;
-        PlayerData _recvData;
-        TCPBase _tcpBase;
+        TCPBase _user;
+        public static PlayerData SendData { get; set; }
+        public static PlayerData RecvData { get; set; }
         int _tick;
-        Timer _time;
-        CancellationTokenSource tokenSource = new CancellationTokenSource();
 
-        public Communicator(TCPBase user, PlayerData sendData, PlayerData recvData, int tick)
+        Timer _timer;
+        public Communicator(TCPBase user, int tick) 
         {
-            _recvData = recvData;
-            _sendData = sendData;
+            SendData = new PlayerData();
+            RecvData = new PlayerData();
             _tick = tick;
-            _tcpBase = user;
+            _user = user;
         }
 
-        public async void Start()
+        public void Start()
         {
-            _time = new Timer(TimerCallBack, null, 0, _tick);
-            //SendRecvData();
-            //CommunicatorArgs args = new CommunicatorArgs();
-            //args.Token = tokenSource.Token;
-            //args.TCPBase = _tcpBase;
-            //args.SendData = _sendData;
-            //User.Instance.RecvPlayerData = await Communicate(args);
+            _timer = new Timer(TimerCallBack, 0, 0, _tick);
         }
 
-        void TimerCallBack(object state)
+        async void TimerCallBack(object state)
         {
-            SendRecvData();
-        }
-        async void SendRecvData()
-        {
-            CommunicatorArgs args = new CommunicatorArgs();
-            args.Token = tokenSource.Token;
-            args.TCPBase = _tcpBase;
-            args.SendData = _sendData;
             try
             {
-                Task<PlayerData> task = await Task.Factory.StartNew(Communicate, args);
+                //RecvData = await Communicate();
+                RecvData = await CommunicateFix();
 
-                _recvData = task.Result;
-            }catch (Exception ex)
+            }
+            catch(Exception ex)
             {
-                Debug.Log(ex);
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        
+        public async Task<PlayerData> CommunicateFix()
+        {
+            int sendBytes = await _user.SendFixAcync(SendData);
+            if (sendBytes < 1)
+            {
+                Console.WriteLine(_user.GetLastError());
             }
 
-        }
-        public async Task<PlayerData> Communicate(object state)
-        {
-            CommunicatorArgs args = (CommunicatorArgs)state;
-            TCPBase tcpBase = args.TCPBase;
-            Debug.Log("Tick");
-            //if (_sendData.HasChanges)
-            //{
-                int send_bytes = await tcpBase.SendAcync(args.SendData);
-                if (send_bytes < 1)
-                {
-                    Debug.Log(tcpBase.GetLastError());
-                    return default;
-                }
-            //}
-            //Debug.Log($"Send: {send_bytes}");
-            PlayerData recvData = await tcpBase.RecvAcync<PlayerData>();
-            if (recvData != null)
+            PlayerData recv = await _user.RecvFixAcync<PlayerData>();
+
+            if (recv != null)
             {
-                User.Instance.RecvPlayerData = recvData;
-                //Debug.Log($"Recv pos: {recvData.GetPosition()}");
-                return recvData;
+                return recv;
             }
             else
             {
-                Debug.Log(tcpBase.GetLastError());
-                Debug.Log("Ошибка получения данных!");
+                Console.WriteLine("Recv is Null");
                 return default;
             }
         }
 
         public void Stop()
         {
-            tokenSource?.Cancel();
-            _time.Dispose();
+            _timer.Dispose();
         }
-        public PlayerData GetData()
-        {
-            return _recvData;
-        }
+
     }
 }

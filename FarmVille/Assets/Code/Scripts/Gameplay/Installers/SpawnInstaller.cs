@@ -18,7 +18,9 @@ namespace Assets.Code.Scripts.Gameplay.Installers
 
         public override void InstallBindings()
         {
-            
+            Container.BindInstance(ConnectedPlayerSpawnPoint).WithId("ConnectedSpawn");
+            Container.BindInstance(HostSpawnPoint).WithId("HostSpawn");
+
             switch (User.Instance.ConnectionType)
             {
                 case ConnectionType.Server:
@@ -42,6 +44,8 @@ namespace Assets.Code.Scripts.Gameplay.Installers
                         break;
                     }
             }
+
+            
         }
     }
 }

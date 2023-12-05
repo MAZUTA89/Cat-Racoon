@@ -8,8 +8,6 @@ namespace Assets.Code.Scripts.Boot.Data
     {
         public PlayerData() 
         {
-            positionX = 1;
-            positionY = 1;
             HasChanges = true;
         }
         public bool HasChanges { get; private set; }

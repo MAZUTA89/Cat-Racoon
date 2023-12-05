@@ -18,8 +18,7 @@ namespace Assets.Code.Scripts.Boot
     {
         TCPBase _userBase;
         public static DateTime LoadTime;
-        public PlayerData SendPlayerData;
-        public PlayerData RecvPlayerData;
+        
         public ConnectionType ConnectionType { get; private set; }
         Communicator _communicator;
         public TextMeshProUGUI RecvTimeText;
@@ -29,10 +28,7 @@ namespace Assets.Code.Scripts.Boot
 
         protected override void OnAwake()
         {
-            SendPlayerData = new PlayerData();
-            RecvPlayerData = new PlayerData();
             ConnectionType = ConnectionType.Server;
-
         }
         private void Start()
         {
@@ -59,7 +55,7 @@ namespace Assets.Code.Scripts.Boot
         public async void OnLevelLoaded()
         {
             _communicator = new Communicator
-                (_userBase, SendPlayerData, RecvPlayerData, 3000);
+                (_userBase, 100);
 
             bool checkSignalResult = false;
             StartCommunicationSignal signal
