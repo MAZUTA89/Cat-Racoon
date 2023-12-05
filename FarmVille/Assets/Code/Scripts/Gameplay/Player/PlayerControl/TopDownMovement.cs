@@ -24,6 +24,7 @@ public class TopDownMovement : MonoBehaviour
     void Start()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -41,6 +42,8 @@ public class TopDownMovement : MonoBehaviour
             Time.fixedDeltaTime /** MovementSpeed*/, MovementSpeed);
         _rb.MovePosition(newPos);
     }
+
+    
 }
 
 

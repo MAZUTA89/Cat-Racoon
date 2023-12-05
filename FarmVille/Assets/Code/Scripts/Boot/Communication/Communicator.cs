@@ -47,6 +47,7 @@ namespace Assets.Code.Scripts.Boot.Communication
         
         public async Task<PlayerData> CommunicateFix()
         {
+            
             int sendBytes = await _user.SendFixAcync(SendData);
             if (sendBytes < 1)
             {

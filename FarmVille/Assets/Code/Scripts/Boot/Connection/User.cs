@@ -97,6 +97,7 @@ namespace Assets.Code.Scripts.Boot
                 DateTime loadTime = DateTime.Now;
                 StartTimeText.text += loadTime.ToString() + " " + loadTime.Millisecond;
                 _communicator.Start();
+                CommunicationEvents.InvokeCommunicationEvent();
             }
 
             // Преобразуем время в строку и выводим в консоль

@@ -90,6 +90,7 @@
     <Compile Include="Assets\Code\Enums.cs" />
     <Compile Include="Assets\Code\ClientServer\PrefixWriterReader.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Connection\User.cs" />
+    <Compile Include="Assets\Code\Scripts\Boot\Communication\CommunicationEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
