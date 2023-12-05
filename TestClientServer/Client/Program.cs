@@ -14,7 +14,7 @@ namespace Clientt
         static Communicator _communicator;
         static async Task Main(string[] args)
         {
-            EndPoint endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9001);
+            EndPoint endPoint = new IPEndPoint(IPAddress.Parse("192.168.0.1"), 9001);
             Client client = new Client(endPoint);
 
             _communicator = new Communicator(client);
