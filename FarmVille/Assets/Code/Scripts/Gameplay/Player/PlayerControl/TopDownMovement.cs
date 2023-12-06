@@ -36,11 +36,11 @@ public class TopDownMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 newPos = _rb.position + _input;
-        Communicator.SendData?.UpdatePosition(newPos);
         _currPos = _rb.position;
         newPos = Vector2.SmoothDamp(_currPos, newPos, ref _velocity,
             Time.fixedDeltaTime /** MovementSpeed*/, MovementSpeed);
         _rb.MovePosition(newPos);
+        Communicator.SendData?.UpdatePosition(newPos);
     }
 
     

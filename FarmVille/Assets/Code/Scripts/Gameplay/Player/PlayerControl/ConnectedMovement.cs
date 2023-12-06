@@ -47,10 +47,10 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
             if (_isCommunicateStarted)
             {
                 Vector2 newPos = Communicator.RecvData.GetPosition();
-                _currPos = _rb.transform.position;
-                _currPos = Vector2.SmoothDamp(_currPos, newPos, ref _velocity,
-                    _smoothTime, MovementSpeed);
-                _rb.MovePosition(_currPos);
+                //_currPos = _rb.transform.position;
+                //_currPos = Vector2.SmoothDamp(_currPos, newPos, ref _velocity,
+                //    _smoothTime, MovementSpeed);
+                _rb.MovePosition(newPos);
             }
         }
         void OnStartCommunicate()
