@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2037898580320755724}
   - component: {fileID: 2037898580320755726}
   - component: {fileID: 2037898580320755712}
-  - component: {fileID: -241501575577808843}
+  - component: {fileID: 128724733603899219}
   m_Layer: 0
   m_Name: ConnectedPlayer
   m_TagString: Untagged
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.58
---- !u!114 &-241501575577808843
+--- !u!114 &128724733603899219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +133,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2037898580320755725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01c55476599e77b4fb09ca2ebf88ea0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 65ff05ad82df6d340b102924d02cf549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 5

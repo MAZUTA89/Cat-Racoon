@@ -96,7 +96,7 @@ namespace Assets.Code.Scripts.Boot
                 }
                 DateTime loadTime = DateTime.Now;
                 StartTimeText.text += loadTime.ToString() + " " + loadTime.Millisecond;
-                _communicator.Start();
+                //_communicator.Start();
                 CommunicationEvents.InvokeCommunicationEvent();
             }
 
