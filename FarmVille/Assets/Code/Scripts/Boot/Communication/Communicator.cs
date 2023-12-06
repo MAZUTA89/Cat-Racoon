@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Assets.Code.Scripts.Boot.Data;
 using ClientServer;
+using UnityEngine;
 
 namespace Assets.Code.Scripts.Boot.Communication
 {
@@ -14,40 +15,54 @@ namespace Assets.Code.Scripts.Boot.Communication
         TCPBase _user;
         public static PlayerData SendData { get; set; }
         public static PlayerData RecvData { get; set; }
+        public  PlayerData sendData { get; set; }
+        public  PlayerData recvData { get; set; }
         int _tick;
 
-        Timer _timer;
-        public Communicator(TCPBase user, int tick) 
+        Task _communicateTask;
+        CancellationTokenSource _cancellationTokenSource;
+        public Communicator(TCPBase user, int tick)
         {
             SendData = new PlayerData();
             RecvData = new PlayerData();
             _tick = tick;
             _user = user;
+            _cancellationTokenSource = new CancellationTokenSource();
         }
 
         public void Start()
         {
-            _timer = new Timer(TimerCallBack, 0, 0, _tick);
-        }
+            //_timer = new Timer(TimerCallBack, 0, 0, _tick);
 
-        async void TimerCallBack(object state)
+            _communicateTask = Task.Factory.StartNew(CommunicateTask, _cancellationTokenSource.Token,
+                _cancellationTokenSource.Token);
+        }
+        async void CommunicateTask(object state)
         {
-            try
-            {
-                //RecvData = await Communicate();
-                RecvData = await CommunicateFix();
+            CancellationToken ct = (CancellationToken)state;
 
-            }
-            catch(Exception ex)
+            while (!ct.IsCancellationRequested)
             {
-                Console.WriteLine(ex.Message);
+                try
+                {
+                    Debug.Log("Tick");
+                    //RecvData = await CommunicateFix();
+                    RecvData = await CommunicateFix();
+                    Debug.Log($"Recv: {RecvData.GetPosition()}");
+
+                    await Task.Delay(_tick);
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log(ex.Message);
+                }
+                
             }
         }
 
-        
         public async Task<PlayerData> CommunicateFix()
         {
-            
+
             int sendBytes = await _user.SendFixAcync(SendData);
             if (sendBytes < 1)
             {
@@ -69,7 +84,7 @@ namespace Assets.Code.Scripts.Boot.Communication
 
         public void Stop()
         {
-            _timer.Dispose();
+            _cancellationTokenSource?.Cancel();
         }
 
     }

@@ -55,7 +55,7 @@ namespace Assets.Code.Scripts.Boot
         public async void OnLevelLoaded()
         {
             _communicator = new Communicator
-                (_userBase, 00003);
+                (_userBase, 100);
 
             bool checkSignalResult = false;
             StartCommunicationSignal signal
@@ -96,7 +96,7 @@ namespace Assets.Code.Scripts.Boot
                 }
                 DateTime loadTime = DateTime.Now;
                 StartTimeText.text += loadTime.ToString() + " " + loadTime.Millisecond;
-                //_communicator.Start();
+                _communicator.Start();
                 CommunicationEvents.InvokeCommunicationEvent();
             }
 
