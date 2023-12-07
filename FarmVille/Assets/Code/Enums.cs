@@ -16,4 +16,10 @@ namespace Assets.Code
     {
         Farm
     }
+
+    public enum ObjectType
+    {
+        Cube
+    }
+
 }

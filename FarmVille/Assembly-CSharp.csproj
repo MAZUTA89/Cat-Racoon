@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{A5D29CDA-DB99-F5ED-7923-6AED0AD87903}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -59,6 +60,7 @@
     <Compile Include="Assets\Code\Scripts\Boot\BootSingleton.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Data\GameData.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Communication\StartCommunicationSignal.cs" />
+    <Compile Include="Assets\Code\Scripts\Boot\Data\SpawnCommand.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\PlayerControl\ConnectedPlayerMovement.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\LobbyService.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Data\PlayerData.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Assets\Code\Enums.cs" />
     <Compile Include="Assets\Code\ClientServer\PrefixWriterReader.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Connection\User.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Player\SpawnObjects\SpawnObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

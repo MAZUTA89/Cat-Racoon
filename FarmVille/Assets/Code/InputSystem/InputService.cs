@@ -17,6 +17,11 @@ public class InputService : IDisposable
         return _playerControls.PlayerActions.Movement.ReadValue<Vector2>();
     }
 
+    public bool IsSpawn()
+    {
+        return _playerControls.PlayerActions.Spawn.WasPerformedThisFrame();
+    }
+
     public void Dispose()
     {
         _playerControls.Disable();
