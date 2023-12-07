@@ -12,6 +12,7 @@ namespace Assets.Code.Bootstrapp
     {
         const string c_bootstrappSceneName = "Bootstrapp";
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.Synchronized)]
         public static void Execute()
         {
             for(int sceneIndex = 0; sceneIndex < SceneManager.sceneCount; sceneIndex++)

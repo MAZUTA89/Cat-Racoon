@@ -18,7 +18,7 @@ namespace Assets.Code.Scripts.Boot
     {
         TCPBase _userBase;
         public static DateTime LoadTime;
-        
+        public static bool IsConnectionCreated { get; private set; }
         public ConnectionType ConnectionType { get; private set; }
         Communicator _communicator;
         public TextMeshProUGUI RecvTimeText;
@@ -32,6 +32,7 @@ namespace Assets.Code.Scripts.Boot
         }
         private void Start()
         {
+            IsConnectionCreated = false;
             LevelLoader.onLevelLoadedEvent += OnLevelLoaded;
         }
 
@@ -97,6 +98,7 @@ namespace Assets.Code.Scripts.Boot
                 DateTime loadTime = DateTime.Now;
                 StartTimeText.text += loadTime.ToString() + " " + loadTime.Millisecond;
                 _communicator.Start();
+                IsConnectionCreated = true;
                 CommunicationEvents.InvokeCommunicationEvent();
             }
 

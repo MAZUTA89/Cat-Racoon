@@ -33,14 +33,7 @@ namespace Assets.Code.Scripts.Gameplay.Player.SpawnObject
             {
                 if (_inputService.IsSpawn())
                 {
-                    if(Object.activeSelf)
-                    {
-                        Object.SetActive(false);
-                    }
-                    else
-                    {
-                        Object.SetActive(true);
-                    }
+                    
                     Communicator.SendData.IsSpawning = true;
                 }
                 else

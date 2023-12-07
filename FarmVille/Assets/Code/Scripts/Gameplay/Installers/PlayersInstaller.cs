@@ -21,6 +21,13 @@ namespace Assets.Code.Scripts.Gameplay.Installers
             BindSpawnPoints();
             BindMovement();
 
+            if(User.IsConnectionCreated)
+            {
+                SpawnPlayersOnSpawnPoints();
+            }
+        }
+        void SpawnPlayersOnSpawnPoints()
+        {
             switch (User.Instance.ConnectionType)
             {
                 case ConnectionType.Server:
@@ -45,7 +52,6 @@ namespace Assets.Code.Scripts.Gameplay.Installers
                     }
             }
         }
-
         void BindSpawnPoints()
         {
             Container.BindInstance(ConnectedPlayerSpawnPoint).WithId("ConnectedSpawn");
