@@ -22,6 +22,34 @@ public class InputService : IDisposable
         return _playerControls.PlayerActions.Spawn.WasPerformedThisFrame();
     }
 
+    public bool IsCell_1()
+    {
+        return _playerControls.PlayerActions.Cell_1.WasPerformedThisFrame();
+    }
+     public bool IsCell_2()
+    {
+        return _playerControls.PlayerActions.Cell_2.WasPerformedThisFrame();
+    }
+    public bool IsCell_3()
+    {
+        return _playerControls.PlayerActions.Cell_3.WasPerformedThisFrame();
+    }
+    public bool IsCell_4()
+    {
+        return _playerControls.PlayerActions.Cell_4.WasPerformedThisFrame();
+    }
+    public bool IsCell_5()
+    {
+        return _playerControls.PlayerActions.Cell_5.WasPerformedThisFrame();
+    }
+    public bool IsCell_6()
+    {
+        return _playerControls.PlayerActions.Cell_6.WasPerformedThisFrame();
+    }
+    public bool IsCell_7()
+    {
+        return _playerControls.PlayerActions.Cell_7.WasPerformedThisFrame();
+    }
     public void Dispose()
     {
         _playerControls.Disable();

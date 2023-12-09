@@ -21,5 +21,28 @@ namespace Assets.Code
     {
         Cube
     }
+    public enum CellType
+    {
+        Basket,
+        Watering,
+        Wheat,
+        Pumpking,
+        SunFlower,
+        InfernalGrowth,
+        Reed
+    }
+    public enum Seed
+    {
+        Wheat,
+        Pumpking,
+        SunFlower,
+        InfernalGrowth,
+        Reed
+    }
+    public enum PlayerMode
+    {
+        Single,
+        Multiple
+    }
 
 }

@@ -44,6 +44,69 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cell_1"",
+                    ""type"": ""Button"",
+                    ""id"": ""01481bbb-2d25-4a2b-8991-c99232ee9517"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cell_2"",
+                    ""type"": ""Button"",
+                    ""id"": ""b935609f-ade3-49f6-aa0a-06cc27777088"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cell_3"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7d398ba-7729-45fc-ba01-b3b45dec2841"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cell_4"",
+                    ""type"": ""Button"",
+                    ""id"": ""34b8b5ed-4563-4bdd-ab28-b6af97209be4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cell_5"",
+                    ""type"": ""Button"",
+                    ""id"": ""a94df3ab-dc9e-4f9c-a2a4-d056e430feb3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cell_6"",
+                    ""type"": ""Button"",
+                    ""id"": ""1522d045-e71c-4802-aaab-99adf9dbab1f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cell_7"",
+                    ""type"": ""Button"",
+                    ""id"": ""d176b0bc-a3cd-4c34-959a-85190724c40b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +175,83 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Spawn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c68f069-7144-41d0-9977-2387e61e8f64"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cell_1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb3c8d34-c243-4037-a8e6-58540923e440"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cell_2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a568b8c-26aa-43c8-b39c-8ba8945c2de9"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cell_3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8506974-f121-42ff-b03a-f033eef75cac"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cell_4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c2403ac-fcfb-4541-9bcc-c9ad7acbb360"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cell_5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ec2bfea-2ad8-4df7-adff-11061a3c927c"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cell_6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba9c10d9-603f-466e-94a7-1ee1517de7da"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cell_7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -139,6 +279,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_Movement = m_PlayerActions.FindAction("Movement", throwIfNotFound: true);
         m_PlayerActions_Spawn = m_PlayerActions.FindAction("Spawn", throwIfNotFound: true);
+        m_PlayerActions_Cell_1 = m_PlayerActions.FindAction("Cell_1", throwIfNotFound: true);
+        m_PlayerActions_Cell_2 = m_PlayerActions.FindAction("Cell_2", throwIfNotFound: true);
+        m_PlayerActions_Cell_3 = m_PlayerActions.FindAction("Cell_3", throwIfNotFound: true);
+        m_PlayerActions_Cell_4 = m_PlayerActions.FindAction("Cell_4", throwIfNotFound: true);
+        m_PlayerActions_Cell_5 = m_PlayerActions.FindAction("Cell_5", throwIfNotFound: true);
+        m_PlayerActions_Cell_6 = m_PlayerActions.FindAction("Cell_6", throwIfNotFound: true);
+        m_PlayerActions_Cell_7 = m_PlayerActions.FindAction("Cell_7", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -200,12 +347,26 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_Movement;
     private readonly InputAction m_PlayerActions_Spawn;
+    private readonly InputAction m_PlayerActions_Cell_1;
+    private readonly InputAction m_PlayerActions_Cell_2;
+    private readonly InputAction m_PlayerActions_Cell_3;
+    private readonly InputAction m_PlayerActions_Cell_4;
+    private readonly InputAction m_PlayerActions_Cell_5;
+    private readonly InputAction m_PlayerActions_Cell_6;
+    private readonly InputAction m_PlayerActions_Cell_7;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerActions_Movement;
         public InputAction @Spawn => m_Wrapper.m_PlayerActions_Spawn;
+        public InputAction @Cell_1 => m_Wrapper.m_PlayerActions_Cell_1;
+        public InputAction @Cell_2 => m_Wrapper.m_PlayerActions_Cell_2;
+        public InputAction @Cell_3 => m_Wrapper.m_PlayerActions_Cell_3;
+        public InputAction @Cell_4 => m_Wrapper.m_PlayerActions_Cell_4;
+        public InputAction @Cell_5 => m_Wrapper.m_PlayerActions_Cell_5;
+        public InputAction @Cell_6 => m_Wrapper.m_PlayerActions_Cell_6;
+        public InputAction @Cell_7 => m_Wrapper.m_PlayerActions_Cell_7;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -221,6 +382,27 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Spawn.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpawn;
                 @Spawn.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpawn;
                 @Spawn.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpawn;
+                @Cell_1.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_1;
+                @Cell_1.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_1;
+                @Cell_1.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_1;
+                @Cell_2.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_2;
+                @Cell_2.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_2;
+                @Cell_2.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_2;
+                @Cell_3.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_3;
+                @Cell_3.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_3;
+                @Cell_3.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_3;
+                @Cell_4.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_4;
+                @Cell_4.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_4;
+                @Cell_4.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_4;
+                @Cell_5.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_5;
+                @Cell_5.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_5;
+                @Cell_5.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_5;
+                @Cell_6.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_6;
+                @Cell_6.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_6;
+                @Cell_6.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_6;
+                @Cell_7.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_7;
+                @Cell_7.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_7;
+                @Cell_7.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_7;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -231,6 +413,27 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Spawn.started += instance.OnSpawn;
                 @Spawn.performed += instance.OnSpawn;
                 @Spawn.canceled += instance.OnSpawn;
+                @Cell_1.started += instance.OnCell_1;
+                @Cell_1.performed += instance.OnCell_1;
+                @Cell_1.canceled += instance.OnCell_1;
+                @Cell_2.started += instance.OnCell_2;
+                @Cell_2.performed += instance.OnCell_2;
+                @Cell_2.canceled += instance.OnCell_2;
+                @Cell_3.started += instance.OnCell_3;
+                @Cell_3.performed += instance.OnCell_3;
+                @Cell_3.canceled += instance.OnCell_3;
+                @Cell_4.started += instance.OnCell_4;
+                @Cell_4.performed += instance.OnCell_4;
+                @Cell_4.canceled += instance.OnCell_4;
+                @Cell_5.started += instance.OnCell_5;
+                @Cell_5.performed += instance.OnCell_5;
+                @Cell_5.canceled += instance.OnCell_5;
+                @Cell_6.started += instance.OnCell_6;
+                @Cell_6.performed += instance.OnCell_6;
+                @Cell_6.canceled += instance.OnCell_6;
+                @Cell_7.started += instance.OnCell_7;
+                @Cell_7.performed += instance.OnCell_7;
+                @Cell_7.canceled += instance.OnCell_7;
             }
         }
     }
@@ -248,5 +451,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnSpawn(InputAction.CallbackContext context);
+        void OnCell_1(InputAction.CallbackContext context);
+        void OnCell_2(InputAction.CallbackContext context);
+        void OnCell_3(InputAction.CallbackContext context);
+        void OnCell_4(InputAction.CallbackContext context);
+        void OnCell_5(InputAction.CallbackContext context);
+        void OnCell_6(InputAction.CallbackContext context);
+        void OnCell_7(InputAction.CallbackContext context);
     }
 }

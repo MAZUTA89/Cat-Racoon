@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
+using Cinemachine;
 
 namespace Assets.Code.Scripts.Gameplay.Installers
 {
@@ -16,14 +17,29 @@ namespace Assets.Code.Scripts.Gameplay.Installers
         [SerializeField] Transform HostSpawnPoint;
         [SerializeField] GameObject ConnectedPlayerPrefab;
         [SerializeField] Transform ConnectedPlayerSpawnPoint;
+        public PlayerMode Mode;
+        [SerializeField] CinemachineVirtualCamera Camera;
+        GameObject _playerGameoObject;
         public override void InstallBindings()
         {
             BindSpawnPoints();
             BindMovement();
-
-            if(User.IsConnectionCreated)
+            
+            switch(Mode)
             {
-                SpawnPlayersOnSpawnPoints();
+                case PlayerMode.Single:
+                    {
+                        SingleMode();
+                        break;
+                    }
+                case PlayerMode.Multiple:
+                    {
+                        if (User.IsConnectionCreated)
+                        {
+                            SpawnPlayersOnSpawnPoints();
+                        }
+                        break;
+                    }
             }
         }
         void SpawnPlayersOnSpawnPoints()
@@ -32,7 +48,7 @@ namespace Assets.Code.Scripts.Gameplay.Installers
             {
                 case ConnectionType.Server:
                     {
-                        Container.InstantiatePrefab(PlayerPrefab,
+                        _playerGameoObject = Container.InstantiatePrefab(PlayerPrefab,
                             HostSpawnPoint.position,
                             Quaternion.identity, null);
                         Container.InstantiatePrefab(ConnectedPlayerPrefab,
@@ -42,7 +58,7 @@ namespace Assets.Code.Scripts.Gameplay.Installers
                     }
                 case ConnectionType.Client:
                     {
-                        Container.InstantiatePrefab(PlayerPrefab,
+                        _playerGameoObject = Container.InstantiatePrefab(PlayerPrefab,
                             ConnectedPlayerSpawnPoint.position,
                             Quaternion.identity, null);
                         Container.InstantiatePrefab(ConnectedPlayerPrefab,
@@ -51,6 +67,18 @@ namespace Assets.Code.Scripts.Gameplay.Installers
                         break;
                     }
             }
+            if(_playerGameoObject != null)
+            {
+                Camera.Follow = _playerGameoObject.transform;
+                Camera.LookAt = _playerGameoObject.transform;
+            }
+            
+        }
+        void SingleMode()
+        {
+            _playerGameoObject = Container.InstantiatePrefab(PlayerPrefab, HostSpawnPoint.position, Quaternion.identity, null);
+            Camera.Follow = _playerGameoObject.transform;
+            Camera.LookAt = _playerGameoObject.transform;
         }
         void BindSpawnPoints()
         {
