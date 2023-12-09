@@ -21,7 +21,7 @@ namespace Assets.Code
     {
         Cube
     }
-    public enum CellType
+    public enum Item
     {
         Basket,
         Watering,
@@ -31,7 +31,19 @@ namespace Assets.Code
         InfernalGrowth,
         Reed
     }
-    public enum Seed
+    public enum GrowStatus
+    {
+        Growing,
+        Ready
+    }
+
+    public enum Tool
+    {
+        Basket,
+        Watering
+    }
+
+   public enum Crops
     {
         Wheat,
         Pumpking,
@@ -39,6 +51,7 @@ namespace Assets.Code
         InfernalGrowth,
         Reed
     }
+
     public enum PlayerMode
     {
         Single,

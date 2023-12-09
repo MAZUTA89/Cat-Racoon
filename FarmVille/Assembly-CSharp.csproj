@@ -61,15 +61,19 @@
     <Compile Include="Assets\Code\Scripts\Boot\Communication\StartCommunicationSignal.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\PlayerControl\ConnectedPlayerMovement.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\LobbyService.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\PlantingTerritory\PlantTerritory.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Data\PlayerData.cs" />
     <Compile Include="Assets\Code\InputSystem\PlayerControls.cs" />
     <Compile Include="Assets\Code\ClientServer\Client\Client.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Installers\PlayersInstaller.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\PlayerInventory\Inventory.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\LoadingLevel\LevelSignalChecker.cs" />
     <Compile Include="Assets\Code\ClientServer\Server\Server.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Installers\GameInstaller.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\PlayerInventory\UI\Cell.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Installers\SpawnInstaller.cs" />
     <Compile Include="Assets\Code\Bootstrapp\PreformBootstrapp.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Installers\InventoryInstaller.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Communication\Test.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\SpawnObjects\SpawnObject.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\LevelLoader.cs" />
@@ -84,6 +88,7 @@
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\PlayerControl\Movement.cs" />
     <Compile Include="Assets\Code\ClientServer\TCPSocket.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Communication\CommunicationEvents.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\PlayerInventory\InventoryInputService.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Communication\CommunicatorArgs.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\Connection\ClientConnectionCreator.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\ProgressHandler.cs" />
@@ -92,14 +97,17 @@
     <Compile Include="Assets\Code\Scripts\Lobby\LobbyConnection.cs" />
     <Compile Include="Assets\SetTimer.cs" />
     <Compile Include="Assets\Code\Enums.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\PlantingTerritory\Land.cs" />
     <Compile Include="Assets\Code\ClientServer\PrefixWriterReader.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Connection\User.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\PlantingTerritory\PlantTerritory.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\PlantingTerritory\Land.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\Installers\InventoryInstaller.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\Inventory\UI\Cell.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\Inventory\InventoryInputService.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Rays\CursorRay.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Player\UsingItems\UseItems.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Seeds\Seed.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Seeds\SeedsPrefabService.cs" />
+    <Compile Include="Assets\Code\SeedsSO\SeedSO.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Installers\SeedsInstaller.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Coin.cs" />
+    <Compile Include="Assets\Code\Scripts\GameEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -821,6 +829,12 @@
     <Reference Include="Unity.2D.IK.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
@@ -913,12 +927,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -8,8 +8,6 @@ namespace Assets.Code.Scripts.Gameplay.PlantingTerritory
 {
     public class Land : PlantTerritory
     {
-        public override void OnStart()
-        {
-        }
+        
     }
 }

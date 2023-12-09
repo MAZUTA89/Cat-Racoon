@@ -9,17 +9,17 @@ using UnityEngine;
 namespace Assets.Code.Scripts.Gameplay.PlantingTerritory
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public abstract class PlantTerritory : MonoBehaviour
+    public class PlantTerritory : MonoBehaviour
     {
         public bool IsEmpty { get; protected set; }
+        [SerializeField] List<Item> SeedsToGrow;
         protected SpriteRenderer Sprite;
         Color _defaultColor;
         private void Start()
         {
-            IsEmpty = false;
+            IsEmpty = true;
             Sprite = GetComponent<SpriteRenderer>();
             _defaultColor = Sprite.color;
-            OnStart();
         }
 
         void OnMouseEnter()
@@ -31,8 +31,15 @@ namespace Assets.Code.Scripts.Gameplay.PlantingTerritory
         {
             Sprite.color = _defaultColor;
         }
+        public bool IsTerritoryContain(Item seed)
+        {
+            return SeedsToGrow.Contains(seed);
+        }
 
-        public abstract void OnStart();
+        public void SetEmpty(bool isEmpty)
+        {
+            IsEmpty = isEmpty;
+        }
 
     }
 }

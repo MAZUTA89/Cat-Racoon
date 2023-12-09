@@ -18,6 +18,8 @@ namespace Assets.Code.Scripts.Gameplay.Installers
         {
             InputService inputService = new InputService();
             Container.BindInstance(inputService).AsSingle();
+            Container.Bind<CursorRay>().AsSingle();
+            Container.Bind<UseItems>().AsSingle();
         }
     }
 }

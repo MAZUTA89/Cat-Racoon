@@ -107,6 +107,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Value"",
+                    ""id"": ""63cd9c2d-08fa-45af-b99a-0feb0cfe723b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""e9f850f6-d724-4b80-8d27-98bc302c0866"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -252,6 +270,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Cell_7"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4dad2cff-9d9a-48bb-92ab-dfc4f0572501"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ac47087-36db-432a-9170-b213f82aa8e6"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -286,6 +326,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_Cell_5 = m_PlayerActions.FindAction("Cell_5", throwIfNotFound: true);
         m_PlayerActions_Cell_6 = m_PlayerActions.FindAction("Cell_6", throwIfNotFound: true);
         m_PlayerActions_Cell_7 = m_PlayerActions.FindAction("Cell_7", throwIfNotFound: true);
+        m_PlayerActions_Click = m_PlayerActions.FindAction("Click", throwIfNotFound: true);
+        m_PlayerActions_MousePosition = m_PlayerActions.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -354,6 +396,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Cell_5;
     private readonly InputAction m_PlayerActions_Cell_6;
     private readonly InputAction m_PlayerActions_Cell_7;
+    private readonly InputAction m_PlayerActions_Click;
+    private readonly InputAction m_PlayerActions_MousePosition;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -367,6 +411,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Cell_5 => m_Wrapper.m_PlayerActions_Cell_5;
         public InputAction @Cell_6 => m_Wrapper.m_PlayerActions_Cell_6;
         public InputAction @Cell_7 => m_Wrapper.m_PlayerActions_Cell_7;
+        public InputAction @Click => m_Wrapper.m_PlayerActions_Click;
+        public InputAction @MousePosition => m_Wrapper.m_PlayerActions_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -403,6 +449,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Cell_7.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_7;
                 @Cell_7.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_7;
                 @Cell_7.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCell_7;
+                @Click.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnClick;
+                @MousePosition.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMousePosition;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -434,6 +486,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Cell_7.started += instance.OnCell_7;
                 @Cell_7.performed += instance.OnCell_7;
                 @Cell_7.canceled += instance.OnCell_7;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
             }
         }
     }
@@ -458,5 +516,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnCell_5(InputAction.CallbackContext context);
         void OnCell_6(InputAction.CallbackContext context);
         void OnCell_7(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }

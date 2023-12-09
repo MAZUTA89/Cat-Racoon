@@ -122,8 +122,8 @@
     <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder0.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Util\UnityUtil.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Binding\Finalizers\SubContainerBindingFinalizer.cs" />
-    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\Signals\Main\SignalBusInstaller.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Conventions\ConventionBindInfo.cs" />
+    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\Signals\Main\SignalBusInstaller.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Main\DiContainer.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Providers\ResolveProvider.cs" />
     <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder1.cs" />

@@ -22,6 +22,14 @@ public class InputService : IDisposable
         return _playerControls.PlayerActions.Spawn.WasPerformedThisFrame();
     }
 
+    public bool IsMouseLeftButton()
+    {
+        return _playerControls.PlayerActions.Click.WasPerformedThisFrame();
+    }
+    public Vector2 GetMousePosition()
+    {
+        return _playerControls.PlayerActions.MousePosition.ReadValue<Vector2>();
+    }
     public bool IsCell_1()
     {
         return _playerControls.PlayerActions.Cell_1.WasPerformedThisFrame();

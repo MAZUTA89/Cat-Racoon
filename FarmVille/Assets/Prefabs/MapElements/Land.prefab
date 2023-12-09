@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5506560040744247578}
   - component: {fileID: 5506560040744247579}
   - component: {fileID: 8145359581050038480}
-  - component: {fileID: -5011774894901989647}
+  - component: {fileID: 5127034319510402096}
   m_Layer: 0
   m_Name: Land
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5506560040744247556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.64, y: 1.28, z: 0.012044081}
+  m_LocalPosition: {x: 0.64, y: 1.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
---- !u!114 &-5011774894901989647
+--- !u!114 &5127034319510402096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5506560040744247556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 935632c742990a64daa8d83499608436, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b59aca9f807d9047ac5caa16310f11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SeedsToGrow: 020000000300000004000000

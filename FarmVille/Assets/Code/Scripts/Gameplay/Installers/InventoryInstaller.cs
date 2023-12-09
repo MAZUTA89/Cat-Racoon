@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Zenject;
 using UnityEngine.UI;
 using UnityEngine;
-using Assets.Code.Scripts.Gameplay.Inventory.UI;
-using Assets.Code.Scripts.Gameplay.Inventory;
+using Assets.Code.Scripts.Gameplay;
+using Assets.Code.Scripts;
 
 namespace Assets.Code.Scripts.Gameplay.Installers
 {
@@ -22,6 +22,7 @@ namespace Assets.Code.Scripts.Gameplay.Installers
         {
             BindInventoryInputService();
             BindCells();
+            BindInventory();
 
             for (int i = 0; i < Cells.Count; i++)
             {
@@ -36,6 +37,11 @@ namespace Assets.Code.Scripts.Gameplay.Installers
         void BindCells()
         {
             Container.Bind<Cell>().AsTransient();
+        }
+        void BindInventory()
+        {
+            Inventory inventory = new Inventory();
+            Container.BindInstance(inventory).AsSingle();
         }
     }
 }

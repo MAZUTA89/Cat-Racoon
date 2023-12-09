@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Code.Scripts.Gameplay.Inventory
+namespace Assets.Code.Scripts.Gameplay
 {
     public class InventoryInputService : MonoBehaviour
     {
         InputService _inputService;
         public event Action<int> OnChooseCellNumberEvent;
-        public event Action<CellType> OnChooseCellTypeEvent;
-        public event Action<Seed> OnChooseSeedEvent;
+        public event Action<Item> OnChooseCellTypeEvent;
         [Inject]
         public void Constructor(InputService inputService)
         {
@@ -24,42 +23,37 @@ namespace Assets.Code.Scripts.Gameplay.Inventory
         {
             if (_inputService.IsCell_1())
             {
-                OnChooseCellTypeEvent?.Invoke(CellType.Basket);
+                OnChooseCellTypeEvent?.Invoke(Item.Basket);
                 OnChooseCellNumberEvent?.Invoke(1);
             }
             if (_inputService.IsCell_2())
             {
-                OnChooseCellTypeEvent?.Invoke(CellType.Watering);
+                OnChooseCellTypeEvent?.Invoke(Item.Watering);
                 OnChooseCellNumberEvent?.Invoke(2);
             }
             if (_inputService.IsCell_3())
             {
-                OnChooseCellTypeEvent?.Invoke(CellType.Wheat);
-                OnChooseSeedEvent?.Invoke(Seed.Wheat);
+                OnChooseCellTypeEvent?.Invoke(Item.Wheat);
                 OnChooseCellNumberEvent?.Invoke(3);
             }
             if (_inputService.IsCell_4())
             {
-                OnChooseCellTypeEvent?.Invoke(CellType.SunFlower);
-                OnChooseSeedEvent?.Invoke(Seed.SunFlower);
+                OnChooseCellTypeEvent?.Invoke(Item.SunFlower);
                 OnChooseCellNumberEvent?.Invoke(4);
             }
             if (_inputService.IsCell_5())
             {
-                OnChooseCellTypeEvent?.Invoke(CellType.Pumpking);
-                OnChooseSeedEvent?.Invoke(Seed.Pumpking);
+                OnChooseCellTypeEvent?.Invoke(Item.Pumpking);
                 OnChooseCellNumberEvent?.Invoke(5);
             }
             if (_inputService.IsCell_6())
             {
-                OnChooseCellTypeEvent?.Invoke(CellType.Reed);
-                OnChooseSeedEvent?.Invoke(Seed.Reed);
+                OnChooseCellTypeEvent?.Invoke(Item.Reed);
                 OnChooseCellNumberEvent?.Invoke(6);
             }
             if (_inputService.IsCell_7())
             {
-                OnChooseCellTypeEvent?.Invoke(CellType.InfernalGrowth);
-                OnChooseSeedEvent?.Invoke(Seed.InfernalGrowth);
+                OnChooseCellTypeEvent?.Invoke(Item.InfernalGrowth);
                 OnChooseCellNumberEvent?.Invoke(7);
             }
         }
