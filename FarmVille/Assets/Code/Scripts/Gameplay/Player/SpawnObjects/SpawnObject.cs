@@ -34,11 +34,9 @@ namespace Assets.Code.Scripts.Gameplay.Player.SpawnObject
                 if (_inputService.IsSpawn())
                 {
                     
-                    Communicator.SendData.IsSpawning = true;
                 }
                 else
                 {
-                    Communicator.SendData.IsSpawning = false;
                 }
             }
         }

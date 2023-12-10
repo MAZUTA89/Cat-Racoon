@@ -9,7 +9,7 @@ namespace Assets.Code.Scripts.Boot.Data
         public PlayerData() 
         {
         }
-        public bool IsSpawning;
+        public float Money;
         public float positionX;
         public float positionY;
         public void UpdatePosition(Vector2 position)

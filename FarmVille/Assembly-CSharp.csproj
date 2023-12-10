@@ -69,7 +69,7 @@
     <Compile Include="Assets\Code\Scripts\Gameplay\Seeds\SeedsPrefabService.cs" />
     <Compile Include="Assets\Code\ClientServer\Server\Server.cs" />
     <Compile Include="Assets\Code\SeedsSO\SeedSO.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\Coin.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Coins\Coin.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Communication\Test.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\SpawnObjects\SpawnObject.cs" />
     <Compile Include="Assets\Code\ClientServer\JSONStringSpliter.cs" />
@@ -110,6 +110,8 @@
     <Compile Include="Assets\Code\Enums.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Days\DayNight.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Days\Lamp.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Coins\MoneyDisplayer.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Coins\ConnectedCoin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
