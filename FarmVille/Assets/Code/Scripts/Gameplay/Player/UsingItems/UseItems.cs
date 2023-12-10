@@ -88,7 +88,6 @@ namespace Assets.Code.Scripts.Gameplay
                     ItemCommand itemCommand = new ItemCommand();
                     itemCommand.SetPosition(territory.transform.position);
                     itemCommand.ObjectType = _cuurentChoosenItem;
-                    itemCommand.IsDone = false;
                     _sendedCommands.Add(itemCommand);
                     Communicator.SendData.AddItemCommand(itemCommand);
                 }

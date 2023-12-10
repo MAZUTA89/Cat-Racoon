@@ -1,7 +1,9 @@
 ﻿using Assets.Code.Scripts.Boot;
 using Assets.Code.Scripts.Boot.Communication;
 using Assets.Code.Scripts.Boot.Data;
+using Newtonsoft.Json.Bson;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,20 +21,33 @@ namespace Assets.Code.Scripts.Gameplay
         {
             _seedsService = seedsService;
         }
+
+        public void Start()
+        {
+            CommunicationEvents.oncomplitedAdded += OnComplitedAdded;
+        }
+        private void OnDisable()
+        {
+            CommunicationEvents.oncomplitedAdded -= OnComplitedAdded;
+        }
         private void Update()
         {
-            if(User.IsConnectionCreated)
+            if (User.IsConnectionCreated)
             {
-                Debug.Log(Communicator.RecvData.ItemCommands.Count);
+                //Debug.Log(Communicator.RecvData.ItemCommands.Count);
                 HandleCommands();
+                DeleteComplitedCommands();
             }
         }
-
+        void OnComplitedAdded()
+        {
+            Debug.Log("Add Comlited!");
+        }
         void HandleCommands()
         {
-            if(Communicator.RecvData.ItemCommands.Count > 0)
+            if (Communicator.RecvData.ItemCommands.Count > 0)
             {
-                Debug.Log("Connected Left!");
+                //Debug.Log("Connected Left!");
                 List<ItemCommand> commands = Communicator.RecvData.ItemCommands;
 
                 for (int i = 0; i < commands.Count; i++)
@@ -43,8 +58,9 @@ namespace Assets.Code.Scripts.Gameplay
                     seedPrefab = Instantiate(seedPrefab, commands[i].GetPosition(), Quaternion.identity);
 
                     seedPrefab.Initialize(seedSO);
-                    commands[i].IsDone = true;
 
+                    Communicator.SendData.AddComplitedCommand(commands[i]);
+                    Debug.Log("Добавил в Send готовую");
                     commands.RemoveAt(i);
                 }
 
@@ -53,29 +69,31 @@ namespace Assets.Code.Scripts.Gameplay
             }
         }
 
-        void ClearIfDone(List<ItemCommand> commands)
+        public void DeleteComplitedCommands()
         {
-            for(int i = 0; i < commands.Count; i++)
+            if (Communicator.SendData.ItemCommands.Count > 0)
             {
-                if (commands[i].IsDone)
-                {
-                    commands.RemoveAt(i);
-                }
+
+                List<ItemCommand> sendCommands = Communicator.SendData.ItemCommands;
+
+                List<ItemCommand> recvComplitedCommands = Communicator.RecvData.CompletedCommands;
+
+                //for (int i = 0; i < recvComplitedCommands.Count; i++)
+                //{
+                //    if (sendCommands.Contains(recvComplitedCommands[i]))
+                //    {
+                //        sendCommands.Remove(recvComplitedCommands[i]);
+                //    }
+                //}
+                List<ItemCommand> commonCommands = sendCommands.Intersect(recvComplitedCommands).ToList();
+
+                sendCommands.RemoveAll(item => commonCommands.Contains(item));
+                recvComplitedCommands.RemoveAll(item => commonCommands.Contains(item));
             }
         }
 
-        void PerformCommands(List<ItemCommand> commands)
-        {
-            foreach(ItemCommand command in commands)
-            {
-                Seed seedPrefab = _seedsService.GetSeedFor(command.ObjectType);
-                SeedSO seedSO = _seedsService.GetSeedSOFor(command.ObjectType);
 
-                seedPrefab = Instantiate(seedPrefab, command.GetPosition(), Quaternion.identity);
 
-                seedPrefab.Initialize(seedSO);
-                command.IsDone = true;
-            }
-        }
+
     }
 }

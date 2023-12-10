@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,9 +9,11 @@ namespace Assets.Code.Scripts.Boot.Data
     public class PlayerData
     {
         public List<ItemCommand> ItemCommands;
+        public List<ItemCommand> CompletedCommands;
         public PlayerData() 
         {
             ItemCommands = new List<ItemCommand>();
+            CompletedCommands = new List<ItemCommand>();
         }
         public bool IsLeftButton;
         public float Money;
@@ -29,6 +32,10 @@ namespace Assets.Code.Scripts.Boot.Data
         public void AddItemCommand(ItemCommand itemCommand)
         {
             ItemCommands.Add(itemCommand);
+        }
+        public void AddComplitedCommand(ItemCommand itemCommand)
+        {
+           CompletedCommands.Add(itemCommand);
         }
     }
 }

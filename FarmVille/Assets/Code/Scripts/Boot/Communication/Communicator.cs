@@ -48,8 +48,12 @@ namespace Assets.Code.Scripts.Boot.Communication
                    // Debug.Log("Tick");
                     //RecvData = await CommunicateFix();
                     RecvData = await CommunicateFix();
+                    if(RecvData.CompletedCommands.Count > 0)
+                    {
+                        CommunicationEvents.InvokeOnComplitedAdded();
+                    }
                     // Debug.Log($"Recv: {RecvData.GetPosition()}");
-                    CommunicationEvents.InvokeDataSendedIvent();
+                    //CommunicationEvents.InvokeDataSendedIvent();
                     await Task.Delay(_tick);
                 }
                 catch (Exception ex)

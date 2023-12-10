@@ -12,7 +12,6 @@ namespace Assets.Code.Scripts.Boot.Data
         public Item ObjectType;
         public float PositionX;
         public float PositionY;
-        public bool IsDone;
         public void SetPosition(Vector2 position)
         {
             PositionX = position.x;
@@ -22,6 +21,24 @@ namespace Assets.Code.Scripts.Boot.Data
         public Vector2 GetPosition()
         {
             return new Vector2(PositionX, PositionY);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            ItemCommand command = (ItemCommand)obj;
+
+            return command.ObjectType == ObjectType
+                && command.PositionX == PositionX 
+                && command.PositionY == PositionY;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(PositionX, PositionY, ObjectType);
         }
     }
 }
