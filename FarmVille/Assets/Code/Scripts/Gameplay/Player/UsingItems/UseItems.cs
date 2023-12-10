@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Zenject;
+using Assets.Code.Scripts.Boot;
+using Assets.Code.Scripts.Boot.Communication;
+using Assets.Code.Scripts.Boot.Data;
 
 namespace Assets.Code.Scripts.Gameplay
 {
@@ -20,6 +23,7 @@ namespace Assets.Code.Scripts.Gameplay
         InventoryInputService _inventoryInputService;
         SeedsService _seedsService;
         Inventory _inventory;
+        List<ItemCommand> _sendedCommands;
         [Inject]
         public void Constructor(InventoryInputService inventoryInputService,
             SeedsService seedsService, Inventory inventory)
@@ -33,12 +37,15 @@ namespace Assets.Code.Scripts.Gameplay
         {
             _cursorRay.OnHitEvent -= OnHit2DCollider;
             _inventoryInputService.OnChooseCellTypeEvent -= OnChooseCell;
+            CommunicationEvents.OnDataSendedEvent -= OnDataSend;
         }
         private void Start()
         {
+            _sendedCommands = new List<ItemCommand>();
             _cursorRay = GetComponent<CursorRay>();
             _cursorRay.OnHitEvent += OnHit2DCollider;
             _inventoryInputService.OnChooseCellTypeEvent += OnChooseCell;
+            CommunicationEvents.OnDataSendedEvent += OnDataSend;
         }
 
         private void Update()
@@ -75,6 +82,16 @@ namespace Assets.Code.Scripts.Gameplay
                 territory.SetEmpty(false);
 
                 _inventory[_cuurentChoosenItem]--;
+
+                if(User.IsConnectionCreated)
+                {
+                    ItemCommand itemCommand = new ItemCommand();
+                    itemCommand.SetPosition(territory.transform.position);
+                    itemCommand.ObjectType = _cuurentChoosenItem;
+                    itemCommand.IsDone = false;
+                    _sendedCommands.Add(itemCommand);
+                    Communicator.SendData.AddItemCommand(itemCommand);
+                }
             }
         }
 
@@ -115,6 +132,18 @@ namespace Assets.Code.Scripts.Gameplay
         void OnChooseCell(Item item)
         {
             _cuurentChoosenItem = item;
+        }
+
+        public void OnDataSend()
+        {
+            List<ItemCommand> commands = Communicator.SendData.ItemCommands;
+            for (int i = 0; i < _sendedCommands.Count; i++)
+            {
+                if (commands.Contains(_sendedCommands[i]))
+                {
+                    commands.Remove(_sendedCommands[i]);
+                }
+            }
         }
     }
 }

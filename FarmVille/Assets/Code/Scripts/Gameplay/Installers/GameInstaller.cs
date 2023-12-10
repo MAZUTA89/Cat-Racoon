@@ -20,6 +20,7 @@ namespace Assets.Code.Scripts.Gameplay.Installers
             Container.BindInstance(inputService).AsSingle();
             Container.Bind<CursorRay>().AsSingle();
             Container.Bind<UseItems>().AsSingle();
+            Container.Bind<ItemCommandsHandler>().AsSingle();
         }
     }
 }

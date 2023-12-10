@@ -53,6 +53,12 @@ namespace Assets.Code.Scripts.Gameplay
             Money = seedSO.Money;
             _parent = parent;
         }
+        public void Initialize(SeedSO seedSO)
+        {
+            GrowingTime = seedSO.GrowingTime;
+            GrowingUpSprite = seedSO.GrowingUpSprite;
+            Money = seedSO.Money;
+        }
 
         public void Boost()
         {
@@ -64,7 +70,7 @@ namespace Assets.Code.Scripts.Gameplay
         }
         public void OnPick()
         {
-            _parent.SetEmpty(true);
+            _parent?.SetEmpty(true);
         }
         private void OnMouseEnter()
         {

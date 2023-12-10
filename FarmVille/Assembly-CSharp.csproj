@@ -112,6 +112,7 @@
     <Compile Include="Assets\Code\Scripts\Gameplay\Coins\MoneyDisplayer.cs" />
     <Compile Include="Assets\SetTimer.cs" />
     <Compile Include="Assets\Code\Enums.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Player\UsingItems\ItemCommandsHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

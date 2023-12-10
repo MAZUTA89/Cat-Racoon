@@ -45,10 +45,10 @@ namespace Assets.Code.Scripts.Boot.Communication
             {
                 try
                 {
-                    Debug.Log("Tick");
+                   // Debug.Log("Tick");
                     //RecvData = await CommunicateFix();
                     RecvData = await CommunicateFix();
-                    Debug.Log($"Recv: {RecvData.GetPosition()}");
+                   // Debug.Log($"Recv: {RecvData.GetPosition()}");
 
                     await Task.Delay(_tick);
                 }
@@ -68,7 +68,7 @@ namespace Assets.Code.Scripts.Boot.Communication
             {
                 Console.WriteLine(_user.GetLastError());
             }
-
+            CommunicationEvents.InvokeDataSendedIvent();
             PlayerData recv = await _user.RecvFixAcync<PlayerData>();
 
             if (recv != null)

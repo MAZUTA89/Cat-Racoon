@@ -1,15 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Code.Scripts.Boot.Data
 {
-    public class SpawnCommand
+    public class ItemCommand
     {
-        public Vector2 Position;
-        public ObjectType ObjectType;
+        public Item ObjectType;
+        public float PositionX;
+        public float PositionY;
+        public bool IsDone;
+        public void SetPosition(Vector2 position)
+        {
+            PositionX = position.x;
+            PositionY = position.y;
+        }
+
+        public Vector2 GetPosition()
+        {
+            return new Vector2(PositionX, PositionY);
+        }
     }
 }
