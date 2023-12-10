@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.06198823, g: 0.06313431, b: 0.066037714, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: d1856526cdbdb524782c8fe7f5cc2535, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: c64bbc09756e7f84496e1a5a30502ffa, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1737,7 +1737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311fe8da73416224d9d711ba6412c843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackButtons: []
 --- !u!114 &1239120954
 MonoBehaviour:
   m_ObjectHideFlags: 0
