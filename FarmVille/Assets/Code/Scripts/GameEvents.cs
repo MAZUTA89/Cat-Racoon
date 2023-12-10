@@ -15,5 +15,16 @@ namespace Assets.Code.Scripts
         {
             OnPickSeedEvent?.Invoke(money);
         }
+
+        public static event Action OnDayStartEvent;
+        public static event Action OnNightStartEvent;
+        public static void InvokeOnDayStartEvent(float intensivity)
+        {
+            OnDayStartEvent?.Invoke();
+        }
+        public static void InvokeOnNightStartEvent(float intensivity)
+        {
+            OnNightStartEvent?.Invoke();
+        }
     }
 }

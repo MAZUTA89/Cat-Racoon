@@ -17,6 +17,7 @@ namespace Assets.Code.Scripts.Gameplay.Installers
         [SerializeField] Transform HostSpawnPoint;
         [SerializeField] GameObject ConnectedPlayerPrefab;
         [SerializeField] Transform ConnectedPlayerSpawnPoint;
+       
         public PlayerMode Mode;
         [SerializeField] CinemachineVirtualCamera Camera;
         GameObject _playerGameoObject;

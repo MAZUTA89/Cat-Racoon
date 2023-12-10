@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-UnitTests-Editor", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParrelSync", "ParrelSync.csproj", "{BF98AB02-62DB-0E66-938A-05B9AAF1D467}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-ReflectionBaking-Editor", "Zenject-ReflectionBaking-Editor.csproj", "{8097E907-4536-FA67-1B6D-4A259C7ADF39}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-TestFramework", "Zenject-TestFramework.csproj", "{82E2A307-852E-C302-3FDC-1DEED00A2BE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-ReflectionBaking-Editor", "Zenject-ReflectionBaking-Editor.csproj", "{8097E907-4536-FA67-1B6D-4A259C7ADF39}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-Editor", "Zenject-Editor.csproj", "{643FFBD5-16FE-3F9B-543A-318C2DC0B2A9}"
 EndProject
@@ -55,14 +55,14 @@ Global
 		{BF98AB02-62DB-0E66-938A-05B9AAF1D467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF98AB02-62DB-0E66-938A-05B9AAF1D467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF98AB02-62DB-0E66-938A-05B9AAF1D467}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8097E907-4536-FA67-1B6D-4A259C7ADF39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8097E907-4536-FA67-1B6D-4A259C7ADF39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8097E907-4536-FA67-1B6D-4A259C7ADF39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8097E907-4536-FA67-1B6D-4A259C7ADF39}.Release|Any CPU.Build.0 = Release|Any CPU
 		{82E2A307-852E-C302-3FDC-1DEED00A2BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82E2A307-852E-C302-3FDC-1DEED00A2BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82E2A307-852E-C302-3FDC-1DEED00A2BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82E2A307-852E-C302-3FDC-1DEED00A2BE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8097E907-4536-FA67-1B6D-4A259C7ADF39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8097E907-4536-FA67-1B6D-4A259C7ADF39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8097E907-4536-FA67-1B6D-4A259C7ADF39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8097E907-4536-FA67-1B6D-4A259C7ADF39}.Release|Any CPU.Build.0 = Release|Any CPU
 		{643FFBD5-16FE-3F9B-543A-318C2DC0B2A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{643FFBD5-16FE-3F9B-543A-318C2DC0B2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{643FFBD5-16FE-3F9B-543A-318C2DC0B2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
