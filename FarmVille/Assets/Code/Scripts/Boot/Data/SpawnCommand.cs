@@ -12,6 +12,7 @@ namespace Assets.Code.Scripts.Boot.Data
         public Item ObjectType;
         public float PositionX;
         public float PositionY;
+        public string ParentTerritoryName;
         public void SetPosition(Vector2 position)
         {
             PositionX = position.x;

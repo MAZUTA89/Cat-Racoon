@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Code.Scripts.Gameplay.PlantingTerritory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,15 +13,23 @@ namespace Assets.Code.Scripts.Gameplay.Installers
         public override void InstallBindings()
         {
             BindInputSystem();
+            BindTerritoryService();
+            Container.Bind<CursorRay>().AsSingle();
+            Container.Bind<UseItems>().AsSingle();
+            Container.Bind<ItemCommandsHandler>().AsSingle();
+            Container.Bind<PlantTerritory>().AsTransient();
         }
 
         void BindInputSystem()
         {
             InputService inputService = new InputService();
             Container.BindInstance(inputService).AsSingle();
-            Container.Bind<CursorRay>().AsSingle();
-            Container.Bind<UseItems>().AsSingle();
-            Container.Bind<ItemCommandsHandler>().AsSingle();
+        }
+
+        void BindTerritoryService()
+        {
+            TerritoryService territoryService = new TerritoryService();
+            Container.BindInstance(territoryService).AsSingle();
         }
     }
 }

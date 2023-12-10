@@ -32,12 +32,11 @@ namespace Assets.Code.Scripts.Gameplay
             _seedsService = seedsService;
             _inventory = inventory;
         }
-       
+        
         private void OnDisable()
         {
             _cursorRay.OnHitEvent -= OnHit2DCollider;
             _inventoryInputService.OnChooseCellTypeEvent -= OnChooseCell;
-            CommunicationEvents.OnDataSendedEvent -= OnDataSend;
         }
         private void Start()
         {
@@ -45,7 +44,6 @@ namespace Assets.Code.Scripts.Gameplay
             _cursorRay = GetComponent<CursorRay>();
             _cursorRay.OnHitEvent += OnHit2DCollider;
             _inventoryInputService.OnChooseCellTypeEvent += OnChooseCell;
-            CommunicationEvents.OnDataSendedEvent += OnDataSend;
         }
 
         private void Update()
@@ -85,9 +83,11 @@ namespace Assets.Code.Scripts.Gameplay
 
                 if(User.IsConnectionCreated)
                 {
+                    Communicator.SendData.AddNotEmptyTerritory(territory.name);
                     ItemCommand itemCommand = new ItemCommand();
                     itemCommand.SetPosition(territory.transform.position);
                     itemCommand.ObjectType = _cuurentChoosenItem;
+                    itemCommand.ParentTerritoryName = territory.name;
                     _sendedCommands.Add(itemCommand);
                     Communicator.SendData.AddItemCommand(itemCommand);
                 }
@@ -133,16 +133,5 @@ namespace Assets.Code.Scripts.Gameplay
             _cuurentChoosenItem = item;
         }
 
-        public void OnDataSend()
-        {
-            List<ItemCommand> commands = Communicator.SendData.ItemCommands;
-            for (int i = 0; i < _sendedCommands.Count; i++)
-            {
-                if (commands.Contains(_sendedCommands[i]))
-                {
-                    commands.Remove(_sendedCommands[i]);
-                }
-            }
-        }
     }
 }

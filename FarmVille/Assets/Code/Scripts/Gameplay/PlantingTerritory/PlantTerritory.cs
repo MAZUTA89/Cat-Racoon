@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Code.Scripts.Gameplay.PlantingTerritory
 {
@@ -15,11 +16,18 @@ namespace Assets.Code.Scripts.Gameplay.PlantingTerritory
         [SerializeField] List<Item> SeedsToGrow;
         protected SpriteRenderer Sprite;
         Color _defaultColor;
+        TerritoryService _territoryService;
+        [Inject]
+        public void Constructor(TerritoryService territoryService)
+        {
+            _territoryService = territoryService;
+        }
         private void Start()
         {
             IsEmpty = true;
             Sprite = GetComponent<SpriteRenderer>();
             _defaultColor = Sprite.color;
+            _territoryService.AddTerritory(this);
         }
 
         void OnMouseEnter()
