@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeparatorWriterReader.cs" />
     <Compile Include="Server\Server.cs" />
+    <Compile Include="SpawnCommand.cs" />
     <Compile Include="TCPSocket.cs" />
     <Compile Include="Vector2.cs" />
   </ItemGroup>

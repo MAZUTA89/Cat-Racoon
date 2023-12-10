@@ -90,6 +90,12 @@ namespace ClientServer
         void PrintPlayerData(PlayerData playerData)
         {
             Console.WriteLine($"recv x: {playerData.PositionX} y: {playerData.PositionY}");
+            List<Item> items = playerData.GetItemType();
+            foreach (Item item in items)
+            {
+                Console.WriteLine(item);
+                Console.WriteLine();
+            }
         }
     }
 }

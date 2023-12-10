@@ -53,6 +53,7 @@ namespace Serverr
 
         public static void Update()
         {
+            Communicator.SendData.UpdateItem();
             Communicator.SendData.UpdatePosition();
         }
 
