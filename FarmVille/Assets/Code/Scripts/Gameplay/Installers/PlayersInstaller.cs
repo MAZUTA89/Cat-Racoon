@@ -35,10 +35,10 @@ namespace Assets.Code.Scripts.Gameplay.Installers
                     }
                 case PlayerMode.Multiple:
                     {
-                        if (User.IsConnectionCreated)
-                        {
+                        //if (User.IsConnectionCreated)
+                        //{
                             SpawnPlayersOnSpawnPoints();
-                        }
+                        //}
                         break;
                     }
             }

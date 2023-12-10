@@ -5,8 +5,11 @@
 /// Date: 26.09.2016
 /// 
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(Grid))]
 public class GridEditor : Editor
 {
@@ -64,3 +67,4 @@ public class GridEditor : Editor
     }
 
 }
+#endif
