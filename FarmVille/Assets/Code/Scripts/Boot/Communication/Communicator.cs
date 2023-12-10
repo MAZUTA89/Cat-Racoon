@@ -48,8 +48,8 @@ namespace Assets.Code.Scripts.Boot.Communication
                    // Debug.Log("Tick");
                     //RecvData = await CommunicateFix();
                     RecvData = await CommunicateFix();
-                   // Debug.Log($"Recv: {RecvData.GetPosition()}");
-
+                    // Debug.Log($"Recv: {RecvData.GetPosition()}");
+                    CommunicationEvents.InvokeDataSendedIvent();
                     await Task.Delay(_tick);
                 }
                 catch (Exception ex)
@@ -68,7 +68,7 @@ namespace Assets.Code.Scripts.Boot.Communication
             {
                 Console.WriteLine(_user.GetLastError());
             }
-            CommunicationEvents.InvokeDataSendedIvent();
+            
             PlayerData recv = await _user.RecvFixAcync<PlayerData>();
 
             if (recv != null)
