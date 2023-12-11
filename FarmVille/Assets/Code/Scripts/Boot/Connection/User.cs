@@ -31,13 +31,13 @@ namespace Assets.Code.Scripts.Boot
         {
             IsConnectionCreated = false;
             LevelLoader.onLevelLoadedEvent += OnLevelLoaded;
-            GameEvents.OnDayStartEvent += OnGameOver;
+            GameEvents.OnGameOverEvent += OnGameOver;
         }
 
         private void OnDisable()
         {
             LevelLoader.onLevelLoadedEvent -= OnLevelLoaded;
-            GameEvents.OnDayStartEvent += OnGameOver;
+            GameEvents.OnGameOverEvent += OnGameOver;
             _communicator?.Stop();
         }
 

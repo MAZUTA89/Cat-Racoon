@@ -15,7 +15,6 @@ namespace Assets.Code.Scripts.Gameplay.Coins
         {
             if(User.IsConnectionCreated)
             {
-                Debug.Log($"Connected coin: {Communicator.RecvData.Money}");
                 CoinText.text = Communicator.RecvData.Money.ToString();
             }
         }
