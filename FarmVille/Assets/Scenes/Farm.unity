@@ -25958,7 +25958,7 @@ MonoBehaviour:
   Lighting: {fileID: 1455517403}
   DaysToEnd: 4
   DayTime: 60
-  TestDayTime: 5.14
+  TestDayTime: 3.94
   _currentTime: 0
   AddIntensivity: 0.3
   IsTest: 0
@@ -32115,7 +32115,7 @@ MonoBehaviour:
   HostSpawnPoint: {fileID: 185157439}
   ConnectedPlayerPrefab: {fileID: 1032107991144523220, guid: 1d95b9995add40f4290ad1ca96f29611, type: 3}
   ConnectedPlayerSpawnPoint: {fileID: 780764767}
-  Mode: 1
+  Mode: 0
   Camera: {fileID: 1306971609}
 --- !u!114 &1481694332
 MonoBehaviour:
@@ -46659,6 +46659,8 @@ MonoBehaviour:
   GameOverPanel: {fileID: 1134220531}
   LoseText: {fileID: 227911676}
   WinText: {fileID: 1678953514}
+  PlayerCoin: {fileID: 802541629}
+  ConnectedPlayerCoin: {fileID: 1483313757}
 --- !u!1001 &2091389084
 PrefabInstance:
   m_ObjectHideFlags: 0

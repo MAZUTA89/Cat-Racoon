@@ -28,6 +28,9 @@ namespace Assets.Code.Scripts.Gameplay
         protected abstract void Disable();
 
         
-
+        public float GetMoney()
+        {
+            return CurrentMoney;
+        }
     }
 }

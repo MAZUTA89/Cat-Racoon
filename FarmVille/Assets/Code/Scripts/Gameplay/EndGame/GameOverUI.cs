@@ -17,6 +17,8 @@ namespace Assets.Code.Scripts.Gameplay
         [SerializeField] GameObject GameOverPanel;
         [SerializeField] TextMeshProUGUI LoseText;
         [SerializeField] TextMeshProUGUI WinText;
+        [SerializeField] MoneyDisplayer PlayerCoin;
+        [SerializeField] MoneyDisplayer ConnectedPlayerCoin;
         private void Start()
         {
             GameEvents.OnGameOverEvent += OnGameOver;
@@ -32,16 +34,12 @@ namespace Assets.Code.Scripts.Gameplay
         void OnGameOver()
         {
             GameOverPanel.SetActive(true);
-
-            if(User.IsConnectionCreated)
+            if (PlayerCoin.GetMoney() > ConnectedPlayerCoin.GetMoney())
             {
-                if (Communicator.SendData.Money > Communicator.RecvData.Money)
-                {
-                    WinText.gameObject.SetActive(true);
-                }
-                else
-                    LoseText.gameObject.SetActive(true);
+                WinText.gameObject.SetActive(true);
             }
+            else
+                LoseText.gameObject.SetActive(true);
         }
 
         public void OnExit()

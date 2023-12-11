@@ -86,5 +86,15 @@ namespace ClientServer.Server
             else
                 return StopSocket(ClientSocket) && StopSocket(_serverSocket);
         }
+
+        public override bool CheckConnection()
+        {
+            if(ClientSocket == null)
+            {
+                return CheckConnectionFor(_serverSocket);
+            }
+            else
+                return CheckConnectionFor(ClientSocket) || CheckConnectionFor(_serverSocket);
+        }
     }
 }

@@ -11,6 +11,8 @@ using Assets.Code.Scripts.Boot.Data;
 using Assets.Code.Scripts.Communication;
 using Assets.Code.Scripts.Boot.Communication;
 using TMPro;
+using ClientServer.Server;
+using ClientServer.Client;
 
 namespace Assets.Code.Scripts.Boot
 {
@@ -33,14 +35,38 @@ namespace Assets.Code.Scripts.Boot
 
         private void OnDisable()
         {
+            GameEvents.InvokeGameOverEvent();
             LevelLoader.onLevelLoadedEvent -= OnLevelLoaded;
             GameEvents.OnGameOverEvent -= OnGameOver;
             _communicator?.Stop();
+
+            
         }
 
         private void Update()
         {
-
+            if(User.IsConnectionCreated)
+            {
+                switch(ConnectionType)
+                {
+                    case ConnectionType.Server:
+                        {
+                            if(!(_userBase as Server).CheckConnection())
+                            {
+                                GameEvents.InvokeGameOverEvent();
+                            }
+                            break;
+                        }
+                    case ConnectionType.Client:
+                        {
+                            if(!(_userBase as Client).CheckConnection())
+                            {
+                                GameEvents.InvokeGameOverEvent();
+                            }
+                            break;
+                        }
+                }
+            }
         }
 
         public void InitializeUserBase(TCPBase userBase, ConnectionType connectionType)
@@ -101,6 +127,28 @@ namespace Assets.Code.Scripts.Boot
             }
         }
 
+        private void OnApplicationQuit()
+        {
+            switch (ConnectionType)
+            {
+                case ConnectionType.Server:
+                    {
+                        if ((_userBase as Server).Stop())
+                        {
+                            GameEvents.InvokeGameOverEvent();
+                        }
+                        break;
+                    }
+                case ConnectionType.Client:
+                    {
+                        if ((_userBase as Client).Stop())
+                        {
+                            GameEvents.InvokeGameOverEvent();
+                        }
+                        break;
+                    }
+            }
+        }
         void OnGameOver()
         {
             _communicator?.Stop();

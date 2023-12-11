@@ -20,8 +20,7 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
             if(User.IsConnectionCreated)
             {
                 Vector2 input = Communicator.RecvData.GetDirection();
-                if(input != Vector2.zero)
-                    Debug.Log($"Recv input: {input}");
+                
                 InputAndAnimateInFouthDirections(ref input);
             }
         }

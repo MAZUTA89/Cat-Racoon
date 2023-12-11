@@ -49,7 +49,14 @@ namespace ClientServer
         public virtual bool Stop()
         {
             return StopSocket(ClientSocket);
-            
+        }
+        public virtual bool CheckConnection()
+        {
+            return CheckConnectionFor(ClientSocket);
+        }
+        protected bool CheckConnectionFor(Socket socket)
+        {
+            return socket.Connected;
         }
         protected async Task<int> SendAsync<T>(Socket socket, T serializeObject)
         {

@@ -31,8 +31,7 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
             if (User.IsConnectionCreated)
             {
                 Communicator.SendData.SetDirection(_input);
-                if (_input != Vector2.zero)
-                    Debug.Log($"Send input: {_input}");
+               
             }
             InputAndAnimateInFouthDirections(ref _input);
 
