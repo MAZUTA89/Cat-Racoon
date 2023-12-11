@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2588277182229896911}
   - component: {fileID: 3563655762238631257}
   - component: {fileID: 5048619643511616344}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: InfernalGrowth
   m_TagString: Untagged
   m_Icon: {fileID: 0}

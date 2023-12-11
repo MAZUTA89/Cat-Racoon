@@ -16,7 +16,10 @@ namespace Assets.Code.Scripts.Gameplay
         InputService _inputService;
         public RaycastHit2D Hit;
         public string HitObject;
-        public event Action<RaycastHit2D> OnHitEvent;
+        public event Action<RaycastHit2D> OnHitTerritoryEvent;
+        public event Action<RaycastHit2D> OnHitSeedEvent;
+        public LayerMask SeedMask;
+        public LayerMask TerritoryMask;
         [Inject]
         public void Construcotr(InputService inputService)
         {
@@ -34,28 +37,39 @@ namespace Assets.Code.Scripts.Gameplay
             {
                 Ray ray = _camera.ScreenPointToRay(_inputService.GetMousePosition());
 
-                Hit = Physics2D.GetRayIntersection(ray);
+                CheckIntersection(ray, TerritoryMask, OnHitTerritoryEvent);
+                CheckIntersection(ray, SeedMask, OnHitSeedEvent);
+                //     Hit = Physics2D.GetRayIntersection(ray);
 
-                if (Hit.collider != null)
+                //    if (Hit.collider != null)
+                //    {
+                //        OnHitTerritoryEvent?.Invoke(Hit);
+                //        HitObject = Hit.collider.gameObject.name;
+                //    }
+                //}
+                HandleCommunicationData();
+            }
+            void CheckIntersection(Ray ray, LayerMask mask, Action<RaycastHit2D> hitEvent)
+            {
+                RaycastHit2D hit = Physics2D.GetRayIntersection(ray, 20, mask);
+                if (hit.collider != null)
                 {
-                    OnHitEvent?.Invoke(Hit);
-                    HitObject = Hit.collider.gameObject.name;
+                    hitEvent?.Invoke(hit);
+                    HitObject = hit.collider.gameObject.name;
                 }
             }
-            HandleCommunicationData();
-        }
-
-        void HandleCommunicationData()
-        {
-            if (User.IsConnectionCreated)
+            void HandleCommunicationData()
             {
-                if (_inputService.IsMouseLeftButton())
+                if (User.IsConnectionCreated)
                 {
-                    Communicator.SendData.IsLeftButton = true;
-                }
-                else
-                {
-                    Communicator.SendData.IsLeftButton = false;
+                    if (_inputService.IsMouseLeftButton())
+                    {
+                        Communicator.SendData.IsLeftButton = true;
+                    }
+                    else
+                    {
+                        Communicator.SendData.IsLeftButton = false;
+                    }
                 }
             }
         }

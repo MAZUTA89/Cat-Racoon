@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8733616802938267774}
   - component: {fileID: 9092802357226785385}
   - component: {fileID: -3768708192989124573}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Reed
   m_TagString: Untagged
   m_Icon: {fileID: 0}

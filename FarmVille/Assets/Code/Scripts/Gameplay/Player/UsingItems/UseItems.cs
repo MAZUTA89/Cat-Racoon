@@ -35,26 +35,35 @@ namespace Assets.Code.Scripts.Gameplay
         
         private void OnDisable()
         {
-            _cursorRay.OnHitEvent -= OnHit2DCollider;
+            _cursorRay.OnHitTerritoryEvent -= OnHitTerritory2DCollider;
+            _cursorRay.OnHitSeedEvent -= OnHitSeed2DCollider;
             _inventoryInputService.OnChooseCellTypeEvent -= OnChooseCell;
         }
         private void Start()
         {
             _sendedCommands = new List<ItemCommand>();
             _cursorRay = GetComponent<CursorRay>();
-            _cursorRay.OnHitEvent += OnHit2DCollider;
+            _cursorRay.OnHitTerritoryEvent += OnHitTerritory2DCollider;
+            _cursorRay.OnHitSeedEvent += OnHitSeed2DCollider;
             _inventoryInputService.OnChooseCellTypeEvent += OnChooseCell;
         }
 
         private void Update()
         {
         }
-        public void OnHit2DCollider(RaycastHit2D hit)
+        public void OnHitTerritory2DCollider(RaycastHit2D hit)
         {
             if (hit.distance < Distance)
             {
                 GameObject go = hit.collider.gameObject;
                 UsingCrops(go);
+            }
+        }
+        public void OnHitSeed2DCollider(RaycastHit2D hit)
+        {
+            if (hit.distance < Distance)
+            {
+                GameObject go = hit.collider.gameObject;
                 UsingTools(go);
             }
         }

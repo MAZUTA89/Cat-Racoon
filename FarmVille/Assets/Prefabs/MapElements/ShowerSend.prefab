@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7791300386639652295}
   - component: {fileID: 7722710700640314493}
   - component: {fileID: 4058894857165328465}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShowerSend
   m_TagString: Untagged
   m_Icon: {fileID: 0}
