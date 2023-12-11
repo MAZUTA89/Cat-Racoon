@@ -71,7 +71,7 @@ namespace Assets.Code.Scripts.Gameplay
                                     seedPrefab = Instantiate(seedPrefab,
                                         terr.transform);
 
-                                    seedPrefab.Initialize(seedSO);
+                                    seedPrefab.Initialize(seedSO, terr);
                                     terr.SetEmpty(false);
                                     terr.SetSeed(seedPrefab);
                                     Communicator.SendData.AddComplitedCommand(commands[i]);
@@ -99,7 +99,7 @@ namespace Assets.Code.Scripts.Gameplay
 
         public void DeleteComplitedCommands()
         {
-            Debug.Log($"Recv commands: {Communicator.SendData.ItemCommands.Count}");
+            Debug.Log($"Send commands: {Communicator.SendData.ItemCommands.Count}");
             if (Communicator.SendData.ItemCommands.Count > 0)
             {
 
