@@ -51,25 +51,29 @@ namespace Assets.Code.Scripts.Gameplay
         {
             if (Communicator.RecvData.ItemCommands.Count > 0)
             {
-                //Debug.Log("Connected Left!");
                 List<ItemCommand> commands = Communicator.RecvData.ItemCommands;
-
+                List<string> NotFreeTerr = Communicator.RecvData.NotFreeTerritoryList;
                 for (int i = 0; i < commands.Count; i++)
                 {
                     Seed seedPrefab = _seedsService.GetSeedFor(commands[i].ObjectType);
                     SeedSO seedSO = _seedsService.GetSeedSOFor(commands[i].ObjectType);
 
-                    seedPrefab = Instantiate(seedPrefab, commands[i].GetPosition(), Quaternion.identity);
+                    PlantTerritory terr = 
+                        _territoryService.GetTerritiryByObjectName(commands[i].ParentTerritoryName);
 
-                    seedPrefab.Initialize(seedSO);
+                    if (terr.IsEmpty == true)
+                    {
+                        seedPrefab = Instantiate(seedPrefab,
+                            terr.transform);
 
-                    Communicator.SendData.AddComplitedCommand(commands[i]);
-                    Debug.Log("Добавил в Send готовую");
-                    commands.RemoveAt(i);
+                        seedPrefab.Initialize(seedSO);
+                        terr.SetEmpty(false);
+                        Communicator.SendData.AddComplitedCommand(commands[i]);
+                        Communicator.SendData.AddNotFreeTerritory(commands[i].ParentTerritoryName);
+                        Debug.Log("Добавил в Send готовую");
+                        commands.RemoveAt(i);
+                    }
                 }
-
-                //ClearIfDone(commands);
-                //PerformCommands(commands);
             }
         }
 
@@ -82,13 +86,6 @@ namespace Assets.Code.Scripts.Gameplay
 
                 List<ItemCommand> recvComplitedCommands = Communicator.RecvData.CompletedCommands;
 
-                //for (int i = 0; i < recvComplitedCommands.Count; i++)
-                //{
-                //    if (sendCommands.Contains(recvComplitedCommands[i]))
-                //    {
-                //        sendCommands.Remove(recvComplitedCommands[i]);
-                //    }
-                //}
                 List<ItemCommand> commonCommands = sendCommands.Intersect(recvComplitedCommands).ToList();
 
                 sendCommands.RemoveAll(item => commonCommands.Contains(item));

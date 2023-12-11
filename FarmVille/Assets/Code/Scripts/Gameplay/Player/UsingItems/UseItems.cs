@@ -83,9 +83,8 @@ namespace Assets.Code.Scripts.Gameplay
 
                 if(User.IsConnectionCreated)
                 {
-                    Communicator.SendData.AddNotEmptyTerritory(territory.name);
+                    Communicator.SendData.AddNotFreeTerritory(territory.name);
                     ItemCommand itemCommand = new ItemCommand();
-                    itemCommand.SetPosition(territory.transform.position);
                     itemCommand.ObjectType = _cuurentChoosenItem;
                     itemCommand.ParentTerritoryName = territory.name;
                     _sendedCommands.Add(itemCommand);
@@ -110,6 +109,12 @@ namespace Assets.Code.Scripts.Gameplay
                                 seed.OnPick();
                                 Destroy(seed.gameObject);
                             }
+                            if(User.IsConnectionCreated)
+                            {
+                                Communicator.SendData.NotFreeTerritoryList
+                                    .Remove(seed.GetParentTerritoryName());
+                            }
+                            
                             break;
                         }
                     case Item.Watering:

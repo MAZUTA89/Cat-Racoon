@@ -72,6 +72,11 @@ namespace Assets.Code.Scripts.Gameplay
         {
             _parent?.SetEmpty(true);
         }
+
+        public string GetParentTerritoryName()
+        {
+            return _parent.name;
+        }
         private void OnMouseEnter()
         {
             _sprite.color = new Color(_sprite.color.r, _sprite.color.g,

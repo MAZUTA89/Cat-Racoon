@@ -10,12 +10,12 @@ namespace Assets.Code.Scripts.Boot.Data
     {
         public List<ItemCommand> ItemCommands;
         public List<ItemCommand> CompletedCommands;
-        public List<String> NotEmptyTerritoryList;
+        public List<String> NotFreeTerritoryList;
         public PlayerData() 
         {
             ItemCommands = new List<ItemCommand>();
             CompletedCommands = new List<ItemCommand>();
-            NotEmptyTerritoryList = new List<String>();
+            NotFreeTerritoryList = new List<String>();
         }
         public bool IsLeftButton;
         public float Money;
@@ -39,9 +39,9 @@ namespace Assets.Code.Scripts.Boot.Data
         {
            CompletedCommands.Add(itemCommand);
         }
-        public void AddNotEmptyTerritory(string name)
+        public void AddNotFreeTerritory(string name)
         {
-            NotEmptyTerritoryList.Add(name);
+            NotFreeTerritoryList.Add(name);
         }
     }
 }
