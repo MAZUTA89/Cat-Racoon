@@ -31764,7 +31764,7 @@ MonoBehaviour:
   HostSpawnPoint: {fileID: 185157439}
   ConnectedPlayerPrefab: {fileID: 2037898580320755725, guid: abd01f270526441438be83ddbffaf50f, type: 3}
   ConnectedPlayerSpawnPoint: {fileID: 780764767}
-  Mode: 0
+  Mode: 1
   Camera: {fileID: 1306971609}
 --- !u!114 &1481694332
 MonoBehaviour:

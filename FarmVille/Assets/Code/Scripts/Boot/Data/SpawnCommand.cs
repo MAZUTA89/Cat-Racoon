@@ -10,6 +10,7 @@ namespace Assets.Code.Scripts.Boot.Data
     public class ItemCommand
     {
         public Item ObjectType;
+        public CommandType CommandType;
         
         public string ParentTerritoryName;
         public override bool Equals(object obj)
@@ -21,12 +22,13 @@ namespace Assets.Code.Scripts.Boot.Data
             ItemCommand command = (ItemCommand)obj;
 
             return command.ObjectType == ObjectType
-                && command.ParentTerritoryName == ParentTerritoryName;
+                && command.ParentTerritoryName == ParentTerritoryName
+                && command.CommandType == CommandType;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(ObjectType, ParentTerritoryName);
+            return HashCode.Combine(ObjectType, ParentTerritoryName, CommandType);
         }
     }
 }

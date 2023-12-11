@@ -55,24 +55,43 @@ namespace Assets.Code.Scripts.Gameplay
                 List<string> NotFreeTerr = Communicator.RecvData.NotFreeTerritoryList;
                 for (int i = 0; i < commands.Count; i++)
                 {
-                    Seed seedPrefab = _seedsService.GetSeedFor(commands[i].ObjectType);
-                    SeedSO seedSO = _seedsService.GetSeedSOFor(commands[i].ObjectType);
-
-                    PlantTerritory terr = 
-                        _territoryService.GetTerritiryByObjectName(commands[i].ParentTerritoryName);
-
-                    if (terr.IsEmpty == true)
+                    switch(commands[i].CommandType)
                     {
-                        seedPrefab = Instantiate(seedPrefab,
-                            terr.transform);
+                        case CommandType.Spawn:
+                            {
+                                Seed seedPrefab = _seedsService.GetSeedFor(commands[i].ObjectType);
+                                SeedSO seedSO = _seedsService.GetSeedSOFor(commands[i].ObjectType);
 
-                        seedPrefab.Initialize(seedSO);
-                        terr.SetEmpty(false);
-                        Communicator.SendData.AddComplitedCommand(commands[i]);
-                        Communicator.SendData.AddNotFreeTerritory(commands[i].ParentTerritoryName);
-                        Debug.Log("Добавил в Send готовую");
-                        commands.RemoveAt(i);
+                                PlantTerritory terr =
+                                    _territoryService.GetTerritiryByObjectName(commands[i].ParentTerritoryName);
+
+                                if (terr.IsEmpty == true)
+                                {
+                                    seedPrefab = Instantiate(seedPrefab,
+                                        terr.transform);
+
+                                    seedPrefab.Initialize(seedSO);
+                                    terr.SetEmpty(false);
+                                    terr.SetSeed(seedPrefab);
+                                    Communicator.SendData.AddComplitedCommand(commands[i]);
+                                    Communicator.SendData.AddNotFreeTerritory(commands[i].ParentTerritoryName);
+                                    Debug.Log("Добавил в Send готовую");
+                                    
+                                }
+                                break;
+                            }
+                        case CommandType.Delete:
+                            {
+                                PlantTerritory terr =
+                                    _territoryService.GetTerritiryByObjectName(commands[i].ParentTerritoryName);
+
+                                terr.DestroySeed();
+                                terr.SetEmpty(true);
+                                break;
+                            }
                     }
+                    commands.RemoveAt(i);
+
                 }
             }
         }

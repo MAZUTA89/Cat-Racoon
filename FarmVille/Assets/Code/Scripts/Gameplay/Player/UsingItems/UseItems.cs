@@ -85,6 +85,7 @@ namespace Assets.Code.Scripts.Gameplay
                 seedPrefab = Instantiate(seedPrefab, territory.transform);
 
                 seedPrefab.Initialize(seedSO, territory);
+                territory.SetSeed(seedPrefab);
 
                 territory.SetEmpty(false);
 
@@ -96,6 +97,7 @@ namespace Assets.Code.Scripts.Gameplay
                     ItemCommand itemCommand = new ItemCommand();
                     itemCommand.ObjectType = _cuurentChoosenItem;
                     itemCommand.ParentTerritoryName = territory.name;
+                    itemCommand.CommandType = CommandType.Spawn;
                     _sendedCommands.Add(itemCommand);
                     Communicator.SendData.AddItemCommand(itemCommand);
                 }
@@ -120,6 +122,11 @@ namespace Assets.Code.Scripts.Gameplay
                             }
                             if(User.IsConnectionCreated)
                             {
+                                ItemCommand itemCommand = new ItemCommand();
+                                itemCommand.ParentTerritoryName = seed.GetParentTerritoryName();
+                                itemCommand.CommandType = CommandType.Delete;
+                                itemCommand.ObjectType = _cuurentChoosenItem;
+                                Communicator.SendData.AddItemCommand(itemCommand);
                                 Communicator.SendData.NotFreeTerritoryList
                                     .Remove(seed.GetParentTerritoryName());
                             }

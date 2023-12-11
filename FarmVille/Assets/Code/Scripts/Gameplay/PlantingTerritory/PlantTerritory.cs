@@ -17,6 +17,7 @@ namespace Assets.Code.Scripts.Gameplay.PlantingTerritory
         protected SpriteRenderer Sprite;
         Color _defaultColor;
         TerritoryService _territoryService;
+        Seed _seed;
         [Inject]
         public void Constructor(TerritoryService territoryService)
         {
@@ -43,7 +44,17 @@ namespace Assets.Code.Scripts.Gameplay.PlantingTerritory
         {
             return SeedsToGrow.Contains(seed);
         }
-
+        public void SetSeed(Seed seed)
+        {
+            _seed = seed;
+        }
+        public void DestroySeed()
+        {
+            if(_seed != null)
+            {
+                Destroy(_seed.gameObject);
+            }
+        }
         public void SetEmpty(bool isEmpty)
         {
             IsEmpty = isEmpty;

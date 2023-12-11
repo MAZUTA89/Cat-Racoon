@@ -17,10 +17,12 @@ namespace Assets.Code
         Farm
     }
 
-    public enum ObjectType
+    public enum CommandType
     {
-        Cube
+        Spawn,
+        Delete
     }
+
     public enum Item
     {
         Basket,
