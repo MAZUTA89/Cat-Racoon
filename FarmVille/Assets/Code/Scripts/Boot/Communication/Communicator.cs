@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Assets.Code.Scripts.Boot.Data;
 using ClientServer;
+using PimDeWitte.UnityMainThreadDispatcher;
 using UnityEngine;
 
 namespace Assets.Code.Scripts.Boot.Communication
@@ -15,8 +16,8 @@ namespace Assets.Code.Scripts.Boot.Communication
         TCPBase _user;
         public static PlayerData SendData { get; set; }
         public static PlayerData RecvData { get; set; }
-        public  PlayerData sendData { get; set; }
-        public  PlayerData recvData { get; set; }
+        public PlayerData sendData { get; set; }
+        public PlayerData recvData { get; set; }
         int _tick;
 
         Task _communicateTask;
@@ -45,22 +46,19 @@ namespace Assets.Code.Scripts.Boot.Communication
             {
                 try
                 {
-                   // Debug.Log("Tick");
-                    //RecvData = await CommunicateFix();
+                    Debug.Log("Tick");
                     RecvData = await CommunicateFix();
-                    if(RecvData.CompletedCommands.Count > 0)
-                    {
-                        CommunicationEvents.InvokeOnComplitedAdded();
-                    }
-                    // Debug.Log($"Recv: {RecvData.GetPosition()}");
-                    //CommunicationEvents.InvokeDataSendedIvent();
                     await Task.Delay(_tick);
                 }
                 catch (Exception ex)
                 {
-                    Debug.Log(ex.Message);
+                    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                    {
+                        GameEvents.InvokeGameOverEvent();
+                        Debug.Log(ex.Message);
+                    });
                 }
-                
+
             }
         }
 
@@ -70,9 +68,10 @@ namespace Assets.Code.Scripts.Boot.Communication
             int sendBytes = await _user.SendFixAcync(SendData);
             if (sendBytes < 1)
             {
+                GameEvents.InvokeGameOverEvent();
                 Console.WriteLine(_user.GetLastError());
             }
-            
+
             PlayerData recv = await _user.RecvFixAcync<PlayerData>();
 
             if (recv != null)
@@ -81,7 +80,11 @@ namespace Assets.Code.Scripts.Boot.Communication
             }
             else
             {
-                Console.WriteLine("Recv is Null");
+                UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                {
+                    GameEvents.InvokeGameOverEvent();
+                    Console.WriteLine("Recv is Null");
+                });
                 return default;
             }
         }

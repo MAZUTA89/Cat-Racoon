@@ -138,7 +138,8 @@ namespace Assets.Code.Scripts.Gameplay
                         }
                     case Item.Watering:
                         {
-                            if (_inventory[_cuurentChoosenItem] < 1)
+                            if (_inventory[_cuurentChoosenItem] < 1
+                                && seed.ParentPlayer == User.Instance.PlayerType)
                                 break;
 
                             if (seed.Status == GrowStatus.Growing)

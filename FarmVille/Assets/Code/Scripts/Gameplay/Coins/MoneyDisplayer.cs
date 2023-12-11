@@ -19,22 +19,17 @@ namespace Assets.Code.Scripts.Gameplay
         {
             CurrentMoney = 0;
             IsConnectionCreated = false;
-            CommunicationEvents.OnStartCommunicateEvent += OnConnectionCreated;
             OnStart();
         }
 
         private void OnDisable()
         {
-            CommunicationEvents.OnStartCommunicateEvent -= OnConnectionCreated;
             Disable();
         }
         protected abstract void OnStart();
         protected abstract void Disable();
 
-        void OnConnectionCreated()
-        {
-            IsConnectionCreated = true;
-        }
+        
 
     }
 }

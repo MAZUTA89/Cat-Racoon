@@ -1,4 +1,5 @@
-﻿using Assets.Code.Scripts.Boot.Communication;
+﻿using Assets.Code.Scripts.Boot;
+using Assets.Code.Scripts.Boot.Communication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Assets.Code.Scripts.Gameplay
         public void OnPickSeed(float money)
         {
             CurrentMoney += money;
-            if(IsConnectionCreated)
+            if(User.IsConnectionCreated)
             {
                 Communicator.SendData.Money = CurrentMoney;
             }

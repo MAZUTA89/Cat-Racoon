@@ -16,10 +16,13 @@ namespace Assets.Code.Scripts.Gameplay
         public float NightIntensivity;
         [SerializeField] Light Lighting;
         List<Light> SpotLights;
-        public float DayTime = 30f;
-        public static int Days;
+        public int DaysToEnd;
+        public float DayTime;
+        public float TestDayTime;
+        public static int CurrentDays;
         public float _currentTime;
         public float AddIntensivity;
+        [SerializeField] bool IsTest;
         bool _flag;
         [Inject]
         public void Constructor(List<Light> lights)
@@ -30,17 +33,26 @@ namespace Assets.Code.Scripts.Gameplay
         {
             _flag = true;
             _currentTime = 0f;
+            if(IsTest)
+            {
+                DayTime = TestDayTime;
+            }
         }
 
         private void Update()
         {
-            _currentTime += Time.fixedDeltaTime;
+            if(CurrentDays >= DaysToEnd)
+            {
+                GameEvents.InvokeGameOverEvent();
+                return;
+            }
+            _currentTime += Time.deltaTime;
             if (_currentTime >= DayTime)
             {
                 if(_flag == false)
                 {
                     GameEvents.InvokeOnDayStartEvent(DayIntensivity);
-                    Days++;
+                    CurrentDays++;
                 }
                 else
                 {
@@ -62,7 +74,7 @@ namespace Assets.Code.Scripts.Gameplay
                 Lighting.intensity = Mathf.Lerp(Lighting.intensity, NightIntensivity, AddIntensivity * Time.deltaTime);
             }
 
-            DaysText.text = Days.ToString();
+            DaysText.text = CurrentDays.ToString();
         }
 
         public void StartNight()
@@ -74,7 +86,7 @@ namespace Assets.Code.Scripts.Gameplay
                     Lighting.intensity -= AddIntensivity;
                     await Task.Delay(10);
                 }
-                Days++;
+                CurrentDays++;
             });
         }
 

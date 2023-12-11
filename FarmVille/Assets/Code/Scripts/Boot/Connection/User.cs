@@ -31,11 +31,13 @@ namespace Assets.Code.Scripts.Boot
         {
             IsConnectionCreated = false;
             LevelLoader.onLevelLoadedEvent += OnLevelLoaded;
+            GameEvents.OnDayStartEvent += OnGameOver;
         }
 
         private void OnDisable()
         {
             LevelLoader.onLevelLoadedEvent -= OnLevelLoaded;
+            GameEvents.OnDayStartEvent += OnGameOver;
             _communicator?.Stop();
         }
 
@@ -107,6 +109,11 @@ namespace Assets.Code.Scripts.Boot
 
             // Преобразуем время в строку и выводим в консоль
             Debug.Log("Current Time: " + LoadTime.ToString());
+        }
+
+        void OnGameOver()
+        {
+            _communicator?.Stop();
         }
     }
 }

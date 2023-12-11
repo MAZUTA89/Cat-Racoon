@@ -1,6 +1,8 @@
+using Assets.Code.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
 public class InputService : IDisposable
@@ -10,6 +12,7 @@ public class InputService : IDisposable
     {
         _playerControls = new PlayerControls();
         _playerControls.Enable();
+        GameEvents.OnGameOverEvent += OnGameOver;
     }
 
     public Vector2 GetMovement()
@@ -62,5 +65,10 @@ public class InputService : IDisposable
     {
         _playerControls.Disable();
         _playerControls.Dispose();
+    }
+
+    public void OnGameOver()
+    {
+        _playerControls.Disable();
     }
 }
