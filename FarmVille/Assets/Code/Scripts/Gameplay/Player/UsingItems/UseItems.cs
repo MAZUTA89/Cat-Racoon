@@ -17,7 +17,7 @@ namespace Assets.Code.Scripts.Gameplay
     public class UseItems : MonoBehaviour
     {
         [SerializeField] float Distance = 30f;
-        
+
         CursorRay _cursorRay;
         Item _cuurentChoosenItem;
         InventoryInputService _inventoryInputService;
@@ -32,7 +32,7 @@ namespace Assets.Code.Scripts.Gameplay
             _seedsService = seedsService;
             _inventory = inventory;
         }
-        
+
         private void OnDisable()
         {
             _cursorRay.OnHitTerritoryEvent -= OnHitTerritory2DCollider;
@@ -84,20 +84,21 @@ namespace Assets.Code.Scripts.Gameplay
 
                 seedPrefab = Instantiate(seedPrefab, territory.transform);
 
-                seedPrefab.Initialize(seedSO, territory);
+                seedPrefab.Initialize(seedSO, territory, User.Instance.PlayerType);
                 territory.SetSeed(seedPrefab);
 
                 territory.SetEmpty(false);
 
                 _inventory[_cuurentChoosenItem]--;
 
-                if(User.IsConnectionCreated)
+                if (User.IsConnectionCreated)
                 {
                     Communicator.SendData.AddNotFreeTerritory(territory.name);
                     ItemCommand itemCommand = new ItemCommand();
                     itemCommand.ObjectType = _cuurentChoosenItem;
                     itemCommand.ParentTerritoryName = territory.name;
                     itemCommand.CommandType = CommandType.Spawn;
+                    itemCommand.PlayerType = User.Instance.PlayerType;
                     _sendedCommands.Add(itemCommand);
                     Communicator.SendData.AddItemCommand(itemCommand);
                 }
@@ -106,31 +107,33 @@ namespace Assets.Code.Scripts.Gameplay
 
         void UsingTools(GameObject go)
         {
-            if(go.TryGetComponent(out Seed seed))
+            if (go.TryGetComponent(out Seed seed))
             {
                 switch (_cuurentChoosenItem)
                 {
                     case Item.Basket:
                         {
-                            if(seed.Status == GrowStatus.Ready)
+                            if (seed.Status == GrowStatus.Ready
+                                && seed.ParentPlayer == User.Instance.PlayerType)
                             {
                                 GameEvents.InvokePickSeedEvent(seed.Money);
                                 _inventory[Item.Watering] += Random.Range(0, 2);
                                 _inventory[seed.GetSeedType()] += Random.Range(1, 3);
                                 seed.OnPick();
                                 Destroy(seed.gameObject);
+
+                                if (User.IsConnectionCreated)
+                                {
+                                    ItemCommand itemCommand = new ItemCommand();
+                                    itemCommand.ParentTerritoryName = seed.GetParentTerritoryName();
+                                    itemCommand.CommandType = CommandType.Delete;
+                                    itemCommand.ObjectType = _cuurentChoosenItem;
+                                    Communicator.SendData.AddItemCommand(itemCommand);
+                                    Communicator.SendData.NotFreeTerritoryList
+                                        .Remove(seed.GetParentTerritoryName());
+                                }
                             }
-                            if(User.IsConnectionCreated)
-                            {
-                                ItemCommand itemCommand = new ItemCommand();
-                                itemCommand.ParentTerritoryName = seed.GetParentTerritoryName();
-                                itemCommand.CommandType = CommandType.Delete;
-                                itemCommand.ObjectType = _cuurentChoosenItem;
-                                Communicator.SendData.AddItemCommand(itemCommand);
-                                Communicator.SendData.NotFreeTerritoryList
-                                    .Remove(seed.GetParentTerritoryName());
-                            }
-                            
+
                             break;
                         }
                     case Item.Watering:
@@ -138,7 +141,7 @@ namespace Assets.Code.Scripts.Gameplay
                             if (_inventory[_cuurentChoosenItem] < 1)
                                 break;
 
-                            if(seed.Status == GrowStatus.Growing)
+                            if (seed.Status == GrowStatus.Growing)
                             {
                                 seed.Boost();
                                 _inventory[_cuurentChoosenItem]--;

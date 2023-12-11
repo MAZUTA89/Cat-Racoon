@@ -71,7 +71,7 @@ namespace Assets.Code.Scripts.Gameplay
                                     seedPrefab = Instantiate(seedPrefab,
                                         terr.transform);
 
-                                    seedPrefab.Initialize(seedSO, terr);
+                                    seedPrefab.Initialize(seedSO, terr, commands[i].PlayerType);
                                     terr.SetEmpty(false);
                                     terr.SetSeed(seedPrefab);
                                     Communicator.SendData.AddComplitedCommand(commands[i]);

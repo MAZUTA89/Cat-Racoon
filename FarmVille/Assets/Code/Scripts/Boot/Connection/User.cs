@@ -20,16 +20,13 @@ namespace Assets.Code.Scripts.Boot
         public static DateTime LoadTime;
         public static bool IsConnectionCreated { get; private set; }
         public ConnectionType ConnectionType { get; private set; }
+        public PlayerType PlayerType { get; private set; }
         Communicator _communicator;
         public TextMeshProUGUI RecvTimeText;
         public TextMeshProUGUI SendTimeText;
         public TextMeshProUGUI DiffTimeText;
         public TextMeshProUGUI StartTimeText;
 
-        protected override void OnAwake()
-        {
-            ConnectionType = ConnectionType.Server;
-        }
         private void Start()
         {
             IsConnectionCreated = false;
@@ -51,6 +48,12 @@ namespace Assets.Code.Scripts.Boot
         {
             _userBase = userBase;
             ConnectionType = connectionType;
+            if(connectionType == ConnectionType.Server)
+            {
+                PlayerType = PlayerType.Player1;
+            }
+            else
+                PlayerType = PlayerType.Player2;
         }
 
         public async void OnLevelLoaded()

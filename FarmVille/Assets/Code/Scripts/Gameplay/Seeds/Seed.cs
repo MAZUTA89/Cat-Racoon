@@ -13,6 +13,7 @@ namespace Assets.Code.Scripts.Gameplay
     public class Seed : MonoBehaviour
     {
         [SerializeField] Item Type;
+        public PlayerType ParentPlayer;
         protected float GrowingTime;
         protected Sprite GrowingUpSprite;
         public float Money { get; private set; }
@@ -46,11 +47,12 @@ namespace Assets.Code.Scripts.Gameplay
             }
         }
 
-        public void Initialize(SeedSO seedSO, PlantTerritory parent)
+        public void Initialize(SeedSO seedSO, PlantTerritory parent, PlayerType playerType)
         {
             GrowingTime = seedSO.GrowingTime;
             GrowingUpSprite = seedSO.GrowingUpSprite;
             Money = seedSO.Money;
+            ParentPlayer = playerType;
             _parent = parent;
         }
         public void Initialize(SeedSO seedSO)
