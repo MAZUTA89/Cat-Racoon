@@ -20,6 +20,9 @@ namespace Assets.Code.Scripts.Gameplay
         private void Start()
         {
             GameEvents.OnGameOverEvent += OnGameOver;
+            GameOverPanel.SetActive(false);
+            LoseText.gameObject.SetActive(false);
+            WinText.gameObject.SetActive(false);
         }
         private void OnDisable()
         {

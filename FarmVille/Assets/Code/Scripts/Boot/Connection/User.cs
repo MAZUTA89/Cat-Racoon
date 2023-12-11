@@ -16,17 +16,14 @@ namespace Assets.Code.Scripts.Boot
 {
     public class User : BootSingleton<User>
     {
+        const int c_tick = 00005;
         TCPBase _userBase;
         public static DateTime LoadTime;
         public static bool IsConnectionCreated { get; private set; }
         public ConnectionType ConnectionType { get; private set; }
         public PlayerType PlayerType { get; private set; }
         Communicator _communicator;
-        public TextMeshProUGUI RecvTimeText;
-        public TextMeshProUGUI SendTimeText;
-        public TextMeshProUGUI DiffTimeText;
-        public TextMeshProUGUI StartTimeText;
-
+        
         private void Start()
         {
             IsConnectionCreated = false;
@@ -37,7 +34,7 @@ namespace Assets.Code.Scripts.Boot
         private void OnDisable()
         {
             LevelLoader.onLevelLoadedEvent -= OnLevelLoaded;
-            GameEvents.OnGameOverEvent += OnGameOver;
+            GameEvents.OnGameOverEvent -= OnGameOver;
             _communicator?.Stop();
         }
 
@@ -61,7 +58,7 @@ namespace Assets.Code.Scripts.Boot
         public async void OnLevelLoaded()
         {
             _communicator = new Communicator
-                (_userBase, 00005);
+                (_userBase, c_tick);
 
             bool checkSignalResult = false;
             StartCommunicationSignal signal
@@ -90,30 +87,24 @@ namespace Assets.Code.Scripts.Boot
                 return;
             }
 
-            SendTimeText.text += signal.DateTime.ToString() + " " + signal.DateTime.Millisecond;
-            RecvTimeText.text += recvSignal.DateTime.ToString() + " " + recvSignal.DateTime.Millisecond;
             if (checkSignalResult)
             {
                 if (signal.DateTime < recvSignal.DateTime)
                 {
                     TimeSpan diff = recvSignal.DateTime - signal.DateTime;
-                    DiffTimeText.text += diff.ToString();
                     await Task.Delay(diff);
                 }
                 DateTime loadTime = DateTime.Now;
-                StartTimeText.text += loadTime.ToString() + " " + loadTime.Millisecond;
                 _communicator.Start();
                 IsConnectionCreated = true;
                 CommunicationEvents.InvokeCommunicationEvent();
             }
-
-            // Преобразуем время в строку и выводим в консоль
-            Debug.Log("Current Time: " + LoadTime.ToString());
         }
 
         void OnGameOver()
         {
             _communicator?.Stop();
+            User.IsConnectionCreated = false;
         }
     }
 }

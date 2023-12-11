@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Code.Scripts
 {
@@ -27,6 +28,7 @@ namespace Assets.Code.Scripts
         }
         public static void InvokeGameOverEvent()
         {
+            Debug.Log("GAME OVER!");
             OnGameOverEvent?.Invoke();
         }
     }

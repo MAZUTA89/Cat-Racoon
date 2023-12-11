@@ -11,6 +11,8 @@ namespace Assets.Code.Scripts.Boot.Data
         public List<ItemCommand> ItemCommands;
         public List<ItemCommand> CompletedCommands;
         public List<String> NotFreeTerritoryList;
+        public float DirectionX;
+        public float DirectionY;
         public PlayerData() 
         {
             ItemCommands = new List<ItemCommand>();
@@ -42,6 +44,15 @@ namespace Assets.Code.Scripts.Boot.Data
         public void AddNotFreeTerritory(string name)
         {
             NotFreeTerritoryList.Add(name);
+        }
+        public void SetDirection(Vector2 direction)
+        {
+            DirectionX = direction.x;
+            DirectionY = direction.y;
+        }
+        public Vector2 GetDirection()
+        {
+            return new Vector2(DirectionX, DirectionY);
         }
     }
 }

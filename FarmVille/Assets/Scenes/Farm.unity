@@ -25087,7 +25087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.120269775, y: 0.16833496}
+  m_AnchoredPosition: {x: 0.12023926, y: 0.16833496}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1134220533
@@ -25958,7 +25958,7 @@ MonoBehaviour:
   Lighting: {fileID: 1455517403}
   DaysToEnd: 4
   DayTime: 60
-  TestDayTime: 10
+  TestDayTime: 5.14
   _currentTime: 0
   AddIntensivity: 0.3
   IsTest: 0
@@ -32111,9 +32111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a2b68d2859c71a4d8c48a28a7c9a3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 2037898580320755725, guid: 701ea751b55b8154f9ef3af98cf2fc09, type: 3}
+  PlayerPrefab: {fileID: 3337603967268007006, guid: 3188d2907548bd44a80b917c915719ae, type: 3}
   HostSpawnPoint: {fileID: 185157439}
-  ConnectedPlayerPrefab: {fileID: 2037898580320755725, guid: abd01f270526441438be83ddbffaf50f, type: 3}
+  ConnectedPlayerPrefab: {fileID: 1032107991144523220, guid: 1d95b9995add40f4290ad1ca96f29611, type: 3}
   ConnectedPlayerSpawnPoint: {fileID: 780764767}
   Mode: 1
   Camera: {fileID: 1306971609}

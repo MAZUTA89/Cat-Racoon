@@ -1,31 +1,34 @@
-﻿using Assets.Code.Scripts.Boot.Communication;
+﻿using Assets.Code.Scripts.Boot;
+using Assets.Code.Scripts.Boot.Communication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
 {
     public class ConnectedPlayerMovement : Movement
     {
-        bool _isCommunicateStarted;
-
-        private void OnEnable()
-        {
-            CommunicationEvents.OnStartCommunicateEvent += OnStartCommunicate;
-        }
-        private void OnDisable()
-        {
-            CommunicationEvents.OnStartCommunicateEvent -= OnStartCommunicate;
-        }
         public override void OnStart()
         {
-            _isCommunicateStarted = false;
         }
+
+        private void Update()
+        {
+            if(User.IsConnectionCreated)
+            {
+                Vector2 input = Communicator.RecvData.GetDirection();
+                if(input != Vector2.zero)
+                    Debug.Log($"Recv input: {input}");
+                InputAndAnimateInFouthDirections(ref input);
+            }
+        }
+
         private void FixedUpdate()
         {
-            if (_isCommunicateStarted)
+            if (User.IsConnectionCreated)
             {
                 NewPosition = Communicator.RecvData.GetPosition();
                 CurrentPosition = RigidBody.position;
@@ -33,9 +36,6 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
                 
             }
         }
-        void OnStartCommunicate()
-        {
-            _isCommunicateStarted = true;
-        }
+        
     }
 }

@@ -15,7 +15,6 @@ namespace Assets.Code.Scripts.Gameplay
         public float DayIntensivity;
         public float NightIntensivity;
         [SerializeField] Light Lighting;
-        List<Light> SpotLights;
         public int DaysToEnd;
         public float DayTime;
         public float TestDayTime;
@@ -24,15 +23,12 @@ namespace Assets.Code.Scripts.Gameplay
         public float AddIntensivity;
         [SerializeField] bool IsTest;
         bool _flag;
-        [Inject]
-        public void Constructor(List<Light> lights)
-        {
-            SpotLights = lights;
-        }
+        bool _isGameOver;
         private void Start()
         {
             _flag = true;
             _currentTime = 0f;
+            _isGameOver = false;
             if(IsTest)
             {
                 DayTime = TestDayTime;
@@ -41,8 +37,10 @@ namespace Assets.Code.Scripts.Gameplay
 
         private void Update()
         {
-            if(CurrentDays >= DaysToEnd)
+            if(CurrentDays >= DaysToEnd && _isGameOver == false)
             {
+                _isGameOver = true;
+                CurrentDays = 0;
                 GameEvents.InvokeGameOverEvent();
                 return;
             }
@@ -65,44 +63,15 @@ namespace Assets.Code.Scripts.Gameplay
 
             if (_flag)
             {
-                DeactivateSpotLights();
                 Lighting.intensity = Mathf.Lerp(Lighting.intensity, DayIntensivity, AddIntensivity * Time.deltaTime);
             }
             else
             {
-                ActivateSpotLights();
                 Lighting.intensity = Mathf.Lerp(Lighting.intensity, NightIntensivity, AddIntensivity * Time.deltaTime);
             }
 
             DaysText.text = CurrentDays.ToString();
         }
 
-        public void StartNight()
-        {
-            Task.Run(async () =>
-            {
-                while (Lighting.intensity >= NightIntensivity)
-                {
-                    Lighting.intensity -= AddIntensivity;
-                    await Task.Delay(10);
-                }
-                CurrentDays++;
-            });
-        }
-
-        void ActivateSpotLights()
-        {
-            foreach (var light in SpotLights)
-            {
-                light.gameObject.SetActive(true);
-            }
-        }
-        void DeactivateSpotLights()
-        {
-            foreach (var light in SpotLights)
-            {
-                light.gameObject.SetActive(false);
-            }
-        }
     }
 }

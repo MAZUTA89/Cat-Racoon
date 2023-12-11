@@ -1,0 +1,939 @@
+fileFormatVersion: 2
+guid: 46e74536a6c652e4d9087e074bcaed6e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 45
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 256
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c53abf3b1e56e742bc51e352625853a
+      internalID: -1337682826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 256
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8be570a73d8fc35488ceb3f553fb98d2
+      internalID: -455203858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39062c5e7f2b72f4e8e0fc1bb73fc196
+      internalID: -1592065971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_3
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 256
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d4716bd0a8ca8147b456174b0d13f50
+      internalID: 51300872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 224
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6679d808918b7be40bf3825a80667a1b
+      internalID: 932948023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_5
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 224
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10ffbd21e88d81948913cd0c5204b92a
+      internalID: 797269654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 385166e9c363faa43b942297ea0f30cf
+      internalID: -1223134766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_7
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 224
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed20fa18182eea6479ae073aced8a7bf
+      internalID: -1011800720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 192
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b29e67398d0355d41a1eabf9aeebea4d
+      internalID: -1805331000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_9
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 192
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92495a9be24eaac4e817cbefd7d84ff0
+      internalID: 1824896320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9216130904a283e459bdebcb49b44432
+      internalID: -1399726752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_11
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 192
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62da628d35c058847903524e900c71b4
+      internalID: 279188543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 160
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66fb2c2477dce6e41be3c696941ffe24
+      internalID: 719965805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_13
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 160
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e932732200f941f498f46f16c8a2e22e
+      internalID: -1302467305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 023c04d680f631549999985d5131f5d7
+      internalID: -1272468664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_15
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 160
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a7566237e74b6c4c94b7cba47fa8df7
+      internalID: -1537763918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_16
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 128
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 331a4515c109e974b8528e8901311f87
+      internalID: 136464292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_17
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 128
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c982ae2809f03b547b4b3571757692e5
+      internalID: -1678974872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d5aa5fcfa7f8174d92121e7d930ae3a
+      internalID: 944547254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_19
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 128
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94ce6e9e111b8bd4dbe9583ad3c05c9d
+      internalID: 1375860712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_20
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 96
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c8bbe5f0649af4d9d1c9b815585a2c
+      internalID: 573739734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_21
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 96
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cfe0a290568cc04498fc46b4e43a192
+      internalID: 1516652177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_22
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa9b9cb89f1be04eab63e61514e94d3
+      internalID: 1831519052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_23
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 96
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dadc46c26294c7445ba8ba19ef4769cf
+      internalID: -626555296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_24
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 64
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d9893dda1f184b4d971eb2ccf1985bf
+      internalID: -1650307385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_25
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 64
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 782590bd083de994cb5a75acd959adb4
+      internalID: -1571649062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b69ac30a55a414047b663c5048204d13
+      internalID: -1977357051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_27
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 64
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6706ae25d8b5be340842faef69f484cf
+      internalID: 1310904317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_28
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 32
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2f58eee138d21f488ad2e765fa864fc
+      internalID: -1416013690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_29
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 32
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d39f75d601945349858b166e7488091
+      internalID: -2104177240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_30
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dec1ab7eb7b0f9e4ba00f9798cb70c58
+      internalID: 683822117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_31
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 32
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 578c88d2b5c9f9940830af584763fa94
+      internalID: -1907223986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_32
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b71a71e35a8803e4bbc8f9f3c7120585
+      internalID: -515632855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_33
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82ef4dedc2d160546894dfb704d5a5b5
+      internalID: -1594258070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_34
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 391420b1bfe677a4a8ca5551f0f01507
+      internalID: 416975121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RACCOONSPRITESHEET_35
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 0
+        width: 31.5
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6099b7230192cc40b35082f1aad736e
+      internalID: -776163304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      RACCOONSPRITESHEET_24: -1650307385
+      RACCOONSPRITESHEET_0: -1337682826
+      RACCOONSPRITESHEET_6: -1223134766
+      RACCOONSPRITESHEET_18: 944547254
+      RACCOONSPRITESHEET_3: 51300872
+      RACCOONSPRITESHEET_5: 797269654
+      RACCOONSPRITESHEET_12: 719965805
+      RACCOONSPRITESHEET_16: 136464292
+      RACCOONSPRITESHEET_21: 1516652177
+      RACCOONSPRITESHEET_30: 683822117
+      RACCOONSPRITESHEET_28: -1416013690
+      RACCOONSPRITESHEET_14: -1272468664
+      RACCOONSPRITESHEET_25: -1571649062
+      RACCOONSPRITESHEET_29: -2104177240
+      RACCOONSPRITESHEET_20: 573739734
+      RACCOONSPRITESHEET_17: -1678974872
+      RACCOONSPRITESHEET_35: -776163304
+      RACCOONSPRITESHEET_8: -1805331000
+      RACCOONSPRITESHEET_26: -1977357051
+      RACCOONSPRITESHEET_32: -515632855
+      RACCOONSPRITESHEET_2: -1592065971
+      RACCOONSPRITESHEET_31: -1907223986
+      RACCOONSPRITESHEET_34: 416975121
+      RACCOONSPRITESHEET_7: -1011800720
+      RACCOONSPRITESHEET_11: 279188543
+      RACCOONSPRITESHEET_1: -455203858
+      RACCOONSPRITESHEET_4: 932948023
+      RACCOONSPRITESHEET_9: 1824896320
+      RACCOONSPRITESHEET_13: -1302467305
+      RACCOONSPRITESHEET_19: 1375860712
+      RACCOONSPRITESHEET_10: -1399726752
+      RACCOONSPRITESHEET_15: -1537763918
+      RACCOONSPRITESHEET_23: -626555296
+      RACCOONSPRITESHEET_27: 1310904317
+      RACCOONSPRITESHEET_33: -1594258070
+      RACCOONSPRITESHEET_22: 1831519052
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

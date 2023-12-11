@@ -17,8 +17,6 @@ namespace Assets.Code.Scripts.Boot.Communication
         TCPBase _user;
         public static PlayerData SendData { get; set; }
         public static PlayerData RecvData { get; set; }
-        public PlayerData sendData { get; set; }
-        public PlayerData recvData { get; set; }
         int _tick;
 
         Task _communicateTask;
@@ -34,8 +32,6 @@ namespace Assets.Code.Scripts.Boot.Communication
 
         public void Start()
         {
-            //_timer = new Timer(TimerCallBack, 0, 0, _tick);
-
             _communicateTask = Task.Factory.StartNew(CommunicateTask, _cancellationTokenSource.Token,
                 _cancellationTokenSource.Token);
         }
@@ -98,6 +94,8 @@ namespace Assets.Code.Scripts.Boot.Communication
         public void Stop()
         {
             _cancellationTokenSource?.Cancel();
+            SendData = null;
+            RecvData = null;
         }
 
     }
