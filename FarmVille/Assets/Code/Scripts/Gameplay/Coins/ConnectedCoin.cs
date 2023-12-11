@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Code.Scripts.Gameplay.Coins
 {
@@ -12,8 +13,9 @@ namespace Assets.Code.Scripts.Gameplay.Coins
     {
         private void Update()
         {
-            if(IsConnectionCreated)
+            if(User.IsConnectionCreated)
             {
+                Debug.Log($"Connected coin: {Communicator.RecvData.Money}");
                 CoinText.text = Communicator.RecvData.Money.ToString();
             }
         }

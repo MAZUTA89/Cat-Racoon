@@ -47,7 +47,7 @@ namespace Assets.Code.Scripts.Boot.Communication
             {
                 try
                 {
-                    Debug.Log("Tick");
+                    //Debug.Log("Tick");
                     RecvData = await CommunicateFix();
                     await Task.Delay(_tick);
                 }

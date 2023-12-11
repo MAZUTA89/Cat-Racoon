@@ -13,12 +13,10 @@ namespace Assets.Code.Scripts.Gameplay
     {
         public TextMeshProUGUI CoinText;
         protected float CurrentMoney;
-        protected bool IsConnectionCreated;
 
         private void Start()
         {
             CurrentMoney = 0;
-            IsConnectionCreated = false;
             OnStart();
         }
 

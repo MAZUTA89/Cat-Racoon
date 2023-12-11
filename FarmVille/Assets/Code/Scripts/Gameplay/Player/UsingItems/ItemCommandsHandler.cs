@@ -25,14 +25,6 @@ namespace Assets.Code.Scripts.Gameplay
             _territoryService = territoryService;
         }
 
-        public void Start()
-        {
-            CommunicationEvents.oncomplitedAdded += OnComplitedAdded;
-        }
-        private void OnDisable()
-        {
-            CommunicationEvents.oncomplitedAdded -= OnComplitedAdded;
-        }
         private void Update()
         {
             if (User.IsConnectionCreated)
@@ -42,17 +34,14 @@ namespace Assets.Code.Scripts.Gameplay
                 DeleteComplitedCommands();
             }
         }
-        void OnComplitedAdded()
-        {
-            Debug.Log("Add Comlited!");
-        }
+        
         //передовать объект во имени. Если эта платформа уже занята, то ничего не ставить
         void HandleCommands()
         {
             if (Communicator.RecvData.ItemCommands.Count > 0)
             {
                 List<ItemCommand> commands = Communicator.RecvData.ItemCommands;
-                Debug.Log($"Recv commands: {Communicator.RecvData.ItemCommands.Count}");
+                //Debug.Log($"Recv commands: {Communicator.RecvData.ItemCommands.Count}");
                 List<string> NotFreeTerr = Communicator.RecvData.NotFreeTerritoryList;
                 for (int i = 0; i < commands.Count; i++)
                 {
@@ -76,7 +65,7 @@ namespace Assets.Code.Scripts.Gameplay
                                     terr.SetSeed(seedPrefab);
                                     Communicator.SendData.AddComplitedCommand(commands[i]);
                                     Communicator.SendData.AddNotFreeTerritory(commands[i].ParentTerritoryName);
-                                    Debug.Log("Добавил в Send готовую");
+                                    //Debug.Log("Добавил в Send готовую");
                                     
                                 }
                                 break;
@@ -99,7 +88,7 @@ namespace Assets.Code.Scripts.Gameplay
 
         public void DeleteComplitedCommands()
         {
-            Debug.Log($"Send commands: {Communicator.SendData.ItemCommands.Count}");
+            //Debug.Log($"Send commands: {Communicator.SendData.ItemCommands.Count}");
             if (Communicator.SendData.ItemCommands.Count > 0)
             {
 
