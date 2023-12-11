@@ -49,13 +49,7 @@ namespace Assets.Code.Scripts.Boot.Communication
                 {
                     //Debug.Log("Tick");
                     RecvData = await CommunicateFix();
-                    if(recvData == null)
-                    {
-                        UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                        {
-                            GameEvents.InvokeGameOverEvent();
-                        });
-                    }
+                    
                     await Task.Delay(_tick);
                 }
                 catch (JsonReaderException ex)
