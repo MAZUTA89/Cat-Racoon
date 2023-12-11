@@ -52,6 +52,7 @@ namespace Assets.Code.Scripts.Gameplay
             if (Communicator.RecvData.ItemCommands.Count > 0)
             {
                 List<ItemCommand> commands = Communicator.RecvData.ItemCommands;
+                Debug.Log($"Recv commands: {Communicator.RecvData.ItemCommands.Count}");
                 List<string> NotFreeTerr = Communicator.RecvData.NotFreeTerritoryList;
                 for (int i = 0; i < commands.Count; i++)
                 {
@@ -84,9 +85,9 @@ namespace Assets.Code.Scripts.Gameplay
                             {
                                 PlantTerritory terr =
                                     _territoryService.GetTerritiryByObjectName(commands[i].ParentTerritoryName);
-
                                 terr.DestroySeed();
                                 terr.SetEmpty(true);
+                                Communicator.SendData.AddComplitedCommand(commands[i]);
                                 break;
                             }
                     }
@@ -98,6 +99,7 @@ namespace Assets.Code.Scripts.Gameplay
 
         public void DeleteComplitedCommands()
         {
+            Debug.Log($"Recv commands: {Communicator.SendData.ItemCommands.Count}");
             if (Communicator.SendData.ItemCommands.Count > 0)
             {
 
