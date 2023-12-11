@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Assets.Code.Scripts.Boot.Data;
 using ClientServer;
+using Newtonsoft.Json;
 using PimDeWitte.UnityMainThreadDispatcher;
 using UnityEngine;
 
@@ -50,7 +51,11 @@ namespace Assets.Code.Scripts.Boot.Communication
                     RecvData = await CommunicateFix();
                     await Task.Delay(_tick);
                 }
-                catch (Exception ex)
+                catch (JsonReaderException ex)
+                {
+                    Debug.Log(ex.Message);
+                }
+                catch(Exception ex)
                 {
                     UnityMainThreadDispatcher.Instance().Enqueue(() =>
                     {
