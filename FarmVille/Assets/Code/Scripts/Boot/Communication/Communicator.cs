@@ -56,7 +56,7 @@ namespace Assets.Code.Scripts.Boot.Communication
                 {
                     UnityMainThreadDispatcher.Instance().Enqueue(() =>
                     {
-                        GameEvents.InvokeGameOverEvent();
+                        //GameEvents.InvokeGameOverEvent();
                         Debug.Log(ex.Message);
                     });
                 }
