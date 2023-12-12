@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1032107991144523223}
   - component: {fileID: 6141451145527949052}
   - component: {fileID: -7079536208220179744}
-  - component: {fileID: 7706017684550524624}
+  - component: {fileID: 4137295700361238359}
   m_Layer: 0
   m_Name: RacoonPlayer 1
   m_TagString: Untagged
@@ -156,7 +156,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34357637, y: 0.16944103}
   m_EdgeRadius: 0
---- !u!114 &7706017684550524624
+--- !u!114 &4137295700361238359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,43 +185,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994973027004282334, guid: 350f29190151bb44ab2a1226ffc3909e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.96
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1994973027004282334, guid: 350f29190151bb44ab2a1226ffc3909e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.78
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1994973027004282334, guid: 350f29190151bb44ab2a1226ffc3909e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.539
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1994973027004282334, guid: 350f29190151bb44ab2a1226ffc3909e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.96234965
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994973027004282334, guid: 350f29190151bb44ab2a1226ffc3909e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.08304117
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1994973027004282334, guid: 350f29190151bb44ab2a1226ffc3909e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.14870465
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1994973027004282334, guid: 350f29190151bb44ab2a1226ffc3909e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.21183543
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1994973027004282334, guid: 350f29190151bb44ab2a1226ffc3909e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -5.557
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1994973027004282334, guid: 350f29190151bb44ab2a1226ffc3909e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -18.839
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1994973027004282334, guid: 350f29190151bb44ab2a1226ffc3909e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 25.751
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 350f29190151bb44ab2a1226ffc3909e, type: 3}

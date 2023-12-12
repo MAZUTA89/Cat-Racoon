@@ -14,7 +14,7 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
     public abstract class Movement : MonoBehaviour
     {
         protected Rigidbody2D RigidBody;
-        protected float MovementSpeed = 5f;
+        protected float MovementSpeed = 3f;
         protected float _smoothTime = 2f;
         Vector2 _velocity;
         protected Vector2 CurrentPosition;

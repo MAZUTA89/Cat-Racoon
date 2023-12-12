@@ -68,6 +68,7 @@
     <Compile Include="Assets\Code\Scripts\Gameplay\PlayerInventory\Inventory.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Installers\SeedsInstaller.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Seeds\SeedsPrefabService.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\EndGame\GameOverUI.cs" />
     <Compile Include="Assets\Code\ClientServer\Server\Server.cs" />
     <Compile Include="Assets\Code\SeedsSO\SeedSO.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Coins\Coin.cs" />
@@ -79,7 +80,6 @@
     <Compile Include="Assets\Code\Scripts\Boot\Communication\CommunicatorArgs.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Days\DayNight.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\LobbyConnection.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\PlantingTerritory\Land.cs" />
     <Compile Include="Assets\Code\ClientServer\PrefixWriterReader.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Coins\ConnectedCoin.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Connection\User.cs" />
@@ -114,7 +114,6 @@
     <Compile Include="Assets\Code\Scripts\Gameplay\Coins\MoneyDisplayer.cs" />
     <Compile Include="Assets\SetTimer.cs" />
     <Compile Include="Assets\Code\Enums.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\EndGame\GameOverUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

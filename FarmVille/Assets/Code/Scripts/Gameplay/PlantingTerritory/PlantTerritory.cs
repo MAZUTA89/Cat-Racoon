@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Assets.Code.Scripts.Gameplay.PlantingTerritory
 {
@@ -29,8 +30,20 @@ namespace Assets.Code.Scripts.Gameplay.PlantingTerritory
             Sprite = GetComponent<SpriteRenderer>();
             _defaultColor = Sprite.color;
             _territoryService.AddTerritory(this);
+            RandomlyFlip();
         }
+        void RandomlyFlip()
+        {
+            // Генерируем случайное булево значение для flipX
+            bool randomFlipX = Random.value > 0.5f;
 
+            // Генерируем случайное булево значение для flipY
+            bool randomFlipY = Random.value > 0.5f;
+
+            // Устанавливаем свойства flipX и flipY
+            Sprite.flipX = randomFlipX;
+            Sprite.flipY = randomFlipY;
+        }
         void OnMouseEnter()
         {
             Sprite.color = new Color(Sprite.color.r, Sprite.color.g,
