@@ -71,7 +71,7 @@ namespace Assets.Code.Scripts.Boot.Communication
             if (sendBytes < 1)
             {
                 GameEvents.InvokeGameOverEvent();
-                Console.WriteLine(_user.GetLastError());
+                Debug.Log(_user.GetLastError());
             }
 
             PlayerData recv = await _user.RecvFixAcync<PlayerData>();
@@ -84,8 +84,7 @@ namespace Assets.Code.Scripts.Boot.Communication
             {
                 UnityMainThreadDispatcher.Instance().Enqueue(() =>
                 {
-                    GameEvents.InvokeGameOverEvent();
-                    Console.WriteLine("Recv is Null");
+                    Debug.Log("Recv is Null");
                 });
                 return default;
             }
