@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Assets.Code.Scripts.Boot.Data;
@@ -43,7 +40,6 @@ namespace Assets.Code.Scripts.Boot.Communication
             {
                 try
                 {
-                    //Debug.Log("Tick");
                     RecvData = await CommunicateFix();
                     
                     await Task.Delay(_tick);
@@ -56,7 +52,6 @@ namespace Assets.Code.Scripts.Boot.Communication
                 {
                     UnityMainThreadDispatcher.Instance().Enqueue(() =>
                     {
-                        //GameEvents.InvokeGameOverEvent();
                         Debug.Log(ex.Message);
                     });
                 }

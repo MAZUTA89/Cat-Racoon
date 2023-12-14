@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
-using System.IO;
+
 
 namespace ClientServer.Client
 {
     public class Client : TCPBase
     {
-        IPAddress _ipAddress;
         public bool IsConnected => ClientSocket.Connected;
         public Client(EndPoint endPoint)
         {

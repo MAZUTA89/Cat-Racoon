@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zenject;
+﻿using Zenject;
 using UnityEngine;
 using Assets.Code.Scripts.Boot.Communication;
 using Assets.Code.Scripts.Boot;
-using UnityEngine.Animations;
-using UnityEngine.Windows;
 
 namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
 {

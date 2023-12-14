@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Code.Scripts.Boot.Data

@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{A5D29CDA-DB99-F5ED-7923-6AED0AD87903}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -72,7 +73,6 @@
     <Compile Include="Assets\Code\ClientServer\Server\Server.cs" />
     <Compile Include="Assets\Code\SeedsSO\SeedSO.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Coins\Coin.cs" />
-    <Compile Include="Assets\Code\Scripts\Boot\Communication\Test.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\SpawnObjects\SpawnObject.cs" />
     <Compile Include="Assets\Code\ClientServer\JSONStringSpliter.cs" />
     <Compile Include="Assets\Code\InputSystem\InputService.cs" />
@@ -116,6 +116,7 @@
     <Compile Include="Assets\Code\Enums.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Code\LobbyDiagram.cd" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using ClientServer;
 using Assets.Code.Scripts.Lobby;
-using Unity.VisualScripting;
-using Assets.Code.Scripts.Boot.Data;
-using Assets.Code.Scripts.Communication;
 using Assets.Code.Scripts.Boot.Communication;
-using TMPro;
 using ClientServer.Server;
 using ClientServer.Client;
 

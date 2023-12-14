@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClientServer.Client.Client" Collapsed="true">
+    <Position X="4.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Code\ClientServer\Client\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClientServer.Server.Server" Collapsed="true">
+    <Position X="2" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAEAAAEAIAAQAAAAAAACAAAAAYAIAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\ClientServer\Server\Server.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClientServer.TCPBase" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABAgAEAAASAQAgACAAAAAAQAAAAIAAAYAGAAhAAQAA=</HashCode>
+      <FileName>Assets\Code\ClientServer\TCPSocket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClientServer.PrefixWriterReader" Collapsed="true">
+    <Position X="6.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQCAAAABAAAAAAAAAABAAgAIACAAAACAwAAAIAAAAAA=</HashCode>
+      <FileName>Assets\Code\ClientServer\PrefixWriterReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClientServer.JSONStringSpliter" Collapsed="true">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAIAAAAAAAAAAAAACAIAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\ClientServer\JSONStringSpliter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.Communication.Communicator" Collapsed="true">
+    <Position X="2" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACIAAAKAAAAAAAAAAAABAAAAAAIAAMAAABAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Communication\Communicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.Communication.CommunicationEvents" Collapsed="true">
+    <Position X="2" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAQAAAAAAAAAAAAAAAAEAAAYAQAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Communication\CommunicationEvents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.Communication.StartCommunicationSignal" Collapsed="true">
+    <Position X="3.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Communication\StartCommunicationSignal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.User" Collapsed="true">
+    <Position X="2" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAABAAAiAAAAEAAAAAAEAICAAAAAAMAAAAAIABACA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Connection\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.Data.PlayerData" Collapsed="true">
+    <Position X="3.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABQAAAAACAIAiAAAAACIAIAAAAAGAAAAACAAAAAAgA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Data\PlayerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.Data.ItemCommand" Collapsed="true">
+    <Position X="3.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAgAAAAEAAAAAAAIAAAIAACAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Data\SpawnCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.Connection.ClientConnectionCreator" Collapsed="true">
+    <Position X="9.25" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ARAAAACAAAAAAEAAAAAABAAAAAAAIAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\Connection\ClientConnectionCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.ServerConnectionCreator" Collapsed="true">
+    <Position X="11.5" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAQAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\Connection\ServerConnectionCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.LoadingLevel.LevelSignalChecker" Collapsed="true">
+    <Position X="10.5" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAIAAAACAAKAAAAAAAIAAIAAQAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\LoadingLevel\LevelSignalChecker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.LoadLevelSignal" Collapsed="true">
+    <Position X="11.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\LoadingLevel\LoadLevelSignal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.LobbyConnection" Collapsed="true">
+    <Position X="9.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAoAFAAAAAUAQRIAAIIAgACAMABAIAAAAAABAAEA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\LobbyConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

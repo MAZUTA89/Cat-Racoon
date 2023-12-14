@@ -1,11 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -162,7 +159,6 @@ namespace ClientServer
 
                 List<string> json_data = _jsonSpliter.SplitJSONStrings(recvStr);
 
-                //Debug.Log($"Recv str: {json_data[json_data.Count - 1]}");
                 T deserializeObject = JsonConvert.DeserializeObject<T>(json_data[json_data.Count - 1]);
                 return deserializeObject;
             }
@@ -178,7 +174,6 @@ namespace ClientServer
             {
                 string jsonString = JsonConvert.SerializeObject(obj);
                 jsonString += "\n";
-                //Debug.Log($"Serialize: {jsonString}");
                 byte[] jsonBytes = Encoding.UTF8.GetBytes(jsonString);
 
                 ArraySegment<byte> segmentBytes = new ArraySegment<byte>(jsonBytes);

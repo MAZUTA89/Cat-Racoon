@@ -2,13 +2,8 @@
 using Assets.Code.Scripts.Boot.Communication;
 using Assets.Code.Scripts.Boot.Data;
 using Assets.Code.Scripts.Gameplay.PlantingTerritory;
-using Newtonsoft.Json.Bson;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -29,19 +24,16 @@ namespace Assets.Code.Scripts.Gameplay
         {
             if (User.IsConnectionCreated)
             {
-                //Debug.Log(Communicator.RecvData.ItemCommands.Count);
                 HandleCommands();
                 DeleteComplitedCommands();
             }
         }
         
-        //передовать объект во имени. Если эта платформа уже занята, то ничего не ставить
         void HandleCommands()
         {
             if (Communicator.RecvData.ItemCommands.Count > 0)
             {
                 List<ItemCommand> commands = Communicator.RecvData.ItemCommands;
-                //Debug.Log($"Recv commands: {Communicator.RecvData.ItemCommands.Count}");
                 List<string> NotFreeTerr = Communicator.RecvData.NotFreeTerritoryList;
                 for (int i = 0; i < commands.Count; i++)
                 {

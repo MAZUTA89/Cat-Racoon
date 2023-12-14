@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
-using Assets.Code.Scripts.Boot;
-using Assets.Code.Scripts.Boot.Communication;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Code.Scripts.Gameplay

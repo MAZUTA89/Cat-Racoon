@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using ClientServer.Client;
 using ClientServer.Server;
 using UnityEngine.SceneManagement;
 using Assets.Code.Scripts.Boot;
-using TMPro;
-using Zenject;
 using Assets.Code.Scripts.Lobby.LoadingLevel;
 using System.Threading;
 using PimDeWitte.UnityMainThreadDispatcher;
-using UnityEngine.Playables;
 
 namespace Assets.Code.Scripts.Lobby
 {
@@ -82,8 +76,6 @@ namespace Assets.Code.Scripts.Lobby
             {
                 _server?.Stop();
                 OnCanceledOrFailedLoadLevelSignalEvent?.Invoke();
-
-                //ActivateBackButtons();
             }
         }
 
@@ -109,7 +101,6 @@ namespace Assets.Code.Scripts.Lobby
             {
                 _client?.Stop();
                 OnCanceledOrFailedLoadLevelSignalEvent?.Invoke();
-                //ActivateBackButtons();
             }
         }
 

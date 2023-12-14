@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using ClientServer.Client;
 using ClientServer.Server;
 using UnityEngine;
 using System.Threading;
-using Assets.Code.Scripts.Boot;
-using ClientServer;
-using System.Collections;
 using TMPro;
 using Assets.Code.Scripts.Lobby.Connection;
-using Zenject;
 
 namespace Assets.Code.Scripts.Lobby
 {//Работа с подключением
