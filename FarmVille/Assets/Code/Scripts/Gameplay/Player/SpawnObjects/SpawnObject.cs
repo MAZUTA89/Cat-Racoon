@@ -1,9 +1,4 @@
 ﻿using Assets.Code.Scripts.Boot.Communication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -40,7 +35,6 @@ namespace Assets.Code.Scripts.Gameplay.Player.SpawnObject
                 }
             }
         }
-
         void OnStartCommunicate()
         {
             _isCommunicateStarted = true;

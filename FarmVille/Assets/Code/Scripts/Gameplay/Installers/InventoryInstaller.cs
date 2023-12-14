@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Zenject;
-using UnityEngine.UI;
 using UnityEngine;
-using Assets.Code.Scripts.Gameplay;
-using Assets.Code.Scripts;
+
 
 namespace Assets.Code.Scripts.Gameplay.Installers
 {

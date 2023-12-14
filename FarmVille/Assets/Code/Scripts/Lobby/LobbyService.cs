@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
-using ClientServer;
-using ClientServer.Client;
-using ClientServer.Server;
-using Assets.Code.Scripts.Boot;
+
 
 namespace Assets.Code.Scripts.Lobby
 {
@@ -20,7 +13,6 @@ namespace Assets.Code.Scripts.Lobby
         GameObject _createConnectionStringPanel;
         LobbyConnection _connection;
         GameObject _connectCancelButton;
-        GameObject _createCancelButton;
         [Inject]
         public void Constructor(
             [Inject(Id = "StartPanel")] GameObject startPanel,
@@ -36,7 +28,6 @@ namespace Assets.Code.Scripts.Lobby
             _connectPanel = connectPanel;
             _createConnectionStringPanel = connectionStringPanel;
             _connectCancelButton = connectCancelButton;
-            _createCancelButton = createCancelButton;
         }
 
         private void Start()

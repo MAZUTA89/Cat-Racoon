@@ -1,9 +1,4 @@
-﻿using Assets.Code.Scripts.Gameplay;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Zenject;
 
 namespace Assets.Code.Scripts.Gameplay.Installers
@@ -16,8 +11,6 @@ namespace Assets.Code.Scripts.Gameplay.Installers
         Dictionary<Item, SeedSO> _seedsSO;
         public override void InstallBindings()
         {
-            //SeedsService seedsService =
-
             InitSeedsGO();
             InitSeedsSO();
 

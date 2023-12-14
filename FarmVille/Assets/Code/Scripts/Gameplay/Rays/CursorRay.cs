@@ -1,10 +1,6 @@
 ﻿using Assets.Code.Scripts.Boot;
 using Assets.Code.Scripts.Boot.Communication;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -39,14 +35,7 @@ namespace Assets.Code.Scripts.Gameplay
 
                 CheckIntersection(ray, TerritoryMask, OnHitTerritoryEvent);
                 CheckIntersection(ray, SeedMask, OnHitSeedEvent);
-                //     Hit = Physics2D.GetRayIntersection(ray);
-
-                //    if (Hit.collider != null)
-                //    {
-                //        OnHitTerritoryEvent?.Invoke(Hit);
-                //        HitObject = Hit.collider.gameObject.name;
-                //    }
-                //}
+                
                 HandleCommunicationData();
             }
             void CheckIntersection(Ray ray, LayerMask mask, Action<RaycastHit2D> hitEvent)

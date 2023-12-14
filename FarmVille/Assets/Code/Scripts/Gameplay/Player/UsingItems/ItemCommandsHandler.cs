@@ -57,7 +57,6 @@ namespace Assets.Code.Scripts.Gameplay
                                     terr.SetSeed(seedPrefab);
                                     Communicator.SendData.AddComplitedCommand(commands[i]);
                                     Communicator.SendData.AddNotFreeTerritory(commands[i].ParentTerritoryName);
-                                    //Debug.Log("Добавил в Send готовую");
                                     
                                 }
                                 break;
@@ -80,7 +79,6 @@ namespace Assets.Code.Scripts.Gameplay
 
         public void DeleteComplitedCommands()
         {
-            //Debug.Log($"Send commands: {Communicator.SendData.ItemCommands.Count}");
             if (Communicator.SendData.ItemCommands.Count > 0)
             {
 
@@ -94,9 +92,5 @@ namespace Assets.Code.Scripts.Gameplay
                 recvComplitedCommands.RemoveAll(item => commonCommands.Contains(item));
             }
         }
-
-
-
-
     }
 }

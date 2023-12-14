@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using Zenject;
 
@@ -12,9 +7,7 @@ namespace Assets.Code.Scripts.Lobby
 {
     public class ProgressHandler : MonoBehaviour
     {
-        const string c_MenuSceneName = "MenuScene";
         const string c_ConnectionText = "Waiting for connection...";
-        const string c_ConnectText = "Connect...";
         const string c_SuccsessConnectionText = "Connection is established";
         const string c_ConnectionFailedText = "Connection failed";
         const string c_CanceledText = "Canceled...";
@@ -114,7 +107,6 @@ namespace Assets.Code.Scripts.Lobby
             _connectCancelButton.SetActive(false);
             _createCancelButton.SetActive(false);
             _processText.text = c_LoadLevelText;
-            //await Task.Delay(1000);
             _processText.gameObject.SetActive(false);
             _loadImage.SetActive(false);
         }

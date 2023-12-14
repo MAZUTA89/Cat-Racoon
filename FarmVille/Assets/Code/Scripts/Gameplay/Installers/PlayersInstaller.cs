@@ -1,10 +1,5 @@
 ﻿using Assets.Code.Scripts.Boot;
 using Assets.Code.Scripts.Gameplay.Player.PlayerControl;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 using Cinemachine;
@@ -17,7 +12,7 @@ namespace Assets.Code.Scripts.Gameplay.Installers
         [SerializeField] Transform HostSpawnPoint;
         [SerializeField] GameObject ConnectedPlayerPrefab;
         [SerializeField] Transform ConnectedPlayerSpawnPoint;
-       
+
         public PlayerMode Mode;
         [SerializeField] CinemachineVirtualCamera Camera;
         GameObject _playerGameoObject;
@@ -25,8 +20,8 @@ namespace Assets.Code.Scripts.Gameplay.Installers
         {
             BindSpawnPoints();
             BindMovement();
-            
-            switch(Mode)
+
+            switch (Mode)
             {
                 case PlayerMode.Single:
                     {
@@ -35,10 +30,8 @@ namespace Assets.Code.Scripts.Gameplay.Installers
                     }
                 case PlayerMode.Multiple:
                     {
-                        //if (User.IsConnectionCreated)
-                        //{
-                            SpawnPlayersOnSpawnPoints();
-                        //}
+
+                        SpawnPlayersOnSpawnPoints();
                         break;
                     }
             }
@@ -68,12 +61,12 @@ namespace Assets.Code.Scripts.Gameplay.Installers
                         break;
                     }
             }
-            if(_playerGameoObject != null)
+            if (_playerGameoObject != null)
             {
                 Camera.Follow = _playerGameoObject.transform;
                 Camera.LookAt = _playerGameoObject.transform;
             }
-            
+
         }
         void SingleMode()
         {

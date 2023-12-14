@@ -103,7 +103,6 @@ namespace Assets.Code.Scripts.Lobby
                 OnCanceledOrFailedLoadLevelSignalEvent?.Invoke();
             }
         }
-
         async Task CheckSignal(Task checkSignalLoadingTask)
         {
             OnStartCheckLoadLevelSignalEvent?.Invoke();
@@ -137,17 +136,14 @@ namespace Assets.Code.Scripts.Lobby
 
             await tcs.Task;
         }
-
         public void OnServerCanceled()
         {
             Cancel();
         }
-
         public void OnClientCanceled()
         {
             Cancel();
         }
-
         void Cancel()
         {
             try

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zenject;
+﻿using Zenject;
 using UnityEngine;
 using Assets.Code.Scripts.Boot;
 
@@ -44,8 +39,6 @@ namespace Assets.Code.Scripts.Gameplay.Installers
                         break;
                     }
             }
-
-            
         }
     }
 }

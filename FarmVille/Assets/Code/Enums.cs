@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assets.Code
+﻿namespace Assets.Code
 {
     public enum ConnectionType
     {
@@ -44,25 +38,9 @@ namespace Assets.Code
         Ready
     }
 
-    public enum Tool
-    {
-        Basket,
-        Watering
-    }
-
-   public enum Crops
-    {
-        Wheat,
-        Pumpking,
-        SunFlower,
-        InfernalGrowth,
-        Reed
-    }
-
     public enum PlayerMode
     {
         Single,
         Multiple
     }
-
 }
