@@ -6,7 +6,6 @@ using Assets.Code.Scripts.Lobby;
 using Assets.Code.Scripts.Boot.Communication;
 using ClientServer.Server;
 using ClientServer.Client;
-
 namespace Assets.Code.Scripts.Boot
 {
     public class User : BootSingleton<User>
@@ -25,7 +24,6 @@ namespace Assets.Code.Scripts.Boot
             LevelLoader.onLevelLoadedEvent += OnLevelLoaded;
             GameEvents.OnGameOverEvent += OnGameOver;
         }
-
         private void OnDisable()
         {
             GameEvents.InvokeGameOverEvent();
@@ -35,7 +33,6 @@ namespace Assets.Code.Scripts.Boot
 
             
         }
-
         private void Update()
         {
             if(User.IsConnectionCreated)
@@ -61,7 +58,6 @@ namespace Assets.Code.Scripts.Boot
                 }
             }
         }
-
         public void InitializeUserBase(TCPBase userBase, ConnectionType connectionType)
         {
             _userBase = userBase;
@@ -73,7 +69,6 @@ namespace Assets.Code.Scripts.Boot
             else
                 PlayerType = PlayerType.Player2;
         }
-
         public async void OnLevelLoaded()
         {
             _communicator = new Communicator
@@ -119,7 +114,6 @@ namespace Assets.Code.Scripts.Boot
                 CommunicationEvents.InvokeCommunicationEvent();
             }
         }
-
         private void OnApplicationQuit()
         {
             switch (ConnectionType)

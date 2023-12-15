@@ -66,6 +66,5 @@ namespace Assets.Code.Scripts.Gameplay
 
             DaysText.text = CurrentDays.ToString();
         }
-
     }
 }

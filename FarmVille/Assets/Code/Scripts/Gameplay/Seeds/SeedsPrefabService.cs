@@ -21,7 +21,5 @@ namespace Assets.Code.Scripts.Gameplay
         {
             return _seedsSoDictionary[seed];
         }
-
-
     }
 }

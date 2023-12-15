@@ -153,6 +153,5 @@ namespace Assets.Code.Scripts.Gameplay
         {
             _cuurentChoosenItem = item;
         }
-
     }
 }

@@ -30,6 +30,5 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
                 
             }
         }
-        
     }
 }

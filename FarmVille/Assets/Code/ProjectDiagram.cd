@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClientServer.TCPBase" Collapsed="true">
+    <Position X="2" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABAgAEAAASAQAgACAAAAAAQAAAAIAAAYAGAAhAAQAA=</HashCode>
+      <FileName>Assets\Code\ClientServer\TCPSocket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClientServer.PrefixWriterReader" Collapsed="true">
+    <Position X="5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCAAAABAAAAAAAAAABAAgAIACAAAACAwAAAIAAAAAA=</HashCode>
+      <FileName>Assets\Code\ClientServer\PrefixWriterReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClientServer.Server.Server" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAEAAAEAIAAQAAAAAAACAAAAAYAIAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\ClientServer\Server\Server.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClientServer.Client.Client" Collapsed="true">
+    <Position X="3.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Code\ClientServer\Client\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClientServer.JSONStringSpliter" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAIAAAAAAAAAAAAACAIAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\ClientServer\JSONStringSpliter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.Communication.Communicator" Collapsed="true">
+    <Position X="0.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACIAAAKAAAAAAAAAAAABAAAAAAIAAMAAABAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Communication\Communicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.Communication.StartCommunicationSignal" Collapsed="true">
+    <Position X="0.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Communication\StartCommunicationSignal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.Communication.CommunicationEvents" Collapsed="true">
+    <Position X="0.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAQAAAAAAAAAAAAAAAAEAAAYAQAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Communication\CommunicationEvents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.User" Collapsed="true">
+    <Position X="2.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAABAAAiAAAAEAAAAAAEAICAAAAAAMAAAAAIABACA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Connection\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.Data.PlayerData" Collapsed="true">
+    <Position X="4.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABQAAAAACAIAiAAAAACIAIAAAAAGAAAAACAAAAAAgA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Data\PlayerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.Data.ItemCommand" Collapsed="true">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAgAAAAEAAAAAAAIAAAIAACAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Data\SpawnCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.GameData" Collapsed="true">
+    <Position X="4.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\Data\GameData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Boot.BootSingleton&lt;T&gt;" Collapsed="true">
+    <Position X="2.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Code\Scripts\Boot\BootSingleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.LevelLoader" Collapsed="true">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASACohCwiAAAEAAQAAAAAAEAAAAkAAIAAAABAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\LevelLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.LobbyConnection" Collapsed="true">
+    <Position X="7" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAoAFAAAAAUAQRIAAIIAgACAMABAIAAAAAABAAEA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\LobbyConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.LobbyService" Collapsed="true">
+    <Position X="8.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEABEAQACABAAAAAAAACAgAACAUAAAIAAAAAAAgBAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\LobbyService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.ProgressHandler" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAEgAEjAAAAAAAQAAJQQAANAAAEAIEBBAAgCCiCQ=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\ProgressHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.LoadLevelSignal" Collapsed="true">
+    <Position X="7" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\LoadingLevel\LoadLevelSignal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.LoadingLevel.LevelSignalChecker" Collapsed="true">
+    <Position X="8.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAIAAAACAAKAAAAAAAIAAIAAQAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\LoadingLevel\LevelSignalChecker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.Connection.ClientConnectionCreator" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ARAAAACAAAAAAEAAAAAABAAAAAAAIAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\Connection\ClientConnectionCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Lobby.ServerConnectionCreator" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAQAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Lobby\Connection\ServerConnectionCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Installers.GameInstaller" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAABAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Installers\GameInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Installers.InventoryInstaller" Collapsed="true">
+    <Position X="2.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAQAAAAAAIAAAAAAIAAAAAAAAAACAABAAAAAAAACA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Installers\InventoryInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Installers.PlayersInstaller" Collapsed="true">
+    <Position X="4" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAAIIAACIAAAAAUAEAAAAAACAAAAAEAAAgAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Installers\PlayersInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Installers.SeedsInstaller" Collapsed="true">
+    <Position X="5.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAgAAIAAAAAAAAAAAgAAIAACAAAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Installers\SeedsInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Installers.SpawnInstaller" Collapsed="true">
+    <Position X="7.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACIAAAAAAAAAAAAAACAAAAAEAAAgAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Installers\SpawnInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Bootstrapp.PreformBootstrapp" Collapsed="true">
+    <Position X="6.25" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Bootstrapp\PreformBootstrapp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Coin" Collapsed="true">
+    <Position X="11.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAACAAEAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Coins\Coin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.MoneyDisplayer" Collapsed="true">
+    <Position X="12.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAEAAAAAQAAIAAAAAIAAEgAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Coins\MoneyDisplayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Coins.ConnectedCoin" Collapsed="true">
+    <Position X="13.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Coins\ConnectedCoin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.DayNight" Collapsed="true">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgCAACAAAAAACAQIAEAAAUAgoAAEBAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Days\DayNight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Days.Lamp" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgACAAAAAIAAAAAAAAAAAAAABIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Days\Lamp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.GameOverUI" Collapsed="true">
+    <Position X="15" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAQAAAAAYAAQAQAAAMAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\EndGame\GameOverUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.PlantingTerritory.PlantTerritory" Collapsed="true">
+    <Position X="13.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAEAAACAAACEAAABAQAAAEAAEAAAYAgAAAkAAAAQ=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\PlantingTerritory\PlantTerritory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Seed" Collapsed="true">
+    <Position X="13.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAFACAAAQAIAABAAAAwUQAACAAIAQEAAAAAgAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Seeds\Seed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.SeedsService" Collapsed="true">
+    <Position X="11.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAYAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Seeds\SeedsPrefabService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.InventoryInputService" Collapsed="true">
+    <Position X="11.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAACAgAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\PlayerInventory\InventoryInputService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.PlantingTerritory.TerritoryService" Collapsed="true">
+    <Position X="11.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\PlantingTerritory\TerritoryService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Inventory" Collapsed="true">
+    <Position X="13.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAABAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\PlayerInventory\Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.CursorRay" Collapsed="true">
+    <Position X="9.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAQIAACAAAAAAAAIAAAAAAAAAAAAAIAAAACAgEIA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Rays\CursorRay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.UseItems" Collapsed="true">
+    <Position X="11.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEABECAASAAAAggAJAAIAAAAAADIAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Player\UsingItems\UseItems.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.ItemCommandsHandler" Collapsed="true">
+    <Position X="13.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAEAAAAAAAAAAAAAAAAAABAgAAAQAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Player\UsingItems\ItemCommandsHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Player.PlayerControl.Movement" Collapsed="true">
+    <Position X="16" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAEAAAKIAAAAAEAAAAAAAAAgAAgAAAAQAABQICAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Player\PlayerControl\Movement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Player.PlayerControl.PlayerMovement" Collapsed="true">
+    <Position X="15" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAgIAAAAAEAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Player\PlayerControl\PlayerMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Player.PlayerControl.ConnectedPlayerMovement" Collapsed="true">
+    <Position X="16.75" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\Player\PlayerControl\ConnectedPlayerMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.Gameplay.Cell" Collapsed="true">
+    <Position X="15" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAEAAACAACAAAAgAAAAAEAAEAQACIAAAACAAACCA=</HashCode>
+      <FileName>Assets\Code\Scripts\Gameplay\PlayerInventory\UI\Cell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Code.Scripts.GameEvents" Collapsed="true">
+    <Position X="14" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABACAAAAAIAAAAAAABwAAAAAAAAAAAAAAAAgAAAQ=</HashCode>
+      <FileName>Assets\Code\Scripts\GameEvents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeedSO" Collapsed="true">
+    <Position X="10.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAABAAAAgAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Code\SeedsSO\SeedSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

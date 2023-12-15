@@ -73,11 +73,9 @@
     <Compile Include="Assets\Code\ClientServer\Server\Server.cs" />
     <Compile Include="Assets\Code\SeedsSO\SeedSO.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Coins\Coin.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\Player\SpawnObjects\SpawnObject.cs" />
     <Compile Include="Assets\Code\ClientServer\JSONStringSpliter.cs" />
     <Compile Include="Assets\Code\InputSystem\InputService.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\UsingItems\UseItems.cs" />
-    <Compile Include="Assets\Code\Scripts\Boot\Communication\CommunicatorArgs.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Days\DayNight.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\LobbyConnection.cs" />
     <Compile Include="Assets\Code\ClientServer\PrefixWriterReader.cs" />
@@ -99,9 +97,7 @@
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\PlayerControl\PlayerMovement.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\Connection\ServerConnectionCreator.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Communication\Communicator.cs" />
-    <Compile Include="Assets\Code\Bootstrapp\BootData.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\UsingItems\ItemCommandsHandler.cs" />
-    <Compile Include="Assets\Code\ClientServer\Assistant.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\PlayerControl\Movement.cs" />
     <Compile Include="Assets\Code\ClientServer\TCPSocket.cs" />
     <Compile Include="Assets\Code\Scripts\GameEvents.cs" />
@@ -112,11 +108,11 @@
     <Compile Include="Assets\Code\Scripts\Lobby\LoadingLevel\LoadLevelSignal.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Data\SpawnCommand.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Coins\MoneyDisplayer.cs" />
-    <Compile Include="Assets\SetTimer.cs" />
     <Compile Include="Assets\Code\Enums.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Code\LobbyDiagram.cd" />
+    <None Include="Assets\Code\ProjectDiagram.cd" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
