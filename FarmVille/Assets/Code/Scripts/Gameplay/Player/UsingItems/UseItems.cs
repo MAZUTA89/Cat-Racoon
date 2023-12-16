@@ -89,7 +89,7 @@ namespace Assets.Code.Scripts.Gameplay
 
                 if (User.IsConnectionCreated)
                 {
-                    Communicator.SendData.AddNotFreeTerritory(territory.name);
+                   // Communicator.SendData.AddNotFreeTerritory(territory.name);
                     ItemCommand itemCommand = new ItemCommand();
                     itemCommand.ObjectType = _cuurentChoosenItem;
                     itemCommand.ParentTerritoryName = territory.name;
@@ -125,8 +125,8 @@ namespace Assets.Code.Scripts.Gameplay
                                     itemCommand.CommandType = CommandType.Delete;
                                     itemCommand.ObjectType = _cuurentChoosenItem;
                                     Communicator.SendData.AddItemCommand(itemCommand);
-                                    Communicator.SendData.NotFreeTerritoryList
-                                        .Remove(seed.GetParentTerritoryName());
+                                    //Communicator.SendData.NotFreeTerritoryList
+                                       // .Remove(seed.GetParentTerritoryName());
                                 }
                             }
 

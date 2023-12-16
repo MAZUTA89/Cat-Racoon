@@ -8,14 +8,14 @@ namespace Assets.Code.Scripts.Boot.Data
     {
         public List<ItemCommand> ItemCommands;
         public List<ItemCommand> CompletedCommands;
-        public List<String> NotFreeTerritoryList;
+        //public List<String> NotFreeTerritoryList;
         public float DirectionX;
         public float DirectionY;
         public PlayerData() 
         {
             ItemCommands = new List<ItemCommand>();
             CompletedCommands = new List<ItemCommand>();
-            NotFreeTerritoryList = new List<String>();
+            //NotFreeTerritoryList = new List<String>();
         }
         public bool IsLeftButton;
         public float Money;
@@ -39,10 +39,10 @@ namespace Assets.Code.Scripts.Boot.Data
         {
            CompletedCommands.Add(itemCommand);
         }
-        public void AddNotFreeTerritory(string name)
-        {
-            NotFreeTerritoryList.Add(name);
-        }
+        //public void AddNotFreeTerritory(string name)
+        //{
+        //    NotFreeTerritoryList.Add(name);
+        //}
         public void SetDirection(Vector2 direction)
         {
             DirectionX = direction.x;
