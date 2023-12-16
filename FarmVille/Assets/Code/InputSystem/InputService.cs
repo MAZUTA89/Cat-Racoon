@@ -58,6 +58,10 @@ public class InputService : IDisposable
     {
         return _playerControls.PlayerActions.Cell_7.WasPerformedThisFrame();
     }
+    public bool IsStatsCommand()
+    {
+        return _playerControls.SystemActions.CommunicationStats.WasPerformedThisFrame();
+    }
     public void Dispose()
     {
         _playerControls.Disable();

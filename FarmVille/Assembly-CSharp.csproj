@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{A5D29CDA-DB99-F5ED-7923-6AED0AD87903}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -91,6 +90,7 @@
     <Compile Include="Assets\Code\Scripts\Gameplay\Installers\SpawnInstaller.cs" />
     <Compile Include="Assets\Code\Bootstrapp\PreformBootstrapp.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Installers\InventoryInstaller.cs" />
+    <Compile Include="Assets\Code\Scripts\Boot\Communication\UICommunicateStatistics.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\LevelLoader.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Days\Lamp.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\LobbyInstaller.cs" />
@@ -111,14 +111,13 @@
     <Compile Include="Assets\Code\Enums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Code\LobbyDiagram.cd" />
-    <None Include="Assets\Code\ProjectDiagram.cd" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Code\ProjectDiagram.cd" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -126,6 +125,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Code\LobbyDiagram.cd" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />

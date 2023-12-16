@@ -294,6 +294,34 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""SystemActions"",
+            ""id"": ""38febae5-93fc-4fd5-b086-1d569da9a718"",
+            ""actions"": [
+                {
+                    ""name"": ""CommunicationStats"",
+                    ""type"": ""Button"",
+                    ""id"": ""767f88ae-a856-4d1a-8fcf-04eca575da41"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""54dfbb0e-5f5a-4d6a-9b25-4c3c9fba8f0b"",
+                    ""path"": ""<Keyboard>/minus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CommunicationStats"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -328,6 +356,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_Cell_7 = m_PlayerActions.FindAction("Cell_7", throwIfNotFound: true);
         m_PlayerActions_Click = m_PlayerActions.FindAction("Click", throwIfNotFound: true);
         m_PlayerActions_MousePosition = m_PlayerActions.FindAction("MousePosition", throwIfNotFound: true);
+        // SystemActions
+        m_SystemActions = asset.FindActionMap("SystemActions", throwIfNotFound: true);
+        m_SystemActions_CommunicationStats = m_SystemActions.FindAction("CommunicationStats", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -496,6 +527,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActionsActions @PlayerActions => new PlayerActionsActions(this);
+
+    // SystemActions
+    private readonly InputActionMap m_SystemActions;
+    private ISystemActionsActions m_SystemActionsActionsCallbackInterface;
+    private readonly InputAction m_SystemActions_CommunicationStats;
+    public struct SystemActionsActions
+    {
+        private @PlayerControls m_Wrapper;
+        public SystemActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CommunicationStats => m_Wrapper.m_SystemActions_CommunicationStats;
+        public InputActionMap Get() { return m_Wrapper.m_SystemActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SystemActionsActions set) { return set.Get(); }
+        public void SetCallbacks(ISystemActionsActions instance)
+        {
+            if (m_Wrapper.m_SystemActionsActionsCallbackInterface != null)
+            {
+                @CommunicationStats.started -= m_Wrapper.m_SystemActionsActionsCallbackInterface.OnCommunicationStats;
+                @CommunicationStats.performed -= m_Wrapper.m_SystemActionsActionsCallbackInterface.OnCommunicationStats;
+                @CommunicationStats.canceled -= m_Wrapper.m_SystemActionsActionsCallbackInterface.OnCommunicationStats;
+            }
+            m_Wrapper.m_SystemActionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @CommunicationStats.started += instance.OnCommunicationStats;
+                @CommunicationStats.performed += instance.OnCommunicationStats;
+                @CommunicationStats.canceled += instance.OnCommunicationStats;
+            }
+        }
+    }
+    public SystemActionsActions @SystemActions => new SystemActionsActions(this);
     private int m_PlayerSchemeSchemeIndex = -1;
     public InputControlScheme PlayerSchemeScheme
     {
@@ -518,5 +582,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnCell_7(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+    }
+    public interface ISystemActionsActions
+    {
+        void OnCommunicationStats(InputAction.CallbackContext context);
     }
 }

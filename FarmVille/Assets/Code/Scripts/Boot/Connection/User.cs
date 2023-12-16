@@ -17,7 +17,7 @@ namespace Assets.Code.Scripts.Boot
         public ConnectionType ConnectionType { get; private set; }
         public PlayerType PlayerType { get; private set; }
         Communicator _communicator;
-        
+
         private void Start()
         {
             IsConnectionCreated = false;
@@ -30,18 +30,16 @@ namespace Assets.Code.Scripts.Boot
             LevelLoader.onLevelLoadedEvent -= OnLevelLoaded;
             GameEvents.OnGameOverEvent -= OnGameOver;
             _communicator?.Stop();
-
-            
         }
         private void Update()
         {
-            if(User.IsConnectionCreated)
+            if (User.IsConnectionCreated)
             {
-                switch(ConnectionType)
+                switch (ConnectionType)
                 {
                     case ConnectionType.Server:
                         {
-                            if(!(_userBase as Server).CheckConnection())
+                            if (!(_userBase as Server).CheckConnection())
                             {
                                 GameEvents.InvokeGameOverEvent();
                             }
@@ -49,7 +47,7 @@ namespace Assets.Code.Scripts.Boot
                         }
                     case ConnectionType.Client:
                         {
-                            if(!(_userBase as Client).CheckConnection())
+                            if (!(_userBase as Client).CheckConnection())
                             {
                                 GameEvents.InvokeGameOverEvent();
                             }
@@ -62,7 +60,7 @@ namespace Assets.Code.Scripts.Boot
         {
             _userBase = userBase;
             ConnectionType = connectionType;
-            if(connectionType == ConnectionType.Server)
+            if (connectionType == ConnectionType.Server)
             {
                 PlayerType = PlayerType.Player1;
             }
@@ -82,7 +80,7 @@ namespace Assets.Code.Scripts.Boot
             signal.DateTime = DateTime.Now;
             int send_bytes = await _userBase.SendAcync(signal);
 
-            if (send_bytes < 1)
+            if(send_bytes < 1)
             {
                 Debug.Log(_userBase.GetLastError());
                 return;
@@ -116,24 +114,27 @@ namespace Assets.Code.Scripts.Boot
         }
         private void OnApplicationQuit()
         {
-            switch (ConnectionType)
+            if (IsConnectionCreated)
             {
-                case ConnectionType.Server:
-                    {
-                        if ((_userBase as Server).Stop())
+                switch (ConnectionType)
+                {
+                    case ConnectionType.Server:
                         {
-                            GameEvents.InvokeGameOverEvent();
+                            if ((_userBase as Server).Stop())
+                            {
+                                GameEvents.InvokeGameOverEvent();
+                            }
+                            break;
                         }
-                        break;
-                    }
-                case ConnectionType.Client:
-                    {
-                        if ((_userBase as Client).Stop())
+                    case ConnectionType.Client:
                         {
-                            GameEvents.InvokeGameOverEvent();
+                            if ((_userBase as Client).Stop())
+                            {
+                                GameEvents.InvokeGameOverEvent();
+                            }
+                            break;
                         }
-                        break;
-                    }
+                }
             }
         }
         void OnGameOver()

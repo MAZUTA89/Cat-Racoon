@@ -272,6 +272,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "SystemActions",
+            "id": "38febae5-93fc-4fd5-b086-1d569da9a718",
+            "actions": [
+                {
+                    "name": "CommunicationStats",
+                    "type": "Button",
+                    "id": "767f88ae-a856-4d1a-8fcf-04eca575da41",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "54dfbb0e-5f5a-4d6a-9b25-4c3c9fba8f0b",
+                    "path": "<Keyboard>/minus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CommunicationStats",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

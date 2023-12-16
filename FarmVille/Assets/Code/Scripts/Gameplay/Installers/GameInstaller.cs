@@ -1,4 +1,5 @@
-﻿using Assets.Code.Scripts.Gameplay.PlantingTerritory;
+﻿using Assets.Code.Scripts.Boot.Data;
+using Assets.Code.Scripts.Gameplay.PlantingTerritory;
 using Zenject;
 
 namespace Assets.Code.Scripts.Gameplay.Installers
@@ -13,6 +14,7 @@ namespace Assets.Code.Scripts.Gameplay.Installers
             Container.Bind<UseItems>().AsSingle();
             Container.Bind<ItemCommandsHandler>().AsSingle();
             Container.Bind<PlantTerritory>().AsTransient();
+            Container.Bind<UICommunicateStatistics>().AsSingle();
         }
 
         void BindInputSystem()

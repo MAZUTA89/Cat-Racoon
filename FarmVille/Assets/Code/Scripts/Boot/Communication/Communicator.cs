@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Assets.Code.Scripts.Boot.Data;
@@ -63,6 +64,7 @@ namespace Assets.Code.Scripts.Boot.Communication
         {
 
             int sendBytes = await _user.SendFixAcync(SendData);
+            CommunicationEvents.InvokeSendDataEvent(sendBytes);
             if (sendBytes < 1)
             {
                 GameEvents.InvokeGameOverEvent();
@@ -70,6 +72,12 @@ namespace Assets.Code.Scripts.Boot.Communication
             }
 
             PlayerData recv = await _user.RecvFixAcync<PlayerData>();
+
+            CommunicationEvents.InvokeRecvDataEvent(
+                Encoding.UTF8.GetBytes(
+                    JsonConvert.SerializeObject(recv)
+                    ).Length - 1
+                );
 
             if (recv != null)
             {
