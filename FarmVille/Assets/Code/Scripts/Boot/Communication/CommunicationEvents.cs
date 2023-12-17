@@ -5,10 +5,10 @@ namespace Assets.Code.Scripts.Boot.Communication
     public class CommunicationEvents
     {
         public static Action OnStartCommunicateEvent;
-        public static Action OnDataSendedEvent;
-        public static Action oncomplitedAdded;
+        public static Action OnWaitForCommunicateEvent;
         public static Action<int> OnSendDataEvent;
         public static Action<int> OnRecvDataEvent;
+
         public static void InvokeSendDataEvent(int bytes)
         {
             OnSendDataEvent?.Invoke(bytes);
@@ -21,13 +21,9 @@ namespace Assets.Code.Scripts.Boot.Communication
         {
             OnStartCommunicateEvent?.Invoke();
         }
-        public static void InvokeDataSendedIvent()
+        public static void InvokeOnWaitForCommunicateEvent()
         {
-            OnDataSendedEvent?.Invoke();
-        }
-        public static void InvokeOnComplitedAdded()
-        {
-            oncomplitedAdded?.Invoke();
+            OnWaitForCommunicateEvent?.Invoke();
         }
     }
 }

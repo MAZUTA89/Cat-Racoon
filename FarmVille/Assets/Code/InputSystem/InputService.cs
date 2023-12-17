@@ -1,4 +1,5 @@
 using Assets.Code.Scripts;
+using Assets.Code.Scripts.Boot.Communication;
 using System;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class InputService : IDisposable
     {
         _playerControls = new PlayerControls();
         _playerControls.Enable();
+        CommunicationEvents.OnStartCommunicateEvent += OnStartCommunicate;
+        CommunicationEvents.OnWaitForCommunicateEvent += OnWaitForCommunicate;
         GameEvents.OnGameOverEvent += OnGameOver;
     }
 
@@ -65,9 +68,19 @@ public class InputService : IDisposable
     public void Dispose()
     {
         _playerControls.Disable();
+        CommunicationEvents.OnStartCommunicateEvent -= OnStartCommunicate;
+        CommunicationEvents.OnWaitForCommunicateEvent -= OnWaitForCommunicate;
+        GameEvents.OnGameOverEvent -= OnGameOver;
         _playerControls.Dispose();
     }
-
+    void OnWaitForCommunicate()
+    {
+        _playerControls.Disable();
+    }
+    void OnStartCommunicate()
+    {
+        _playerControls.Enable();
+    }
     public void OnGameOver()
     {
         _playerControls.Disable();
