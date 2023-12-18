@@ -80,7 +80,7 @@ namespace Assets.Code.Scripts.Boot
             signal.DateTime = DateTime.Now;
             int send_bytes = await _userBase.SendAcync(signal);
 
-            if(send_bytes < 1)
+            if (send_bytes < 1)
             {
                 Debug.Log(_userBase.GetLastError());
                 return;
@@ -106,11 +106,11 @@ namespace Assets.Code.Scripts.Boot
                     CommunicationEvents.InvokeOnWaitForCommunicateEvent();
                     TimeSpan diff = recvSignal.DateTime - signal.DateTime;
                     await Task.Delay(diff);
+                    CommunicationEvents.InvokeCommunicationEvent();
                 }
                 DateTime loadTime = DateTime.Now;
                 _communicator.Start();
                 IsConnectionCreated = true;
-                CommunicationEvents.InvokeCommunicationEvent();
             }
         }
         private void OnApplicationQuit()
