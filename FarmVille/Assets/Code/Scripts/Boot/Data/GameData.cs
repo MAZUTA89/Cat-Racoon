@@ -5,6 +5,9 @@ namespace Assets.Code.Scripts.Boot
     {
         public SceneName GameSceneName = SceneName.Farm;
 
+        public float PlayerMoney;
+        public float ConnectedPlayerMoney;
+
         public void SetSceneName(SceneName sceneName)
         {
             GameSceneName = sceneName;
