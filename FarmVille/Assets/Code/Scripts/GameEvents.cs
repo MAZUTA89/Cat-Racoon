@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Code.Scripts
@@ -9,6 +10,7 @@ namespace Assets.Code.Scripts
         public static event Action OnGameOverEvent;
         public static event Action OnDayStartEvent;
         public static event Action OnNightStartEvent;
+        public static event Action OnSpeedUpEvent;
 
         public static void InvokePickSeedEvent(float money)
         {
@@ -26,6 +28,11 @@ namespace Assets.Code.Scripts
         {
             Debug.Log("GAME OVER!");
             OnGameOverEvent?.Invoke();
+        }
+
+        public static void InvokeOnSpeedUpBonusEvent()
+        {
+            OnSpeedUpEvent?.Invoke(); 
         }
     }
 }

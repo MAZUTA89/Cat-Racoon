@@ -103,6 +103,7 @@ namespace Assets.Code.Scripts.Boot
             {
                 if (signal.DateTime < recvSignal.DateTime)
                 {
+                    CommunicationEvents.InvokeOnWaitForCommunicateEvent();
                     TimeSpan diff = recvSignal.DateTime - signal.DateTime;
                     await Task.Delay(diff);
                 }

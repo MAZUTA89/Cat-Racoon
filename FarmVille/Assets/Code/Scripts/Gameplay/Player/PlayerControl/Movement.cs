@@ -8,7 +8,9 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
     {
         protected Rigidbody2D RigidBody;
         protected float MovementSpeed = 3f;
+        protected float _defaultSpeed;
         protected float _smoothTime = 2f;
+        protected float BoostSpeed = 10f;
         Vector2 _velocity;
         protected Vector2 CurrentPosition;
         protected Vector2 NewPosition;
@@ -22,6 +24,7 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
             Animator = GetComponent<Animator>();
             XKey = Animator.StringToHash("X");
             YKey = Animator.StringToHash("Y");
+            _defaultSpeed = MovementSpeed;
             OnStart();
         }
 

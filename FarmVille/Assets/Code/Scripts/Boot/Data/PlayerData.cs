@@ -21,6 +21,7 @@ namespace Assets.Code.Scripts.Boot.Data
         public float Money;
         public float positionX;
         public float positionY;
+        public float MovementSpeed;
         public void UpdatePosition(Vector2 position)
         {
             positionX = position.x;

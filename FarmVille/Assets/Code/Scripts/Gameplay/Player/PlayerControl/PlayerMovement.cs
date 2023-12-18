@@ -2,6 +2,7 @@
 using UnityEngine;
 using Assets.Code.Scripts.Boot.Communication;
 using Assets.Code.Scripts.Boot;
+using Newtonsoft.Json.Bson;
 
 namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
 {
@@ -9,6 +10,8 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
     {
         InputService _inputService;
         Vector2 _input;
+        float _boostSpeed = 5f;
+        float _boostSpeedTime = 3f;
         [Inject]
         public void Constructor(InputService inputService)
         {
@@ -16,6 +19,7 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
         }
         public override void OnStart()
         {
+            GameEvents.OnSpeedUpEvent += OnSpeedUp;
         }
 
         protected virtual void Update()
@@ -24,7 +28,7 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
             if (User.IsConnectionCreated)
             {
                 Communicator.SendData.SetDirection(_input);
-               
+                Communicator.SendData.MovementSpeed = MovementSpeed;
             }
             InputAndAnimateInFouthDirections(ref _input);
 
@@ -38,5 +42,17 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
             CurrentPosition = RigidBody.position;
             CurrentPosition = Move(CurrentPosition, NewPosition);
         }
+
+        void OnSpeedUp()
+        {
+            MovementSpeed = _boostSpeed;
+            Invoke("OnEndBoost", _boostSpeedTime);
+        }
+
+        void OnEndBoost()
+        {
+            MovementSpeed = _defaultSpeed;
+        }
+        
     }
 }

@@ -12,6 +12,9 @@ namespace Assets.Code.Scripts.Gameplay
     [RequireComponent(typeof(CursorRay))]
     public class UseItems : MonoBehaviour
     {
+        const int c_speedUpBonusChance = 10;
+        const int c_randomMax = 101;
+        const int c_randomMin = 0;
         [SerializeField] float Distance = 30f;
 
         CursorRay _cursorRay;
@@ -97,6 +100,13 @@ namespace Assets.Code.Scripts.Gameplay
                     itemCommand.PlayerType = User.Instance.PlayerType;
                     _sendedCommands.Add(itemCommand);
                     Communicator.SendData.AddItemCommand(itemCommand);
+                }
+
+                int randomChance = Random.Range(c_randomMin, c_randomMax);
+                if(randomChance < c_speedUpBonusChance)
+                {
+                    GameEvents.InvokeOnSpeedUpBonusEvent();
+                    Debug.Log("SPEED UP!!!");
                 }
             }
         }

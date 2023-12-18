@@ -15,7 +15,6 @@ namespace Assets.Code.Scripts.Boot.Data
         [SerializeField] GameObject StatisticsPanel;
         [SerializeField] TextMeshProUGUI SendSizeText;
         [SerializeField] TextMeshProUGUI RecvSizeText;
-        [SerializeField] TextMeshProUGUI CommCountText;
 
         InputService _inputService;
         bool _isOpen;
@@ -47,11 +46,7 @@ namespace Assets.Code.Scripts.Boot.Data
                 StatisticsPanel.SetActive(_isOpen);
             }
 
-            if(User.IsConnectionCreated)
-            {
-                CommCountText.text = 
-                    Communicator.SendData.CompletedCommands.Count.ToString();
-            }
+            
         }
 
         public void OnSendData(int bytes)

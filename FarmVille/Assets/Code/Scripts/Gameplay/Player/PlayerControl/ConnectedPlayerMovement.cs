@@ -15,7 +15,7 @@ namespace Assets.Code.Scripts.Gameplay.Player.PlayerControl
             if(User.IsConnectionCreated)
             {
                 Vector2 input = Communicator.RecvData.GetDirection();
-                
+                MovementSpeed = Communicator.RecvData.MovementSpeed;
                 InputAndAnimateInFouthDirections(ref input);
             }
         }
