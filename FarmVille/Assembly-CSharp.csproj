@@ -112,7 +112,10 @@
     <Compile Include="Assets\Code\Scripts\Gameplay\Coins\MoneyDisplayer.cs" />
     <Compile Include="Assets\Code\Enums.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Bonuses\Bonus.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\Bonuses\ExtraMoneyBonus.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Installers\BonusesInstaller.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Bonuses\BonusService.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\Bonuses\BonusSpawner.cs" />
+    <Compile Include="Assets\Resources\Bonuses\BonusSO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -112,6 +112,7 @@ namespace Assets.Code.Scripts.Gameplay
                             if (seed.Status == GrowStatus.Ready
                                 && seed.ParentPlayer == User.Instance.PlayerType)
                             {
+                                GameData.Instance.AddMoney(seed.Money);
                                 GameEvents.InvokePickSeedEvent(seed.Money);
                                 _inventory[Item.Watering] += Random.Range(0, 2);
                                 _inventory[seed.GetSeedType()] += Random.Range(1, 3);

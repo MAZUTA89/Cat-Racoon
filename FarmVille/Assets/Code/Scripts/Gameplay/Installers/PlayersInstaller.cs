@@ -20,6 +20,7 @@ namespace Assets.Code.Scripts.Gameplay.Installers
         {
             BindSpawnPoints();
             BindMovement();
+            BindMode();
 
             switch (Mode)
             {
@@ -82,6 +83,10 @@ namespace Assets.Code.Scripts.Gameplay.Installers
         void BindMovement()
         {
             Container.Bind<PlayerMovement>().AsSingle();
+        }
+        public void BindMode()
+        {
+            Container.BindInstance(Mode).AsSingle();
         }
     }
 }

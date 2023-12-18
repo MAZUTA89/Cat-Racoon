@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3241328870977206301}
   - component: {fileID: 3241328870977206298}
+  - component: {fileID: 2982502393788746636}
   m_Layer: 0
   m_Name: MoneyBonus
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -320906252, guid: 38cca1b4e2272bd46894a12f451656a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2982502393788746636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241328870977206299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22227ff67bfd30b47b95404d49a390fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoneyValue: 50
