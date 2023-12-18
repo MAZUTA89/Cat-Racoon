@@ -18,7 +18,7 @@ namespace Assets.Code.Scripts.Boot.Communication
 
         void OnStartCommunicate()
         {
-            LoadImage.SetActive(false);
+            //LoadImage.SetActive(false);
         }
     }
 }
