@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject", "Zenject.csproj", "{5364ADE3-722B-1B10-FB10-C8C0FF5DDED7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{A5D29CDA-DB99-F5ED-7923-6AED0AD87903}"
@@ -22,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-ReflectionBaking-Editor", "Zenject-ReflectionBaking-Editor.csproj", "{8097E907-4536-FA67-1B6D-4A259C7ADF39}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-Editor", "Zenject-Editor.csproj", "{643FFBD5-16FE-3F9B-543A-318C2DC0B2A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "..\Tests\Tests.csproj", "{4CDF4C20-A772-4879-9E7E-811300BC5D31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +77,10 @@ Global
 		{643FFBD5-16FE-3F9B-543A-318C2DC0B2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{643FFBD5-16FE-3F9B-543A-318C2DC0B2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{643FFBD5-16FE-3F9B-543A-318C2DC0B2A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CDF4C20-A772-4879-9E7E-811300BC5D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CDF4C20-A772-4879-9E7E-811300BC5D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CDF4C20-A772-4879-9E7E-811300BC5D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CDF4C20-A772-4879-9E7E-811300BC5D31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
