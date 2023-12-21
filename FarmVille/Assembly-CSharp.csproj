@@ -100,20 +100,19 @@
     <Compile Include="Assets\Code\Scripts\Boot\Communication\Communicator.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\UsingItems\ItemCommandsHandler.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\BackGround\BGLoop.cs" />
+    <Compile Include="Assets\Resources\Bonuses\BonusSO.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Player\PlayerControl\Movement.cs" />
     <Compile Include="Assets\Code\ClientServer\TCPSocket.cs" />
     <Compile Include="Assets\Code\Scripts\GameEvents.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Communication\CommunicationEvents.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\PlayerInventory\InventoryInputService.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\Connection\ClientConnectionCreator.cs" />
+    <Compile Include="Assets\Code\Scripts\Gameplay\SpeedBonus.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\ProgressHandler.cs" />
     <Compile Include="Assets\Code\Scripts\Lobby\LoadingLevel\LoadLevelSignal.cs" />
     <Compile Include="Assets\Code\Scripts\Boot\Data\SpawnCommand.cs" />
     <Compile Include="Assets\Code\Scripts\Gameplay\Coins\MoneyDisplayer.cs" />
     <Compile Include="Assets\Code\Enums.cs" />
-    <Compile Include="Assets\Resources\Bonuses\BonusSO.cs" />
-    <Compile Include="Assets\Code\Scripts\Gameplay\SpeedBonus.cs" />
-    <Compile Include="Assets\Code\Scripts\Boot\Communication\Progress.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

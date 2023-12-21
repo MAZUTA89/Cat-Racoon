@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Code.Scripts.Boot.Data
@@ -8,20 +7,18 @@ namespace Assets.Code.Scripts.Boot.Data
     {
         public List<ItemCommand> ItemCommands;
         public List<ItemCommand> CompletedCommands;
-        //public List<String> NotFreeTerritoryList;
         public float DirectionX;
         public float DirectionY;
-        public PlayerData() 
-        {
-            ItemCommands = new List<ItemCommand>();
-            CompletedCommands = new List<ItemCommand>();
-            //NotFreeTerritoryList = new List<String>();
-        }
         public bool IsLeftButton;
         public float Money;
         public float positionX;
         public float positionY;
         public float MovementSpeed;
+        public PlayerData() 
+        {
+            ItemCommands = new List<ItemCommand>();
+            CompletedCommands = new List<ItemCommand>();
+        }
         public void UpdatePosition(Vector2 position)
         {
             positionX = position.x;
@@ -40,10 +37,7 @@ namespace Assets.Code.Scripts.Boot.Data
         {
            CompletedCommands.Add(itemCommand);
         }
-        //public void AddNotFreeTerritory(string name)
-        //{
-        //    NotFreeTerritoryList.Add(name);
-        //}
+       
         public void SetDirection(Vector2 direction)
         {
             DirectionX = direction.x;

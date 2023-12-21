@@ -5,9 +5,7 @@ using Assets.Code.Scripts.Gameplay.PlantingTerritory;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Zenject;
 
 namespace Assets.Code.Scripts.Gameplay
@@ -44,7 +42,6 @@ namespace Assets.Code.Scripts.Gameplay
             if (Communicator.RecvData.ItemCommands.Count > 0)
             {
                 List<ItemCommand> commands = Communicator.RecvData.ItemCommands;
-                //List<string> NotFreeTerr = Communicator.RecvData.NotFreeTerritoryList;
                 for (int i = 0; i < commands.Count; i++)
                 {
                     switch(commands[i].CommandType)
@@ -66,7 +63,6 @@ namespace Assets.Code.Scripts.Gameplay
                                     terr.SetEmpty(false);
                                     terr.SetSeed(seedPrefab);
                                     Communicator.SendData.AddComplitedCommand(commands[i]);
-                                    //Communicator.SendData.AddNotFreeTerritory(commands[i].ParentTerritoryName);
                                     
                                 }
                                 break;
@@ -98,12 +94,6 @@ namespace Assets.Code.Scripts.Gameplay
 
                 DeleteIntersect(sendCommands, recvComplitedCommands);
                 DeleteIntersect(recvComplitedCommands, sendCommands);
-                
-
-                //List<ItemCommand> commonCommands = sendCommands.Intersect(recvComplitedCommands).ToList();
-
-                //sendCommands.RemoveAll(item => commonCommands.Contains(item));
-                //recvComplitedCommands.RemoveAll(item => commonCommands.Contains(item));
             }
         }
 
